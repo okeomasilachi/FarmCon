@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from app.models import Product
+from app.models.product import Product
 
 
 class ProductResource(Resource):

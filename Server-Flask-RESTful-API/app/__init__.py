@@ -16,6 +16,10 @@ def create_app():
     api = Api(app)
 
     with app.app_context():
+        from app.models.user import User
+        from app.models.product import Product
+        from app.models.feedback import Feedback
+        from app.models.location import Location
         from app.resources.user import UserResource, UserList
         from app.resources.product import ProductResource, ProductList
 
