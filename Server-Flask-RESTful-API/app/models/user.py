@@ -1,6 +1,5 @@
 from app import db
 from app.models.base import BaseModel
-from app.models import UserRole
 import enum
 
 
