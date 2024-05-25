@@ -1,0 +1,21 @@
+
+/* Contact section style */
+.container__contact {
+	background: var(--dark-green);
+	color: var(--text-white);
+	padding: 2rem;
+	box-shadow: 0.1rem 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.);
+	margin-bottom: 4rem;
+}
+
+.container__contact .title {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	margin-bottom: 2rem;
+}
+
+.container__contact  label{
+	font-size: 1.2rem;
+}
+

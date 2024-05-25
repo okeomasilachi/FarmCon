@@ -2,20 +2,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import Header from './components/Header';
+import Services from './components/Services';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Map from './components/Map'
+import About from './components/About';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>FarmCon Application</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          welcome to FarmCon Application
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Services />
+      <About />
+      <Map />
+      <Contact />
+      <Footer />
     </div>
   );
 }

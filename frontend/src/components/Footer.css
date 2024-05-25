@@ -1,0 +1,26 @@
+
+/* FOOTER STYLE */
+.container__footer {
+	padding: 0rem 2rem;
+	background: var(--text-dark);
+	color: var(--text-white);
+	text-align: center;
+}
+
+.container__footer ul li a {
+	color: var(--text-white);
+	line-height: 1.2;
+}
+
+.container__footer ul li a:hover {
+	letter-spacing: 0.2rem;
+	color: var(--text-white);
+}
+
+/* .container__footer ul li a.link-dark svg {
+	background: white;
+	padding: 0.2rem;
+	border-radius: 50%;
+	width: 2rem;
+	height: 2rem;
+} */
