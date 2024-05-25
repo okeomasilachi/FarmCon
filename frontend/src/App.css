@@ -31,6 +31,14 @@
   /* padding: 2rem; */
 }
 
+a {
+  color: var(--dark-green);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+
+
 .heading {
   margin-top: 4rem;
   margin-bottom: 1rem;
@@ -51,7 +59,7 @@
   border: 0.1rem solid var(--dark-green);
   color: var(--text-white);
   border-radius: 0.5rem;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 1rem;
 }
 
 .btn-lg:hover {
@@ -79,6 +87,17 @@
 .container__signup {
   height: 100vh;
 }
+
+
+input[type=password],
+input[type=text] {
+  padding: 0.8rem;
+}
+
+
+
+
+
 
 /* PickUP PAGE STYLING  */
 .container__students {

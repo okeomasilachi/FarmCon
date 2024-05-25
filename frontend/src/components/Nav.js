@@ -34,7 +34,7 @@ const Nav = () => {
 							<a className="nav-link" href="#contact">Contact</a>
 						</li>
 						<li className="">
-							<a className="btn-sm-alt" href="./signin">Signin</a>
+							<a className="btn-sm-alt" href="./login">Signin</a>
 						</li>
 					</ul>
 					

@@ -1,0 +1,16 @@
+.container__signin {
+	background-image: url('../../public/images/beanfarm.jpg');
+	background-color: #000000;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: var(--text-white);
+}
+
+.container__signin .signin__section {
+	background-color: #0000008f;
+}
+
+a:hover {
+	text-decoration: underline !important;
+  }
