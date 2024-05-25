@@ -13,6 +13,6 @@
 	background-color: #0000008f;
 }
 
-a:hover {
+.container__signup a:hover {
 	text-decoration: underline !important;
   }

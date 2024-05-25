@@ -1,5 +1,9 @@
 import React from 'react'
 import './Signup.css'
+import { Link } from 'react-router-dom'
+
+
+
 const Signup = () => {
   return (
 	<div className="container_fluid container__signup">
@@ -36,7 +40,7 @@ const Signup = () => {
 				</form>
 			</div>
 			<div className="col-12 col-10 col-md-4 col-lg-4 mt-4">
-				<p>Already have an account? click here to <a href="./login" className='text-white'>Signin</a></p>
+				<p>Already have an account? click here to <Link to="../login" className='text-white'>Signin</Link></p>
 			</div>
 		</div>
 	</div>
