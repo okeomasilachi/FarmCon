@@ -5,6 +5,7 @@
 	background-position: center;
 	background-size: cover;
 	color: var(--text-white);
+	overflow: hidden;
 }
 
 .container__signin .signin__section {
