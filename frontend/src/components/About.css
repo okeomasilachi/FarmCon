@@ -68,6 +68,6 @@
 }
 .container__about .dp_image {
 	border-radius: 0.5rem;
-	box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.356);
+	/* box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.356); */
 	width: 100%;
 }

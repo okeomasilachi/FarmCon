@@ -4,7 +4,7 @@ import './Nav.css'
 
 const Nav = () => {
 	return (
-		<nav className="navbar navbar-expand-lg fixed-top p-4">
+		<nav className="navbar navbar-expand-lg fixed-top p-3">
 			<div className="container">
 				<Link className="navbar-brand" to="./home">
 					{/* <img src="./assets/images/logo-1.png" className="brand" alt="Sevenskies" /> */}
@@ -25,13 +25,13 @@ const Nav = () => {
 							<Link className="nav-link" to="./agriculture">Agriculture</Link>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="#services">Services</Link>
+							<a className="nav-link" href="#services">Services</a>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="#about">About us</Link>
+							<a className="nav-link" href="#about">About us</a>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="#contact">Contact</Link>
+							<a className="nav-link" href="#contact">Contact</a>
 						</li>
 						<li className="">
 							<Link className="btn-sm-alt" to="./login">Signin</Link>
