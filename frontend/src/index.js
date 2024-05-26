@@ -4,6 +4,10 @@ import App from './App';
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Agriculture from './pages/Agriculture';
+import Dashboard from './pages/Dashboard';
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -16,6 +20,14 @@ import Signup from './pages/Signup'
     {
       path: "/register",
       element: <Signup />,
+    },
+    {
+      path: "/agriculture",
+      element: <Agriculture />,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
     },
   ]);
 

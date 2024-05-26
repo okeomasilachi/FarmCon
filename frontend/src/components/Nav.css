@@ -8,18 +8,21 @@
 }
 
 .navbar .navbar-toggler {
-  background: var(--text-dark);
+  background: var(--text-white);
 }
-.navbar #navbarText .navbar-nav li:last-child {
-  margin-left: 2rem;
+
+.navbar #navbarText{
+  text-align: center;
+  margin-left:0;
+  padding: 0;
 }
 
 .navbar #navbarText .nav-item .nav-link {
   color: var(--text-dark) !important;
-  margin: 0 0.5rem;
+  margin: 0.4rem 0.5rem;
   padding: 0.5rem;
 }
-.navbar #navbarText .nav-item a:hover {
+/* .navbar #navbarText .nav-item a:hover {
   border-bottom: 2px solid var(--text-dark);
   font-weight: 700;
 }
@@ -27,4 +30,4 @@
 .navbar #navbarText .nav-item a.active {
   border-bottom: 0.2rem solid var(--secondary-color);
   border-radius: 0.5rem;
-}
+} */

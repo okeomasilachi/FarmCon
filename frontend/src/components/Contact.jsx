@@ -1,5 +1,14 @@
 import React from 'react'
-import './Contact.css'
+import './Contact.css' 
+
+// IMPORTING REACT FONTAWESOME 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// ADD REACT FONTAWESOME ICON 
+// import {faPaperPlane} from '@fortawesome/free-brands-svg-icons'
+import {faPaperPlane} from '@fortawesome/free-regular-svg-icons'
+
+
 const Contact = () => {
   return (
 	<section className="container container__contact" id="contact">
@@ -25,7 +34,7 @@ const Contact = () => {
 								<textarea className="form-control" id="message" placeholder="Type your message here..." rows="10"></textarea>
 							</div>
 							<div className="text-center">
-								<button type="submit" className="btn-lg w-50 me-auto">Send</button>
+								<button type="submit" className="btn-lg w-50 py-3 me-auto">Send &nbsp; <FontAwesomeIcon icon={faPaperPlane}/></button>
 							</div>
 						</form>
 					</div>

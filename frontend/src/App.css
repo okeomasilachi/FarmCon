@@ -37,8 +37,6 @@ a {
   font-size: 1.2rem;
 }
 
-
-
 .heading {
   margin-top: 4rem;
   margin-bottom: 1rem;
@@ -88,17 +86,11 @@ a {
   height: 100vh;
 }
 
-
-input[type=email],
-input[type=password],
-input[type=text] {
+input[type="email"],
+input[type="password"],
+input[type="text"] {
   padding: 0.8rem;
 }
-
-
-
-
-
 
 /* PickUP PAGE STYLING  */
 .container__students {
@@ -168,37 +160,57 @@ input[type=text] {
     margin-right: 0.5rem;
   }
 
-  .container__data .card {
-    width: 10rem;
-  }
-  .container__grades .card,
-  .container__students .card {
-    width: 14rem;
-    margin: 0.2rem;
-    margin-top: 0.8rem;
-    /* margin-right: 0.62596rem; */
-  }
-
-  .container__students .card-title {
-    font-size: 1.1rem;
-  }
-
   .container__map {
     height: 100vh;
     margin: 4rem auto;
-	margin-bottom: 8rem;
+    margin-bottom: 8rem;
   }
 
   .container__profile {
     margin-top: 5rem;
   }
+
+    /* Agriulture CSS  */
+    .container__hero .row .hero_title h1 {
+      font-size: 2.5rem !important;
+    }
+    .container__hero .row .hero_title p {
+      font-size: 1.5rem !important;
+    }
+  
+    .container__hero .title__row .hero_search {
+      width: 50% !important;
+      font-size: 1.25rem;
+    }
+
+    .container__products .bottom_product .products .product {
+      padding-top: 7rem !important;
+    }
+
 }
 
 @media (min-width: 1024px) {
+  .navbar #navbarText .navbar-nav li:last-child {
+    margin-left: 2rem;
+  }
+
+  .navbar #navbarText .nav-item .nav-link {
+    margin: 0 0.5rem;
+  }
+  .navbar #navbarText .nav-item a:hover {
+    border-bottom: 2px solid var(--text-dark);
+    font-weight: 700;
+  }
+
+  .navbar #navbarText .nav-item a.active {
+    border-bottom: 0.2rem solid var(--secondary-color);
+    border-radius: 0.5rem;
+  }
+
   .container__services {
     height: 100vh;
   }
-  
+
   .container__services .cards {
     gap: 1rem;
   }
@@ -207,8 +219,6 @@ input[type=text] {
     margin: 1rem 0.5rem;
   }
 
-
-
   .container__services .cards .margin-1 {
     margin-top: 4rem;
   }
@@ -216,13 +226,12 @@ input[type=text] {
     margin-top: 7rem;
   }
 
+  .container__about .card {
+    /* width: 13rem !important; */
+    margin: 1rem 0.5rem;
+  }
 
-  .container__about .card{
-	/* width: 13rem !important; */
-	margin: 1rem 0.5rem;
-}
-
-/* .container__about .card  img {
+  /* .container__about .card  img {
 	height: 14rem !important;
 	transition:  height .6s;
 } */
@@ -240,35 +249,26 @@ input[type=text] {
     margin-top: 7rem;
   }
 
-
-
-.container__contact {
-	margin-top: 5rem;
-}
-
-
-  .container__data .card {
-    width: 15rem;
-    margin-right: 0.6rem;
-    padding: 2rem;
-  }
-
-  .container__data .card h2 {
-    font-size: 3rem;
-  }
-  .container__data .card p {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-
-  .container__profile .table {
-    width: 30rem;
+  .container__contact {
+    margin-top: 5rem;
   }
 
   /* FOOTER STYLE */
   .container__footer {
     text-align: left;
     padding: 0rem 4rem;
+  }
+
+
+
+  /* Agriculture css  */
+  .container__states .bottom_state .states .state {
+    width: 24.36% !important; 
+    height: 15rem;
+  }
+  .container__products .bottom_product .products .product {
+    width: 24.36% !important; 
+    height: 15rem;
   }
 }
 

@@ -17,6 +17,26 @@
 	color: var(--text-white);
 }
 
+
+.container__footer .footer_icons
+ {
+	display: flex;
+	flex-flow: row;
+	gap: 2rem;
+}
+.container__footer .footer_icons .icon
+ {
+	list-style: none;
+}
+.container__footer .footer_icons .icon a {
+	color: var(--text-white);
+	font-size: 1.5rem;
+}
+
+.container__footer .footer_icons .icon a:hover {
+	color: var(--light-green);
+}
+
 /* .container__footer ul li a.link-dark svg {
 	background: white;
 	padding: 0.2rem;
