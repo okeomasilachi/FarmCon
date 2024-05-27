@@ -1,10 +1,10 @@
 from app import db
 from app.models.base import BaseModel
 from app.models import ProductStatus
-import enum
+import enum import Enum
 
 
-class ProductStatus(enum.Enum):
+class ProductStatus(Enum):
     """Enumeration for product statuses."""
     PENDING = "Pending"
     APPROVED = "Approved"
