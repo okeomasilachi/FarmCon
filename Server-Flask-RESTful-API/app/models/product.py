@@ -2,6 +2,7 @@ from app import db
 from app.models.base import BaseModel
 from app.models import ProductStatus
 import enum import Enum
+import enum
 
 
 class ProductStatus(Enum):

@@ -12,13 +12,24 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-    CORS(app)
+    CORS(
+    app,
+    resources={
+        r"/api/*": {"origins": ["http://localhost"]}
+    },
+)
     api = Api(app)
 
     with app.app_context():
+        from app.models.user import User
+        from app.models.product import Product
+        from app.models.feedback import Feedback
+        from app.models.location import Location
         from app.resources.user import UserResource, UserList
         from app.resources.product import ProductResource, ProductList
+        from app.resources.index import Status
 
+        api.add_resource(Status, '/api/status')
         api.add_resource(UserList, '/api/users')
         api.add_resource(UserResource, '/api/users/<int:user_id>')
         api.add_resource(ProductList, '/api/products')

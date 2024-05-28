@@ -1,0 +1,292 @@
+:root {
+  --dark-green: #1e5631;
+  --light-green: #a4de02;
+  --temp-green: #76ba1b;
+  --normal-green: #4c9a2a;
+  --hover-green: #acdf87;
+  --fair-green: #68bb59;
+  --bg-dark: #000000;
+  --text-white: #ffffff;
+  --text-dark: #161616;
+  --text-faint: #e4e4e4;
+  --text-ash: #b6b6b6;
+  --hover-color: #d4f3ab;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  text-decoration: none !important;
+}
+
+.logo {
+  width: 8rem;
+  padding-bottom: 2rem;
+}
+
+.brand {
+  width: 10rem;
+  /* padding: 2rem; */
+}
+
+a {
+  color: var(--dark-green);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.heading {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.heading .title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.heading p {
+  font-size: 1.2rem;
+}
+
+.btn-lg {
+  background-color: var(--normal-green);
+  border: 0.1rem solid var(--dark-green);
+  color: var(--text-white);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+}
+
+.btn-lg:hover {
+  background-color: var(--light-green);
+  color: var(--text-white);
+}
+
+.btn-sm-alt {
+  background: var(--text-dark);
+  border: 0.1rem solid var(--text-ash);
+  color: var(--text-white);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-sm-alt:hover {
+  background: var(--text-ash);
+  color: var(--text-dark);
+}
+
+/* FORM CSS */
+.container__signin,
+.container__signup {
+  height: 100vh;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 0.8rem;
+}
+
+/* PickUP PAGE STYLING  */
+.container__students {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+.container__students .cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-content: space-between; */
+}
+
+.container__students .card {
+  width: 9rem;
+  margin-top: 1rem;
+  margin-right: 0.2rem;
+}
+
+.container__students .card-title {
+  font-size: 1.1rem;
+}
+
+/* Responsiveness  */
+@media (min-width: 374px) {
+  .container__students .card {
+    width: 10.5rem;
+  }
+
+  .container__students .card-title {
+    font-size: 1.3rem;
+  }
+
+  .container__grades .cards {
+    padding: auto 0.4rem;
+  }
+
+  .container__data .card,
+  .container__grades .card {
+    width: 10rem;
+  }
+  .container__data .card {
+    margin-right: 0.2rem;
+  }
+}
+
+@media (min-width: 425px) {
+  /* Contact section style */
+  .container__contact {
+    padding: 2rem;
+  }
+
+  .container__data .card {
+    width: 11rem;
+  }
+
+  .container__grades .card,
+  .container__students .card {
+    width: 12rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container__services .card,
+  .container__about .card {
+    width: 14rem;
+    margin-right: 0.5rem;
+  }
+
+  .container__map {
+    height: 100vh;
+    margin: 4rem auto;
+    margin-bottom: 8rem;
+  }
+
+  .container__profile {
+    margin-top: 5rem;
+  }
+
+    /* Agriulture CSS  */
+    .container__hero .row .hero_title h1 {
+      font-size: 2.5rem !important;
+    }
+    .container__hero .row .hero_title p {
+      font-size: 1.5rem !important;
+    }
+  
+    .container__hero .title__row .hero_search {
+      width: 50% !important;
+      font-size: 1.25rem;
+    }
+
+    .container__products .bottom_product .products .product {
+      padding-top: 7rem !important;
+    }
+
+}
+
+@media (min-width: 1024px) {
+  .navbar #navbarText .navbar-nav li:last-child {
+    margin-left: 2rem;
+  }
+
+  .navbar #navbarText .nav-item .nav-link {
+    margin: 0 0.5rem;
+  }
+  .navbar #navbarText .nav-item a:hover {
+    border-bottom: 2px solid var(--text-dark);
+    font-weight: 700;
+  }
+
+  .navbar #navbarText .nav-item a.active {
+    border-bottom: 0.2rem solid var(--secondary-color);
+    border-radius: 0.5rem;
+  }
+
+  .container__services {
+    height: 100vh;
+  }
+
+  .container__services .cards {
+    gap: 1rem;
+  }
+  .container__services .card {
+    width: 20rem;
+    margin: 1rem 0.5rem;
+  }
+
+  .container__services .cards .margin-1 {
+    margin-top: 4rem;
+  }
+  .container__services .cards .margin-2 {
+    margin-top: 7rem;
+  }
+
+  .container__about .card {
+    /* width: 13rem !important; */
+    margin: 1rem 0.5rem;
+  }
+
+  /* .container__about .card  img {
+	height: 14rem !important;
+	transition:  height .6s;
+} */
+
+  .container__about .about_info {
+    width: 40%;
+    padding: 6rem;
+  }
+
+  .container__about .dp_image {
+    width: 80%;
+  }
+
+  .container__about .dp_image {
+    margin-top: 7rem;
+  }
+
+  .container__contact {
+    margin-top: 5rem;
+  }
+
+  /* FOOTER STYLE */
+  .container__footer {
+    text-align: left;
+    padding: 0rem 4rem;
+  }
+
+
+
+  /* Agriculture css  */
+  .container__states .bottom_state .states .state {
+    width: 24.36% !important; 
+    height: 15rem;
+  }
+  .container__products .bottom_product .products .product {
+    width: 24.36% !important; 
+    height: 15rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container__services .card,
+  .container__about .card {
+    width: 26rem;
+  }
+
+  .container__data .card {
+    width: 15rem;
+    margin-right: 0.6rem;
+  }
+
+  .container__grades .card,
+  .container__students .card {
+    width: 15rem;
+    margin: 0.6rem;
+    margin-top: 0.8rem;
+  }
+}
