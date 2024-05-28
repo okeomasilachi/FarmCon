@@ -21,9 +21,9 @@ class Product(BaseModel):
     planting_period_end = db.Column(db.DateTime, nullable=False)
     harvesting_period_start = db.Column(db.DateTime, nullable=False)
     harvesting_period_end = db.Column(db.DateTime, nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey(
-        'locations.id'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     rate_of_production = db.Column(db.Float, nullable=False)
-    status = db.Column(db.Enum(ProductStatus), nullable=False,
-                       default=ProductStatus.PENDING)
+    status = db.Column(db.Enum(ProductStatus), nullable=False, default=ProductStatus.PENDING)
     feedbacks = db.relationship('Feedback', backref='product', lazy=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Foreign key to User table
+    
