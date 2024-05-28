@@ -36,14 +36,14 @@ class BaseModel(db.Model):
         db.session.commit()
 
     def update(self, **kwargs):
-        """Update the current instance with new data."""
+        """ Update the current instance with new data."""
         for key, value in kwargs.items():
             setattr(self, key, value)
         self.updated_at = datetime.utcnow()
         db.session.commit()
 
     def to_dict(self, json=False):
-        """Convert the model instance to a dictionary."""
+        """ Convert the model instance to a dictionary."""
         result = {column.name: getattr(self, column.name)
                   for column in self.__table__.columns}
         result["created_at"] = self.created_at.isoformat(
