@@ -85,9 +85,9 @@ def create_app():
         api.add_resource(ProductList, '/api/products')
         api.add_resource(ProductResource, '/api/products/<uuid:product_id>')
         api.add_resource(LocationList, '/api/locations')
-        api.add_resource(LocationResource, '/api/locations/<uuid:locations>')
+        api.add_resource(LocationResource, '/api/locations/<uuid:location_id>')
         api.add_resource(FeedbackList, '/api/feedbacks')
-        api.add_resource(FeedbackResource, '/api/feedbacks/<uuid:locations>')
+        api.add_resource(FeedbackResource, '/api/feedbacks/<uuid:feedback_id>')
 
         db.create_all()
 
