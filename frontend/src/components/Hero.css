@@ -1,0 +1,54 @@
+.container__hero {
+  background-image: url("../../public/images/beanfarm.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 0;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  height: 60vh;
+  display: flex;
+}
+
+.container__hero .title__row {
+  background: #000000ab;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  height: inherit;
+  text-align: center;
+  gap: 0.2rem
+}
+
+.container__hero .title__row .col-12 {
+	width: 100%;
+}
+
+.container__hero .row .hero_title h1 {
+  color: var(--text-white);
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+.container__hero .row .hero_title p {
+  color: var(--text-white);
+  font-size: 1rem;
+}
+
+.container__hero .title__row .hero_search {
+  border-bottom: 1.5px solid var(--text-white);
+  width: 80%;
+  color: var(--text-white);
+  font-size: 1.1rem;
+}
+
+.container__hero .title__row .hero_input {
+	width: inherit;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: var(--text-white);
+}
