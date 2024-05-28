@@ -1,0 +1,9 @@
+
+/* Carousel styling  */
+.container__header header .caro__slide{
+	margin-top: 8rem;
+	margin-bottom: 4rem;
+}
+.container__header .caro__slide .carousel-item img{
+	margin: auto;
+}
