@@ -3,7 +3,7 @@ from app.models.base import BaseModel
 
 
 class Feedback(BaseModel):
-    """Feedback model class."""
+    """ Feedback model class """
     __tablename__ = 'feedbacks'
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text, nullable=True)
