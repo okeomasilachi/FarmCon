@@ -51,26 +51,11 @@ class DBClient {
         }
       },
       {
-        name: 'locations',
-        validator: {
-          $jsonSchema: {
-            bsonType: 'object',
-            required: ['state', 'address'],
-            properties: {
-              state: { bsonType: 'string' },
-              address: { bsonType: 'string' },
-              latitude: { bsonType: 'double' },
-              longitude: { bsonType: 'double' }
-            }
-          }
-        }
-      },
-      {
         name: 'products',
         validator: {
           $jsonSchema: {
             bsonType: 'object',
-            required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production'],
+            required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
             properties: {
               name: { bsonType: 'string' },
               description: { bsonType: 'string' },
@@ -80,7 +65,11 @@ class DBClient {
               harvesting_period_end: { bsonType: 'date' },
               location_id: { bsonType: 'objectId' },
               rate_of_production: { bsonType: 'double' },
-              status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] }
+              status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
+              state: { bsonType: 'string' },
+              address: { bsonType: 'string' },
+              latitude: { bsonType: 'double' },
+              longitude: { bsonType: 'double' }
             }
           }
         }
@@ -208,6 +197,33 @@ class DBClient {
       return await this.db.collection(collectionName).find().toArray();
     } catch (error) {
       console.error(`Error getting all documents in ${collectionName}:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Retrieves documents based on multiple criteria.
+   * @param {string} collectionName - The name of the collection.
+   * @param {Object} criteria - The criteria for retrieving documents.
+   * @returns {Promise<Array<Object>>} A promise that resolves with an array of matching documents.
+   * @throws {Error} If an error occurs while retrieving the documents.
+   */
+  async getByCriteria(collectionName, criteria) {
+    try {
+      const query = {};
+
+      if (criteria.user_id) query.user_id = ObjectId(criteria.user_id);
+      if (criteria.product_id) query.product_id = ObjectId(criteria.product_id);
+      if (criteria.planting_period_start) query.planting_period_start = { $gte: new Date(criteria.planting_period_start) };
+      if (criteria.planting_period_end) query.planting_period_end = { $lte: new Date(criteria.planting_period_end) };
+      if (criteria.harvesting_period_start) query.harvesting_period_start = { $gte: new Date(criteria.harvesting_period_start) };
+      if (criteria.harvesting_period_end) query.harvesting_period_end = { $lte: new Date(criteria.harvesting_period_end) };
+      if (criteria.status) query.status = criteria.status;
+      if (criteria.state) query.state = criteria.state;
+
+      return await this.db.collection('products').find(query).toArray();
+    } catch (error) {
+      console.error(`Error getting documents by criteria in ${collectionName}:`, error);
       throw error;
     }
   }

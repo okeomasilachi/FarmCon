@@ -22,9 +22,7 @@ async function getStatus(req, res) {
  */
 async function getStats(req, res) {
   try {
-    const numUsers = await dbClient.nbUsers();
-    const numFiles = await dbClient.nbFiles();
-
+    const users = await dbClient.getAll(users);
     res.status(200).json({ users: numUsers, files: numFiles });
   } catch (error) {
     res.status(500).json({ error: error.message });

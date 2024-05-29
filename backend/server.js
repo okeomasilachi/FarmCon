@@ -5,7 +5,6 @@ const routes = require('./routes');
 
 const port = parseInt(process.env.PORT, 10) || 5000;
 
-// Define CORS options
 const corsOptions = {
   origin: ['http://localhost', 'http://okeoma.tech', 'http://0.0.0.0', /https?:\/\/.*\.okeoma\.tech/i],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -16,7 +15,6 @@ const corsOptions = {
 // Apply CORS middleware
 app.use(cors(corsOptions));
 
-// Mount routes under /api/
 app.use('/api', routes);
 
 // Middleware to handle requests to the root path (/)

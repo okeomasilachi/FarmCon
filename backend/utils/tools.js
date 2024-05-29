@@ -8,16 +8,19 @@ const { ObjectId } = require('mongodb');
  * @returns {Promise<boolean>} - A promise that resolves to a boolean
  *      indicating whether the user is authenticated or not.
  */
-async function authUser(req) {
+async function authUser(req, data = undefined) {
   const { 'x-token': token } = req.headers;
 
   if (!token) return false;
-
   try {
     const sessionToken = await redisClient.get(`auth_${token}`);
     if (sessionToken) {
-      const user = await dbClient.getById('users', sessionToken);
-      return user;
+      try {
+        const user = await dbClient.getById('users', sessionToken);
+        return data === undefined ? true : user;
+      } catch (err) {
+        return false;
+      }
     }
     return false;
   } catch (error) {
@@ -31,7 +34,6 @@ async function authUser(req) {
  *
  * @typedef {Object} SchemaMap
  * @property {Object} feedbacks - JSON schema for the "feedbacks" collection.
- * @property {Object} locations - JSON schema for the "locations" collection.
  * @property {Object} products - JSON schema for the "products" collection.
  * @property {Object} users - JSON schema for the "users" collection.
  */
@@ -56,25 +58,11 @@ const schemaMap = {
       }
     }
   },
-  locations: {
-    validator: {
-      $jsonSchema: {
-        bsonType: 'object',
-        required: ['state', 'address'],
-        properties: {
-          state: { bsonType: 'string' },
-          address: { bsonType: 'string' },
-          latitude: { bsonType: 'double' },
-          longitude: { bsonType: 'double' }
-        }
-      }
-    }
-  },
   products: {
     validator: {
       $jsonSchema: {
         bsonType: 'object',
-        required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production'],
+        required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
         properties: {
           name: { bsonType: 'string' },
           description: { bsonType: 'string' },
@@ -84,7 +72,11 @@ const schemaMap = {
           harvesting_period_end: { bsonType: 'date' },
           location_id: { bsonType: 'objectId' },
           rate_of_production: { bsonType: 'double' },
-          status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] }
+          status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
+          state: { bsonType: 'string' },
+          address: { bsonType: 'string' },
+          latitude: { bsonType: 'double' },
+          longitude: { bsonType: 'double' }
         }
       }
     }
