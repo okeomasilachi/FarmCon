@@ -1,5 +1,5 @@
 .navbar {
-  background: var(--text-white);
+  background: var(--text-white) !important;
   border-bottom: 1px solid var(--text-faint);
   /* box-shadow: 0.1rem 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.5); */
 }

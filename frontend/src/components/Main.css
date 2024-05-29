@@ -1,0 +1,51 @@
+main {
+  height: 100vh;
+}
+
+
+.navbar-toggler {
+	border: 1px solid var(--text-dark);
+	margin-top: -0.7rem;
+	border-radius: 0.2rem;
+	padding: 0.2rem;
+	
+}
+
+.navbar-toggler .navbar-toggler-icon {
+	color: black !important;
+	background-color: var(--dark-green);
+	
+}
+
+
+/* DASHBOARD STYLING  */
+.container__data {
+  margin-top: 2rem;
+}
+
+.container__data .cards {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.5rem;
+	width: 100%;
+	padding: 0.5rem;
+}
+
+.container__data .card {
+  width: 48%;
+  background: var(--dark-green);
+  color: var(--text-white);
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.3);
+}
+
+.container__data .row .chart {
+	width: 94.5%;
+	background-color: rgb(138, 138, 138);
+	height: 40vh;
+	margin-left: 0.5rem;
+	border-radius: 0.5rem;
+	text-align: center;
+	padding: 6rem 0;
+}
+
+
