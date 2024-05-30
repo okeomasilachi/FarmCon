@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const Error = () => {
   return (
-	<div className='text-center'>
-		<p>Oops! Error 404 Page not found..</p>
+	<div className='text-center mt-5 pt-5'>
+		<h3 className='mb-3'>Oops! Error 404 Page not found..</h3>
 		<Link className='btn btn-lg btn-success' to='./'>Return to homepage</Link>
 	</div>
   )
