@@ -14,7 +14,7 @@ const corsOptions = {
 
 // Apply CORS middleware
 app.use(cors(corsOptions));
-
+app.use(express.json());
 app.use("/api", routes);
 
 // Middleware to handle requests to the root path (/)

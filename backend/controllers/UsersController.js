@@ -6,14 +6,14 @@ const { validateRequestData, authUser } = require("../utils/tools");
 
 async function postNew(req, res, next) {
   const data = req.body;
-  console.log(req);
-  const args = await validateRequestData(req.body, "users");
+  console.log(data);
+  const args = await validateRequestData(data, "users");
   if (args) {
     console.log(args.errorCode);
     return res.status(400).json({ error: args.message }).end();
   }
   try {
-    user = await dbClient.create("users", req.json());
+    user = await dbClient.create("users", data);
     return res.status(201).json({ user }).end();
   } catch (err) {
     return res.status(400).json({ error: "error creating user" }).end();
