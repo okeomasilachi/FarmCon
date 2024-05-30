@@ -1,6 +1,6 @@
-const redisClient = require('./redis');
-const dbClient = require('./db');
-const { ObjectId } = require('mongodb');
+const redisClient = require("./redis");
+const dbClient = require("./db");
+const { ObjectId } = require("mongodb");
 
 /**
  * Authenticates a user based on the provided request object.
@@ -9,14 +9,14 @@ const { ObjectId } = require('mongodb');
  *      indicating whether the user is authenticated or not.
  */
 async function authUser(req, data = undefined) {
-  const { 'x-token': token } = req.headers;
+  const { "x-token": token } = req.headers;
 
   if (!token) return false;
   try {
     const sessionToken = await redisClient.get(`auth_${token}`);
     if (sessionToken) {
       try {
-        const user = await dbClient.getById('users', sessionToken);
+        const user = await dbClient.getById("users", sessionToken);
         return data === undefined ? true : user;
       } catch (err) {
         return false;
@@ -24,7 +24,7 @@ async function authUser(req, data = undefined) {
     }
     return false;
   } catch (error) {
-    console.error('Error authenticating user:', error);
+    console.error("Error authenticating user:", error);
     return false;
   }
 }
@@ -47,54 +47,68 @@ const schemaMap = {
   feedbacks: {
     validator: {
       $jsonSchema: {
-        bsonType: 'object',
-        required: ['rating', 'user_id', 'product_id'],
+        bsonType: "object",
+        required: ["rating", "user_id", "product_id"],
         properties: {
-          rating: { bsonType: 'int', minimum: 1, maximum: 5 },
-          user_id: { bsonType: 'objectId' },
-          product_id: { bsonType: 'objectId' },
-          comment: { bsonType: 'string' }
-        }
-      }
-    }
+          rating: { bsonType: "int", minimum: 1, maximum: 5 },
+          user_id: { bsonType: "objectId" },
+          product_id: { bsonType: "objectId" },
+          comment: { bsonType: "string" },
+        },
+      },
+    },
   },
   products: {
     validator: {
       $jsonSchema: {
-        bsonType: 'object',
-        required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
+        bsonType: "object",
+        required: [
+          "name",
+          "description",
+          "planting_period_start",
+          "planting_period_end",
+          "harvesting_period_start",
+          "harvesting_period_end",
+          "location_id",
+          "rate_of_production",
+          "state",
+          "address",
+        ],
         properties: {
-          name: { bsonType: 'string' },
-          description: { bsonType: 'string' },
-          planting_period_start: { bsonType: 'date' },
-          planting_period_end: { bsonType: 'date' },
-          harvesting_period_start: { bsonType: 'date' },
-          harvesting_period_end: { bsonType: 'date' },
-          location_id: { bsonType: 'objectId' },
-          rate_of_production: { bsonType: 'double' },
-          status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
-          state: { bsonType: 'string' },
-          address: { bsonType: 'string' },
-          latitude: { bsonType: 'double' },
-          longitude: { bsonType: 'double' }
-        }
-      }
-    }
+          name: { bsonType: "string" },
+          description: { bsonType: "string" },
+          planting_period_start: { bsonType: "date" },
+          planting_period_end: { bsonType: "date" },
+          harvesting_period_start: { bsonType: "date" },
+          harvesting_period_end: { bsonType: "date" },
+          location_id: { bsonType: "objectId" },
+          rate_of_production: { bsonType: "double" },
+          status: {
+            bsonType: "string",
+            enum: ["Pending", "Approved", "Rejected"],
+          },
+          state: { bsonType: "string" },
+          address: { bsonType: "string" },
+          latitude: { bsonType: "double" },
+          longitude: { bsonType: "double" },
+        },
+      },
+    },
   },
   users: {
     validator: {
       $jsonSchema: {
-        bsonType: 'object',
-        required: ['username', 'email', 'password', 'role'],
+        bsonType: "object",
+        required: ["username", "email", "password", "role"],
         properties: {
-          username: { bsonType: 'string' },
-          email: { bsonType: 'string' },
-          password: { bsonType: 'string' },
-          role: { bsonType: 'string', enum: ['Super Admin', 'Admin', 'User'] }
-        }
-      }
-    }
-  }
+          username: { bsonType: "string" },
+          email: { bsonType: "string" },
+          password: { bsonType: "string" },
+          role: { bsonType: "string", enum: ["Super Admin", "Admin", "User"] },
+        },
+      },
+    },
+  },
 };
 
 /**
@@ -104,13 +118,20 @@ const schemaMap = {
  * @returns {Object|null} - An object containing the error code and message if validation fails, or null if validation passes.
  */
 async function validateRequestData(data, collectionName) {
+  if (!data) {
+    return {
+      errorCode: 400,
+      message: `Invalid data: data is ${data}.`,
+    };
+  }
+
   // Fetch the schema for the specified collection
   const schema = schemaMap[collectionName];
 
   if (!schema) {
     return {
       errorCode: 404,
-      message: `No schema.`
+      message: `No schema.`,
     };
   }
 
@@ -119,7 +140,7 @@ async function validateRequestData(data, collectionName) {
     if (!(field in data)) {
       return {
         errorCode: 400,
-        message: `Missing '${field}' field.`
+        message: `Missing '${field}' field.`,
       };
     }
 
@@ -128,38 +149,38 @@ async function validateRequestData(data, collectionName) {
 
     if (fieldSchema) {
       const fieldType = fieldSchema.bsonType;
-      if (fieldType === 'int' && !Number.isInteger(fieldValue)) {
+      if (fieldType === "int" && !Number.isInteger(fieldValue)) {
         return {
           errorCode: 400,
-          message: `Field ${field} must be an integer.`
+          message: `Field ${field} must be an integer.`,
         };
       }
 
-      if (fieldType === 'double' && typeof fieldValue !== 'number') {
+      if (fieldType === "double" && typeof fieldValue !== "number") {
         return {
           errorCode: 400,
-          message: `Field ${field} must be a double.`
+          message: `Field ${field} must be a double.`,
         };
       }
 
-      if (fieldType === 'string' && typeof fieldValue !== 'string') {
+      if (fieldType === "string" && typeof fieldValue !== "string") {
         return {
           errorCode: 400,
-          message: `Field ${field} must be a string.`
+          message: `Field ${field} must be a string.`,
         };
       }
 
-      if (fieldType === 'objectId' && !ObjectId.isValid(fieldValue)) {
+      if (fieldType === "objectId" && !ObjectId.isValid(fieldValue)) {
         return {
           errorCode: 400,
-          message: `Field ${field} must be a valid ObjectId.`
+          message: `Field ${field} must be a valid ObjectId.`,
         };
       }
 
-      if (fieldType === 'date' && !(fieldValue instanceof Date)) {
+      if (fieldType === "date" && !(fieldValue instanceof Date)) {
         return {
           errorCode: 400,
-          message: `Field ${field} must be a Date object.`
+          message: `Field ${field} must be a Date object.`,
         };
       }
     }

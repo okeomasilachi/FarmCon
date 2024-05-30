@@ -1,5 +1,5 @@
-const dbClient = require('../utils/db');
-const redisClient = require('../utils/redis');
+const dbClient = require("../utils/db");
+const redisClient = require("../utils/redis");
 
 /**
  * Retrieves the status of the Redis and database connections.
@@ -22,8 +22,14 @@ async function getStatus(req, res) {
  */
 async function getStats(req, res) {
   try {
-    const users = await dbClient.getAll(users);
-    res.status(200).json({ users: numUsers, files: numFiles });
+    const users = await dbClient.getAll("users");
+    const products = await dbClient.getAll("products");
+    const feedbacks = await dbClient.getAll("feedbacks");
+    res.status(200).json({
+      users: users.length,
+      products: products.length,
+      feedbacks: feedbacks.length,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
