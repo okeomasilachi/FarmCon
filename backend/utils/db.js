@@ -5,7 +5,140 @@ const { MongoClient, ObjectId } = require('mongodb');
  */
 class DBClient {
   constructor() {
-    const host = process.env.DB_HOST || 'localhost';
+    const host = process.env.DB_HOST || 'localhost';const { MongoClient, ObjectId } = require('mongodb');
+
+    /**
+     * Represents a MongoDB client for interacting with the database.
+     */
+    class DBClient {
+      constructor() {
+        const host = process.env.DB_HOST || 'localhost';
+        const port = process.env.DB_PORT || 27017;
+        const database = process.env.DB_DATABASE || 'FarmCon';
+    
+        const uri = `mongodb://${host}:${port}/${database}`;
+        this.client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    
+        this.connect();
+      }
+    
+      /**
+       * Connects to the MongoDB database.
+       * @returns {Promise<void>} A promise that resolves when the connection is established.
+       */
+      async connect() {
+        try {
+          await this.client.connect();
+          this.db = this.client.db(); // Assign the database instance
+          console.log('Connected to MongoDB');
+          await this.createCollections(); // Create collections after connecting
+        } catch (error) {
+          console.error('Failed to connect to MongoDB:', error);
+        }
+      }
+    
+      /**
+       * Checks if a collection already exists in the database.
+       * @param {string} name The name of the collection to check.
+       * @returns {Promise<boolean>} A promise that resolves with a boolean indicating whether the collection exists.
+       */
+      async collectionExists(name) {
+        const collections = await this.db.listCollections().toArray();
+        return collections.some((collection) => collection.name === name);
+      }
+    
+      /**
+       * Creates collections with specified validators.
+       */
+      async createCollections() {
+        const collections = [
+          {
+            name: 'feedbacks',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['rating', 'user_id', 'product_id'],
+                properties: {
+                  rating: { bsonType: 'int', minimum: 1, maximum: 5 },
+                  user_id: { bsonType: 'objectId' },
+                  product_id: { bsonType: 'objectId' },
+                  comment: { bsonType: 'string' }
+                }
+              }
+            }
+          },
+          {
+            name: 'products',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
+                properties: {
+                  name: { bsonType: 'string' },
+                  description: { bsonType: 'string' },
+                  planting_period_start: { bsonType: 'date' },
+                  planting_period_end: { bsonType: 'date' },
+                  harvesting_period_start: { bsonType: 'date' },
+                  harvesting_period_end: { bsonType: 'date' },
+                  location_id: { bsonType: 'objectId' },
+                  rate_of_production: { bsonType: 'double' },
+                  status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
+                  state: { bsonType: 'string' },
+                  address: { bsonType: 'string' },
+                  latitude: { bsonType: 'double' },
+                  longitude: { bsonType: 'double' }
+                }
+              }
+            }
+          },
+          {
+            name: 'users',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['username', 'email', 'password', 'role'],
+                properties: {
+                  username: { bsonType: 'string' },
+                  email: { bsonType: 'string' },
+                  password: { bsonType: 'string' },
+                  role: { bsonType: 'string', enum: ['Super Admin', 'Admin', 'User'] }
+                }
+              }
+            }
+          }
+        ];
+    
+        for (const collection of collections) {
+          await this.createCollection(collection.name, collection.validator);
+        }
+      }
+    
+      /**
+       * Creates a collection with the specified name and validator if it doesn't already exist.
+       * @param {string} name The name of the collection to create.
+       * @param {object} validator The validator object for the collection.
+       */
+      async createCollection(name, validator) {
+        try {
+          // Check if the collection already exists
+          const collectionExists = await this.collectionExists(name);
+          if (!collectionExists) {
+            await this.db.createCollection(name, { validator });
+            console.log(`Collection '${name}' created successfully.`);
+          } else {
+            console.log(`Collection '${name}' already exists.`);
+          }
+        } catch (error) {
+          console.error(`Error creating collection '${name}':`, error);
+        }
+      }
+    
+      // Remaining methods remain unchanged...
+    }
+    
+    const dbClient = new DBClient();
+    module.exports = dbClient;
+    
     const port = process.env.DB_PORT || 27017;
     const database = process.env.DB_DATABASE || 'FarmCon';
 

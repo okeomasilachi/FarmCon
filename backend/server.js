@@ -3,17 +3,17 @@ const cors = require("cors");
 const app = express();
 const routes = require("./routes");
 
-const port = parseInt(process.env.PORT, 10) || 5000;
+const port = 5000;
 
-const corsOptions = {
-  origin: ["http://localhost", "http://okeoma.tech", "http://0.0.0.0"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization", "x-token"],
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: ["http://localhost", "http://okeoma.tech", "http://0.0.0.0"],
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization", "x-token"],
+//   credentials: true,
+// };
 
 // Apply CORS middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api", routes);
 
