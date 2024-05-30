@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import Profiledata from '../components/Profiledata'
+import Sidebar from '../components/sidebar/Sidebar'
+import Profiledata from '../components/profile/Profiledata'
 
 
 const Profile = () => {

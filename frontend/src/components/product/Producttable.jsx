@@ -1,8 +1,7 @@
 import React from "react";
-import "./Main.css";
-import Editadmin from "./Editadmin";
+import Editproduct from "./Editproduct";
 
-const Maintable = () => {
+const Producttable = () => {
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
       <div className="d-flex justify-content-even align-items-center flex-wrap flex-md-nowrap gap-5 align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -19,23 +18,17 @@ const Maintable = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
-        <h1 className="h2">Admin</h1>
+        <h1 className="h2">Products</h1>
       </div>
       <section className="container container__table">
         <div className="table-responsive">
           <table id="example" className="table custom-table">
             <thead>
               <tr>
-                {/* <th scope="col">
-										<label className="control control--checkbox">
-											<input type="checkbox" className="js-check-all"/>
-											<div className="control__indicator"></div>
-										</label>
-									</th>  */}
                 <th scope="col">S/N</th>
-                <th scope="col">Name</th>
-                <th scope="col">Wards</th>
-                <th scope="col">Contact</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Location/State</th>
+                <th scope="col">Season</th>
                 <th scope="col" colspan="2" className="text-center">
                   Actions
                 </th>
@@ -52,7 +45,6 @@ const Maintable = () => {
                   </small>
                 </td>
                 <td>+63 983 0962 971</td>
-
                 <td>
                   <button
                     className="btn btn-warning"
@@ -231,9 +223,9 @@ const Maintable = () => {
           </table>
         </div>
       </section>
-	  <Editadmin />
+      <Editproduct />
     </main>
   );
 };
 
-export default Maintable;
+export default Producttable;

@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import Maintable from '../components/Maintable'
+import Sidebar from '../components/sidebar/Sidebar'
+import Admintable from '../components/admin/Admintable'
 
 
 
@@ -9,7 +9,7 @@ const Admin = () => {
 	<div className="container-fluid">
       <div className="row">
         <Sidebar />
-        <Maintable />
+        <Admintable />
       </div>
     </div>
   )

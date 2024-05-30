@@ -27,7 +27,7 @@
 }
 
 .container__states .bottom_state .states .state {
-  background-image: url("../../public/images/cowfeild.jpg");
+  background-image: url("../../../public/images/cowfeild.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -42,21 +42,21 @@
 }
 
 .container__states .bottom_state .states .state-1 {
-  background-image: url("../../public/images/Cocoa_House\,_Ibadan.JPG");
+  background-image: url("../../../public/images/Cocoa_House\,_Ibadan.JPG");
 }
 
 .container__states .bottom_state .states .state-2 {
-  background-image: url("../../public/images/kwara-agro.jpg");
+  background-image: url("../../../public/images/kwara-agro.jpg");
 }
 .container__states .bottom_state .states .state-3 {
-  background-image: url("../../public/images/Ogun-cargo-airports-1.png");
+  background-image: url("../../../public/images/Ogun-cargo-airports-1.png");
 }
 
 .container__states .bottom_state .states .state-4 {
-  background-image: url("../../public/images/rivers-agbokim-waterfalls.jpg");
+  background-image: url("../../../public/images/rivers-agbokim-waterfalls.jpg");
 }
 .container__states .bottom_state .states .state-5 {
-  background-image: url("../../public/images/kano.jpg");
+  background-image: url("../../../public/images/kano.jpg");
 }
 
 .container__states .bottom_state .states .state h4 {

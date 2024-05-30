@@ -1,11 +1,11 @@
 import React from "react";
 import "../App.css";
 
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
-import StatesSearch from "../components/StatesSearch";
-import ProductsSearch from "../components/ProductsSearch";
+import Nav from "../components/nav/Nav";
+import Footer from "../components/footer/Footer";
+import Hero from "../components/hero/Hero";
+import StatesSearch from "../components/search/StatesSearch";
+import ProductsSearch from "../components/search/ProductsSearch";
 
 const Agriculture = () => {
   return (

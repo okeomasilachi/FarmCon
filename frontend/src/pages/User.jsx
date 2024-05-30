@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import Userstable from '../components/Userstable'
+import Sidebar from '../components/sidebar/Sidebar'
+import Userstable from '../components/user/Userstable'
 
 
 const User = () => {

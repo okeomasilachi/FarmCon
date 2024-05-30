@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import Producttable from '../components/Producttable'
+import Sidebar from '../components/sidebar/Sidebar'
+import Producttable from '../components/product/Producttable'
 
 const Product = () => {
   return (

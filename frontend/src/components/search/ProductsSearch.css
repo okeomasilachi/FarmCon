@@ -27,7 +27,7 @@
   }
   
   .container__products .bottom_product .products .product {
-	background-image: url("../../public/images/carrot.jpeg");
+	background-image: url("../../../public/images/carrot.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -42,22 +42,22 @@
   }
   
   .container__products .bottom_product .products .product-1 {
-	background-image: url("../../public/images/cassava.jpg");
+	background-image: url("../../../public/images/cassava.jpg");
   }
   
   .container__products .bottom_product .products .product-2 {
-	background-image: url("../../public/images/banana.avif");
+	background-image: url("../../../public/images/banana.avif");
   }
   
   .container__products .bottom_product .products .product-3 {
-	  background-image: url("../../public/images/tomatoefarm.jpg");
+	  background-image: url("../../../public/images/tomatoefarm.jpg");
 	}
 	
 	.container__products .bottom_product .products .product-4 {
-	  background-image: url("../../public/images/cocoa.jpg");
+	  background-image: url("../../../public/images/cocoa.jpg");
 	}
 	.container__products .bottom_product .products .product-5 {
-	  background-image: url("../../public/images/maizefarm.jpg");
+	  background-image: url("../../../public/images/maizefarm.jpg");
 	}
   .container__products .bottom_product .products .product h4 {
 	padding: 0 0.2rem;

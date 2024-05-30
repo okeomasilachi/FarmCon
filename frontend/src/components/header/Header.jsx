@@ -1,7 +1,7 @@
 import React from 'react'
-import Nav from './Nav'
+import Nav from '../nav/Nav'
 import './Header.css'
-import CaroSlide from './CaroSlide'
+import CaroSlide from '../carousel/CaroSlide'
 
 const Header = () => {
   return (
