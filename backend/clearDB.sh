@@ -3,7 +3,7 @@
 # MongoDB Configuration
 MONGODB_HOST="localhost"
 MONGODB_PORT="27017"
-MONGODB_DB="files_manager"
+MONGODB_DB="FarmCon"
 
 # Redis Configuration
 REDIS_HOST="localhost"
