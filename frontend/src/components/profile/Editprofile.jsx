@@ -24,7 +24,7 @@ const Editprofile = () => {
 					<input type="text" className="form-control py-2" id="editInputPhone" />
 				</div>
 				<div className="mb-3">
-					<label htmlFor="editInputusername" className="form-label">Username</label>
+					<label htmlFor="editInputusername" className="form-label">Email</label>
 					<input type="text" className="form-control py-2" id="editInputusername" />
 				</div>
 				<div className="mb-3">

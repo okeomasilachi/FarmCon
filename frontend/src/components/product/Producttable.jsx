@@ -219,6 +219,173 @@ const Producttable = () => {
                   </div>
                 </td>
               </tr>
+              <tr>
+                <th>1392</th>
+                <td>Maize</td>
+                <td>Kaduna</td>
+                <td>Spring</td>
+                <td>
+                  <div className="action">
+                    <span>
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    </span>
+                    <ul className="more-options">
+                      <li>
+                        <button
+                          id=""
+                          className="btn btn-warning user-edit-btn p-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editModal"
+                        >
+                          edit
+                        </button>
+                      </li>
+                      <li>
+                        <a href="./" className="btn btn-primary p-1">
+                          view
+                        </a>
+                      </li>
+                      <li>
+                        <a href=" " className="btn btn-danger p-1">
+                          delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>3616</th>
+                <td>Bean</td>
+                <td>Kano</td>
+                <td>Summer</td>
+                <td>
+                  <div className="action">
+                    <span>
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    </span>
+                    <ul className="more-options">
+                      <li>
+                        <button
+                          id=""
+                          className="btn btn-warning user-edit-btn p-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editModal"
+                        >
+                          edit
+                        </button>
+                      </li>
+                      <li>
+                        <a href="./" className="btn btn-primary p-1">
+                          view
+                        </a>
+                      </li>
+                      <li>
+                        <a href=" " className="btn btn-danger p-1">
+                          delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>4841</th>
+                <td>Yam</td>
+                <td>Abuja</td>
+                <td>Spring</td>
+                <td>
+                  <div className="action">
+                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
+                    <ul className="more-options">
+                      <li>
+                        <button
+                          id=""
+                          className="btn btn-warning user-edit-btn p-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editModal"
+                        >edit</button>
+                      </li>
+                      <li>
+                        <a href="./" className="btn btn-primary p-1">view</a>
+                      </li>
+                      <li>
+                        <a href=" " className="btn btn-danger p-1">delete</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>4941</th>
+                <td>Cassava</td>
+                <td>Ogun</td>
+                <td>Spring</td>
+                <td>
+                  <div className="action">
+                    <span>
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    </span>
+                    <ul className="more-options">
+                      <li>
+                        <button
+                          id=""
+                          className="btn btn-warning user-edit-btn p-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editModal"
+                        >
+                          edit
+                        </button>
+                      </li>
+                      <li>
+                        <a href="./" className="btn btn-primary p-1">
+                          view
+                        </a>
+                      </li>
+                      <li>
+                        <a href=" " className="btn btn-danger p-1">
+                          delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>6841</th>
+                <td>Fishery</td>
+                <td>Cross river</td>
+                <td>All round</td>
+                <td>
+                  <div className="action">
+                    <span>
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    </span>
+                    <ul className="more-options">
+                      <li>
+                        <button
+                          id=""
+                          className="btn btn-warning user-edit-btn p-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#editModal"
+                        >
+                          edit
+                        </button>
+                      </li>
+                      <li>
+                        <a href="./" className="btn btn-primary p-1">
+                          view
+                        </a>
+                      </li>
+                      <li>
+                        <a href=" " className="btn btn-danger p-1">
+                          delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
