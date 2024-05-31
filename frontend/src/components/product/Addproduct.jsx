@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react'
 
-const Edituser = () => {
+const Addproduct = () => {
   return (
-    <div
+	<div
       className="modal fade"
-      id="editModal"
+      id="addModal"
       tabIndex="-1"
-      aria-labelledby="editModalLabel"
+      aria-labelledby="addModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="editModalLabel">
-              Edit User
+            <h1 className="modal-title fs-5" id="addModalLabel">
+              Add Product
             </h1>
             <button
               type="button"
@@ -25,53 +25,43 @@ const Edituser = () => {
           <form action="#" >
             <div className="modal-body">
               <div className="mb-3">
-                <label htmlFor="editInputFirstname" className="form-label">
-                  First Name
+                <label htmlFor="addInputFirstname" className="form-label">
+                  Product Name
                 </label>
                 <input
                   type="text"
                   className="form-control py-2"
-                  id="editInputFirstname"
+                  id="addInputFirstname"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputLastname" className="form-label">
-                  Last Name
+                <label htmlFor="addInputLastname" className="form-label">
+                  Location
                 </label>
                 <input
                   type="text"
                   className="form-control py-2"
-                  id="editInputLastname"
+                  id="addInputLastname"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputusername" className="form-label">
-                  Email
+                <label htmlFor="addInputusername" className="form-label">
+                 Cultivation Duration:
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control py-2"
-                  id="editInputusername"
+                  id="addInputusername"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputPassword1" className="form-label">
-                  Password
+                <label htmlFor="addInputDate" className="form-label">
+                  Date
                 </label>
                 <input
-                  type="password"
+                  type="date"
                   className="form-control py-2"
-                  id="editInputPassword1"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="editInputPassword2" className="form-label">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control py-2"
-                  id="editInputPassword2"
+                  id="addInputDate"
                 />
               </div>
             </div>
@@ -84,7 +74,7 @@ const Edituser = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Edituser;
+export default Addproduct

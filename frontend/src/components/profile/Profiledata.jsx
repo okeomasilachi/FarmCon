@@ -3,13 +3,13 @@ import Editprofile from "./Editprofile";
 
 const Profiledata = () => {
   return (
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">My Profile</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
+    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 className="h2">My Profile</h1>
+        <div className="btn-toolbar mb-2 mb-md-0">
+          <div className="btn-group me-2">
             <button
-              class="btn btn-warning"
+              className="btn btn-warning"
               data-bs-toggle="modal"
               data-bs-target="#editModal"
             >
@@ -18,19 +18,19 @@ const Profiledata = () => {
           </div>
         </div>
       </div>
-      <section class="container container__profile">
-        <div class="row">
-          <div class="col-12 col-md-4 ">
-            <div class="profile mx-auto">
-              <img src="../assets/images/logo.png" alt="" />
+      <section className="container container__profile">
+        <div className="row">
+          <div className="col-12 col-md-4 ">
+            <div className="profile mx-auto">
+              <img src="../images/avatar.png" alt="" />
             </div>
           </div>
-          <div class="col-12 col-md-8">
-            <div class="table-responsive">
-              <table id="example" class="table table-striped-columns">
+          <div className="col-12 col-md-8">
+            <div className="table-responsive">
+              <table id="example" className="table table-striped-columns">
                 <thead>
                   <tr>
-                    <th scope="col" colspan="2" class="fs-4">
+                    <th scope="col" colSpan="2" className="fs-4">
                       Data
                     </th>
                   </tr>

@@ -5,7 +5,7 @@ const Editproduct = () => {
 	<div
       className="modal fade"
       id="editModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="editModalLabel"
       aria-hidden="true"
     >
@@ -22,10 +22,10 @@ const Editproduct = () => {
               aria-label="Close"
             ></button>
           </div>
-          <form action="#" method="POST" enctype="multipart/form-data">
+          <form action="#" >
             <div className="modal-body">
               <div className="mb-3">
-                <label for="editInputFirstname" className="form-label">
+                <label htmlFor="editInputFirstname" className="form-label">
                   Product Name
                 </label>
                 <input
@@ -35,7 +35,7 @@ const Editproduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="editInputLastname" className="form-label">
+                <label htmlFor="editInputLastname" className="form-label">
                   Location
                 </label>
                 <input
@@ -45,7 +45,7 @@ const Editproduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="editInputusername" className="form-label">
+                <label htmlFor="editInputusername" className="form-label">
                  Cultivation Duration:
                 </label>
                 <input
@@ -55,7 +55,7 @@ const Editproduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="editInputDate" className="form-label">
+                <label htmlFor="editInputDate" className="form-label">
                   Date
                 </label>
                 <input

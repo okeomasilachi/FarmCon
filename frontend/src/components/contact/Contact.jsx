@@ -22,15 +22,15 @@ const Contact = () => {
 					<div className="col-12 col-md-6 col-lg-6">
 						<form>
 							<div className="mb-3">
-								<label for="name" className="form-label">Full Name</label>
+								<label htmlFor="name" className="form-label">Full Name</label>
 								<input type="email" className="form-control" id="name" placeholder="Ahmed Bello" />
 							</div>
 							<div className="mb-3">
-								<label for="email" className="form-label">Email address</label>
+								<label htmlFor="email" className="form-label">Email address</label>
 								<input type="email" className="form-control" id="email" placeholder="name@example.com" />
 							</div>
 							<div className="mb-3">
-								<label for="message" className="form-label">Message</label>
+								<label htmlFor="message" className="form-label">Message</label>
 								<textarea className="form-control" id="message" placeholder="Type your message here..." rows="10"></textarea>
 							</div>
 							<div className="text-center">

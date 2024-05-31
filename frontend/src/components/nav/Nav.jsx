@@ -42,7 +42,7 @@ const Nav = () => {
               }
 			  else{
 				  return (
-					<li className={!item.icon && "nav-item"} >
+					<li className={!item.icon ? "nav-item" : ""} key={item.id}>
 					  <NavLink className={!item.icon? "nav-link": "btn-sm-alt" } to={item.to}>
 						{item.navName}&nbsp;{ item.icon &&  <FontAwesomeIcon icon={faRightToBracket} />}
 					  </NavLink>

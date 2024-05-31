@@ -1,19 +1,19 @@
 import React from "react";
 
-const Edituser = () => {
+const Adduser = () => {
   return (
     <div
       className="modal fade"
-      id="editModal"
+      id="addModal"
       tabIndex="-1"
-      aria-labelledby="editModalLabel"
+      aria-labelledby="addModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="editModalLabel">
-              Edit User
+            <h1 className="modal-title fs-5" id="addModalLabel">
+              Add User
             </h1>
             <button
               type="button"
@@ -25,53 +25,53 @@ const Edituser = () => {
           <form action="#" >
             <div className="modal-body">
               <div className="mb-3">
-                <label htmlFor="editInputFirstname" className="form-label">
+                <label htmlFor="addInputFirstname" className="form-label">
                   First Name
                 </label>
                 <input
                   type="text"
                   className="form-control py-2"
-                  id="editInputFirstname"
+                  id="addInputFirstname"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputLastname" className="form-label">
+                <label htmlFor="addInputLastname" className="form-label">
                   Last Name
                 </label>
                 <input
                   type="text"
                   className="form-control py-2"
-                  id="editInputLastname"
+                  id="addInputLastname"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputusername" className="form-label">
+                <label htmlFor="addInputusername" className="form-label">
                   Email
                 </label>
                 <input
                   type="email"
                   className="form-control py-2"
-                  id="editInputusername"
+                  id="addInputusername"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputPassword1" className="form-label">
+                <label htmlFor="addInputPassword1" className="form-label">
                   Password
                 </label>
                 <input
                   type="password"
                   className="form-control py-2"
-                  id="editInputPassword1"
+                  id="addInputPassword1"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="editInputPassword2" className="form-label">
+                <label htmlFor="addInputPassword2" className="form-label">
                   Confirm Password
                 </label>
                 <input
                   type="password"
                   className="form-control py-2"
-                  id="editInputPassword2"
+                  id="addInputPassword2"
                 />
               </div>
             </div>
@@ -87,4 +87,4 @@ const Edituser = () => {
   );
 };
 
-export default Edituser;
+export default Adduser;
