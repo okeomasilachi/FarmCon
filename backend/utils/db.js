@@ -1,19 +1,147 @@
-const { MongoClient, ObjectId, ServerApiVersion } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 /**
  * Represents a MongoDB client for interacting with the database.
  */
 class DBClient {
   constructor() {
-    const uri = "mongodb+srv://<username>:<password>@cluster0.qpa4khn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-    this.client = new MongoClient(uri, {
-      useUnifiedTopology: true, // Use the new Server Discover and Monitoring engine
-      serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
+    const host = process.env.DB_HOST || 'localhost';const { MongoClient, ObjectId } = require('mongodb');
+
+    /**
+     * Represents a MongoDB client for interacting with the database.
+     */
+    class DBClient {
+      constructor() {
+        const host = process.env.DB_HOST || 'localhost';
+        const port = process.env.DB_PORT || 27017;
+        const database = process.env.DB_DATABASE || 'FarmCon';
+    
+        const uri = `mongodb://${host}:${port}/${database}`;
+        this.client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    
+        this.connect();
       }
-    });
+    
+      /**
+       * Connects to the MongoDB database.
+       * @returns {Promise<void>} A promise that resolves when the connection is established.
+       */
+      async connect() {
+        try {
+          await this.client.connect();
+          this.db = this.client.db(); // Assign the database instance
+          console.log('Connected to MongoDB');
+          await this.createCollections(); // Create collections after connecting
+        } catch (error) {
+          console.error('Failed to connect to MongoDB:', error);
+        }
+      }
+    
+      /**
+       * Checks if a collection already exists in the database.
+       * @param {string} name The name of the collection to check.
+       * @returns {Promise<boolean>} A promise that resolves with a boolean indicating whether the collection exists.
+       */
+      async collectionExists(name) {
+        const collections = await this.db.listCollections().toArray();
+        return collections.some((collection) => collection.name === name);
+      }
+    
+      /**
+       * Creates collections with specified validators.
+       */
+      async createCollections() {
+        const collections = [
+          {
+            name: 'feedbacks',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['rating', 'user_id', 'product_id'],
+                properties: {
+                  rating: { bsonType: 'int', minimum: 1, maximum: 5 },
+                  user_id: { bsonType: 'objectId' },
+                  product_id: { bsonType: 'objectId' },
+                  comment: { bsonType: 'string' }
+                }
+              }
+            }
+          },
+          {
+            name: 'products',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
+                properties: {
+                  name: { bsonType: 'string' },
+                  description: { bsonType: 'string' },
+                  planting_period_start: { bsonType: 'date' },
+                  planting_period_end: { bsonType: 'date' },
+                  harvesting_period_start: { bsonType: 'date' },
+                  harvesting_period_end: { bsonType: 'date' },
+                  location_id: { bsonType: 'objectId' },
+                  rate_of_production: { bsonType: 'double' },
+                  status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
+                  state: { bsonType: 'string' },
+                  address: { bsonType: 'string' },
+                  latitude: { bsonType: 'double' },
+                  longitude: { bsonType: 'double' }
+                }
+              }
+            }
+          },
+          {
+            name: 'users',
+            validator: {
+              $jsonSchema: {
+                bsonType: 'object',
+                required: ['username', 'email', 'password', 'role'],
+                properties: {
+                  username: { bsonType: 'string' },
+                  email: { bsonType: 'string' },
+                  password: { bsonType: 'string' },
+                  role: { bsonType: 'string', enum: ['Super Admin', 'Admin', 'User'] }
+                }
+              }
+            }
+          }
+        ];
+    
+        for (const collection of collections) {
+          await this.createCollection(collection.name, collection.validator);
+        }
+      }
+    
+      /**
+       * Creates a collection with the specified name and validator if it doesn't already exist.
+       * @param {string} name The name of the collection to create.
+       * @param {object} validator The validator object for the collection.
+       */
+      async createCollection(name, validator) {
+        try {
+          // Check if the collection already exists
+          const collectionExists = await this.collectionExists(name);
+          if (!collectionExists) {
+            await this.db.createCollection(name, { validator });
+            console.log(`Collection '${name}' created successfully.`);
+          } else {
+            console.log(`Collection '${name}' already exists.`);
+          }
+        } catch (error) {
+          console.error(`Error creating collection '${name}':`, error);
+        }
+      }
+    }
+    
+    const dbClient = new DBClient();
+    module.exports = dbClient;
+    
+    const port = process.env.DB_PORT || 27017;
+    const database = process.env.DB_DATABASE || 'FarmCon';
+
+    const uri = `mongodb://${host}:${port}/${database}`;
+    this.client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     this.connect();
   }
@@ -24,7 +152,6 @@ class DBClient {
    */
   async connect() {
     try {
-      // Connect the client to the server
       await this.client.connect();
       this.db = this.client.db(); // Assign the database instance
       console.log('Connected to MongoDB');
@@ -32,16 +159,6 @@ class DBClient {
     } catch (error) {
       console.error('Failed to connect to MongoDB:', error);
     }
-  }
-
-  /**
-   * Checks if a collection already exists in the database.
-   * @param {string} name The name of the collection to check.
-   * @returns {Promise<boolean>} A promise that resolves with a boolean indicating whether the collection exists.
-   */
-  async collectionExists(name) {
-    const collections = await this.db.listCollections().toArray();
-    return collections.some((collection) => collection.name === name);
   }
 
   /**
@@ -111,20 +228,14 @@ class DBClient {
   }
 
   /**
-   * Creates a collection with the specified name and validator if it doesn't already exist.
+   * Creates a collection with the specified name and validator.
    * @param {string} name The name of the collection to create.
    * @param {object} validator The validator object for the collection.
    */
   async createCollection(name, validator) {
     try {
-      // Check if the collection already exists
-      const collectionExists = await this.collectionExists(name);
-      if (!collectionExists) {
-        await this.db.createCollection(name, { validator });
-        console.log(`Collection '${name}' created successfully.`);
-      } else {
-        console.log(`Collection '${name}' already exists.`);
-      }
+      await this.db.createCollection(name, { validator });
+      console.log(`Collection '${name}' created successfully.`);
     } catch (error) {
       console.error(`Error creating collection '${name}':`, error);
     }
@@ -231,20 +342,17 @@ class DBClient {
   async getByCriteria(collectionName, criteria) {
     try {
       const query = {};
-      if (criteria.name) query.name = criteria.name;
-      if (criteria.username) query.username = criteria.username;
-      if (criteria.email) query.email = criteria.email;
-      if (criteria.role) query.role = criteria.role;
-      if (criteria.status) query.status = criteria.status;
-      if (criteria.state) query.state = criteria.state;
-      if (criteria.address) query.address = criteria.address;
-      if (criteria.latitude) query.latitude = criteria.latitude;
-      if (criteria.longitude) query.longitude = criteria.longitude;
-      if (criteria.rate_of_production) query.rate_of_production = criteria.rate_of_production;
+
+      if (criteria.user_id) query.user_id = ObjectId(criteria.user_id);
+      if (criteria.product_id) query.product_id = ObjectId(criteria.product_id);
       if (criteria.planting_period_start) query.planting_period_start = { $gte: new Date(criteria.planting_period_start) };
       if (criteria.planting_period_end) query.planting_period_end = { $lte: new Date(criteria.planting_period_end) };
       if (criteria.harvesting_period_start) query.harvesting_period_start = { $gte: new Date(criteria.harvesting_period_start) };
       if (criteria.harvesting_period_end) query.harvesting_period_end = { $lte: new Date(criteria.harvesting_period_end) };
+      if (criteria.status) query.status = criteria.status;
+      if (criteria.state) query.state = criteria.state;
+      if (criteria.email) query.email = criteria.email;
+      if (criteria.password) query.password = criteria.password;
 
       return await this.db.collection(collectionName).find(query).toArray();
     } catch (error) {

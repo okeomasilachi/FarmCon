@@ -1,74 +1,87 @@
-// import sha1 from 'sha1';
+// const sha1 = require("sha1");
 
-// const dbClient = require('../utils/db');
-// const redisClient = require('../utils/redis');
-// const { validateRequestData, authUser } = require('../utils/tools');
+// const dbClient = require("../utils/db");
+// const redisClient = require("../utils/redis");
+// const { validateRequestData, authUser } = require("../utils/tools");
 
 // async function postNew(req, res, next) {
-//   if (await authUser(req)) {
-//     const args = validateRequestData(req.json, 'feedback');
-//     if (args) {
-//       return res.status(args.errorCode).json({ error: args.message }).end();
-//     }
-//     try {
-//       user = await dbClient.create('feedback', req.json())
-//       return res.status(201).json({ user }).end();
-//     } catch (err) {
-//       return res.status(400).json({ error: 'error creating user' }).end();
-//     }
-//   } else {
-//     return res.status(401).json({ error: 'Unauthorized' });
+//   const { password, username, email, role } = req.body;
+//   const data = {
+//     password: sha1(password),
+//     username,
+//     email,
+//     role
+//   };
+//   const args = await validateRequestData(data, "users");
+//   if (args) {
+//     return res.status(400).json({ error: args.message }).end();
 //   }
 
+//   try {
+//     const existingUser = await dbClient.getByCriteria("users", { email });
+//     if (existingUser.length > 0) {
+//       return res.status(409).json({ error: "User already exists" }).end();
+//     }
+//     const user = await dbClient.create("users", data);
+//     return res.status(201).json(user).end();
+//   } catch (err) {
+//     return res.status(400).json({ error: `error creating user [${err}]` }).end();
+//   }
 // }
 
 // async function updateMe(req, res, next) {
-//   if (await authUser(req)) {
-//     const jsonData = req.json();
+//   const usr = await authUser(req, (data = true));
+//   if (usr) {
+//     const jsonData = req.body;
 //     if (Object.keys(jsonData).length === 0) {
-//       return res.status(400).json({ error: 'Empty JSON object' }).end();
+//       return res.status(400).json({ error: "Empty JSON object" }).end();
 //     }
 //     try {
-//       user = await dbClient.update('feedback', id, jsonData);
-//       return res.status(201).json({ user }).end();
+//       const user = await dbClient.update("users", usr._id.toString(), jsonData);
+//       return res.status(201).json(user).end();
 //     } catch (err) {
-//       return res.status(400).json({ error: 'Error updating user' }).end();
+//       return res.status(400).json({ error: "Error updating user" }).end();
 //     }
 //   } else {
-//     return res.status(401).json({ error: 'Unauthorized' });
+//     return res.status(401).json({ error: "Unauthorized" });
 //   }
 // }
 
 // async function deleteMe(req, res, next) {
-//   if (await authUser(req)) {
+//   const usr = await authUser(req, (data = true));
+//   if (usr) {
 //     try {
-//       user = await dbClient.delete('feedback', id);
+//       const user = await dbClient.delete("users", usr._id);
 //       return res.status(200).json({}).end();
 //     } catch (err) {
-//       return res.status(400).json({ error: 'Error deleting user' }).end();
+//       return res.status(400).json({ error: "Error deleting user" }).end();
 //     }
 //   } else {
-//     return res.status(401).json({ error: 'Unauthorized' });
+//     return res.status(401).json({ error: "Unauthorized" });
 //   }
 // }
 
 // async function getMe(req, res) {
-//   const token = req.headers['x-token'];
-//   if (await authUser(req)) {
-//     const userId = await redisClient.get(`auth_${token}`);
-//     if (!userId) {
-//       res.status(401).json({ error: 'Unauthorized' });
-//     } else {
-//       try {
-//         const user = await dbClient.getById('feedback', userId)
-//         const { _id, email } = user;
-//         res.status(200).json({ _id, email });
-//       } catch (error) {
-//         res.status(401).json({ error: 'Unauthorized' });
-//       }
+//   const usr = await authUser(req, (data = true));
+//   if (usr) {
+//     try {
+//       const { _id, email } = usr;
+//       return res.status(200).json({ _id, email }).end();
+//     } catch (error) {
+//       return res.status(401).json({ error: "Unauthorized" }).end();
 //     }
 //   } else {
-//     res.status(401).json({ error: 'Unauthorized' });
+//     return res.status(401).json({ error: "Unauthorized" }).end();
+//   }
+// }
+
+// async function getAll(req, res, next) {
+//   try {
+//     const data = await dbClient.getAll("users");
+//     const users = data.map(({ password, _id, ...rest }) => rest);
+//     return res.status(200).json(users).end();
+//   } catch (err) {
+//     return res.status(500).json({ error: "server error" }).end();
 //   }
 // }
 
@@ -77,4 +90,5 @@
 //   getMe,
 //   deleteMe,
 //   updateMe,
+//   getAll,
 // };
