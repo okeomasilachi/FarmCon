@@ -37,7 +37,7 @@ FarmCon facilitates the acquisition of farm products for both business and consu
 ## Technologies Used
 
 - **Front-end**: React, CSS3, Bootstrap
-- **Back-end**: Python, MySQL/SQLite
+- **Back-end**: Nodejs, MongoDB, Redis
 - **Methodology**: RESTful API
 
 ## Third-Party Services
