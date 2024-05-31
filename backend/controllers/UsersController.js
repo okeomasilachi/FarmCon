@@ -1,8 +1,7 @@
 const sha1 = require("sha1");
-
 const dbClient = require("../utils/db");
-const redisClient = require("../utils/redis");
-const { validateRequestData, authUser } = require("../utils/tools");
+const upload = require("../utils/multer");
+const { validateRequestData } = require("../utils/tools");
 
 async function postNew(req, res, next) {
   const { password, username, email, role } = req.body;
@@ -10,7 +9,7 @@ async function postNew(req, res, next) {
     password: sha1(password),
     username,
     email,
-    role
+    role,
   };
   const args = await validateRequestData(data, "users");
   if (args) {
@@ -25,52 +24,40 @@ async function postNew(req, res, next) {
     const user = await dbClient.create("users", data);
     return res.status(201).json(user).end();
   } catch (err) {
-    return res.status(400).json({ error: `error creating user [${err}]` }).end();
+    return res
+      .status(400)
+      .json({ error: `error creating user [${err}]` })
+      .end();
   }
 }
 
 async function updateMe(req, res, next) {
-  const usr = await authUser(req, (data = true));
-  if (usr) {
-    const jsonData = req.body;
-    if (Object.keys(jsonData).length === 0) {
-      return res.status(400).json({ error: "Empty JSON object" }).end();
-    }
-    try {
-      const user = await dbClient.update("users", usr._id.toString(), jsonData);
-      return res.status(201).json(user).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error updating user" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  const jsonData = req.body;
+  if (Object.keys(jsonData).length === 0) {
+    return res.status(400).json({ error: "Empty JSON object" }).end();
+  }
+  try {
+    const user = await dbClient.update("users", usr._id.toString(), jsonData);
+    return res.status(201).json(user).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error updating user" }).end();
   }
 }
 
 async function deleteMe(req, res, next) {
-  const usr = await authUser(req, (data = true));
-  if (usr) {
-    try {
-      const user = await dbClient.delete("users", usr._id);
-      return res.status(200).json({}).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error deleting user" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  try {
+    await dbClient.delete("users", usr._id);
+    return res.status(200).json({}).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error deleting user" }).end();
   }
 }
 
 async function getMe(req, res) {
-  const usr = await authUser(req, (data = true));
-  if (usr) {
-    try {
-      const { _id, email } = usr;
-      return res.status(200).json({ _id, email }).end();
-    } catch (error) {
-      return res.status(401).json({ error: "Unauthorized" }).end();
-    }
-  } else {
+  try {
+    const { _id, email } = usr;
+    return res.status(200).json({ _id, email }).end();
+  } catch (error) {
     return res.status(401).json({ error: "Unauthorized" }).end();
   }
 }
@@ -85,10 +72,28 @@ async function getAll(req, res, next) {
   }
 }
 
+async function userImage(req, res) {
+  const userId = req.params.id;
+  const profilePicturePath = req.file.path;
+
+  try {
+    const updatedUser = await dbClient.update("users", userId, {
+      profile_picture: profilePicturePath,
+    });
+    return res.status(200).json(updatedUser).end();
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ error: "Error updating profile picture" })
+      .end();
+  }
+}
+
 module.exports = {
   postNew,
   getMe,
   deleteMe,
   updateMe,
   getAll,
+  userImage,
 };

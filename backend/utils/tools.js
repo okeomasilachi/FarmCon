@@ -10,7 +10,6 @@ const { ObjectId } = require("mongodb");
  */
 async function authUser(req, data = undefined) {
   const { "x-token": token } = req.headers;
-
   if (!token) return false;
   try {
     const sessionToken = await redisClient.get(`auth_${token}`);
@@ -27,6 +26,24 @@ async function authUser(req, data = undefined) {
     console.error("Error authenticating user:", error);
     return false;
   }
+}
+
+async function checkAuth(req, res, next) {
+  const authRoutes = [
+    "GET /disconnect",
+    "GET /users/me",
+    "PUT /user/me",
+    "Delete /user/me",
+  ];
+  const verbRoute = `${req.method} ${req.path}`;
+  if (authRoutes.includes(verbRoute)) {
+    const isAuthenticated = await authUser(req);
+    if (!isAuthenticated) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    req.user = isAuthenticated;
+  }
+  next();
 }
 
 /**
@@ -48,7 +65,7 @@ const schemaMap = {
     validator: {
       $jsonSchema: {
         bsonType: "object",
-        required: ["rating", "user_id", "product_id"],
+        required: ["rating", "user_id", "product_id", "comment"],
         properties: {
           rating: { bsonType: "int", minimum: 1, maximum: 5 },
           user_id: { bsonType: "objectId" },
@@ -69,7 +86,7 @@ const schemaMap = {
           "planting_period_end",
           "harvesting_period_start",
           "harvesting_period_end",
-          "location_id",
+          "user_id",
           "rate_of_production",
           "state",
           "address",
@@ -81,7 +98,7 @@ const schemaMap = {
           planting_period_end: { bsonType: "date" },
           harvesting_period_start: { bsonType: "date" },
           harvesting_period_end: { bsonType: "date" },
-          location_id: { bsonType: "objectId" },
+          user_id: { bsonType: "objectId" },
           rate_of_production: { bsonType: "double" },
           status: {
             bsonType: "string",
@@ -91,6 +108,7 @@ const schemaMap = {
           address: { bsonType: "string" },
           latitude: { bsonType: "double" },
           longitude: { bsonType: "double" },
+          image_path: { bsonType: "string" },
         },
       },
     },
@@ -105,6 +123,7 @@ const schemaMap = {
           email: { bsonType: "string" },
           password: { bsonType: "string" },
           role: { bsonType: "string", enum: ["Super Admin", "Admin", "User"] },
+          profile_picture: { bsonType: "string" },
         },
       },
     },
@@ -192,4 +211,5 @@ async function validateRequestData(data, collectionName) {
 module.exports = {
   authUser,
   validateRequestData,
+  checkAuth,
 };

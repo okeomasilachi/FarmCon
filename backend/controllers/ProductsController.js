@@ -1,65 +1,51 @@
-const sha1 = require("sha1");
-
 const dbClient = require("../utils/db");
-const redisClient = require("../utils/redis");
-const { validateRequestData, authUser } = require("../utils/tools");
+const { validateRequestData } = require("../utils/tools");
 
 async function postNewProduct(req, res, next) {
-  const { name, description, price, category } = req.body;
-  const data = {
-    name,
-    description,
-    price,
-    category
-  };
-  const args = await validateRequestData(data, "products");
+  const product = req.body;
+  const args = await validateRequestData(product, "products");
   if (args) {
     return res.status(400).json({ error: args.message }).end();
   }
-
   try {
-    const existingProduct = await dbClient.getByCriteria("products", { name });
+    const existingProduct = await dbClient.getByCriteria("products", {
+      name: product.name,
+      user_id: product.user_id,
+    });
     if (existingProduct.length > 0) {
       return res.status(409).json({ error: "Product already exists" }).end();
     }
-    const product = await dbClient.create("products", data);
-    return res.status(201).json(product).end();
+    const newProduct = await dbClient.create("products", product);
+    return res.status(201).json(newProduct).end();
   } catch (err) {
-    return res.status(400).json({ error: `Error creating product [${err}]` }).end();
+    return res
+      .status(400)
+      .json({ error: `Error creating product [${err}]` })
+      .end();
   }
 }
 
 async function updateProduct(req, res, next) {
-  const usr = await authUser(req, true);
-  if (usr) {
-    const productId = req.params.id;
-    const jsonData = req.body;
-    if (Object.keys(jsonData).length === 0) {
-      return res.status(400).json({ error: "Empty JSON object" }).end();
-    }
-    try {
-      const product = await dbClient.update("products", productId, jsonData);
-      return res.status(200).json(product).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error updating product" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  const productId = req.params.id;
+  const jsonData = req.body;
+  if (Object.keys(jsonData).length === 0) {
+    return res.status(400).json({ error: "Empty JSON object" }).end();
+  }
+  try {
+    const product = await dbClient.update("products", productId, jsonData);
+    return res.status(200).json(product).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error updating product" }).end();
   }
 }
 
 async function deleteProduct(req, res, next) {
-  const usr = await authUser(req, true);
-  if (usr) {
-    const productId = req.params.id;
-    try {
-      const product = await dbClient.delete("products", productId);
-      return res.status(200).json({}).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error deleting product" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  const productId = req.params.id;
+  try {
+    await dbClient.delete("products", productId);
+    return res.status(200).json({}).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error deleting product" }).end();
   }
 }
 
@@ -86,10 +72,28 @@ async function getAllProducts(req, res, next) {
   }
 }
 
+async function productImage(req, res, next) {
+  const productId = req.params.id;
+  const imagePath = req.file.path;
+
+  try {
+    const updatedProduct = await dbClient.update("products", productId, {
+      image_path: imagePath,
+    });
+    return res.status(200).json(updatedProduct).end();
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ error: "Error updating product image" })
+      .end();
+  }
+}
+
 module.exports = {
   postNewProduct,
   getProduct,
   deleteProduct,
   updateProduct,
   getAllProducts,
+  productImage,
 };

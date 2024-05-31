@@ -17,10 +17,10 @@ async function getConnect(req, res) {
     const [email, password] = Buffer.from(auth.split(" ")[1], "base64")
       .toString("utf-8")
       .split(":");
-    if (!email || !password || !email && !password) {
-      return res.status(400).json({ error: 'Invalid authorization header' });
+    if (!email || !password || (!email && !password)) {
+      return res.status(400).json({ error: "Invalid authorization header" });
     }
-    const user = await dbClient.getByCriteria('users', { email, password });
+    const user = await dbClient.getByCriteria("users", { email, password });
     console.log(user);
     if (!user) {
       res.status(401).json({ error: "Unauthorized" });

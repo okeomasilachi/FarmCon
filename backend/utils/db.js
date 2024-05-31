@@ -1,27 +1,31 @@
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient, ObjectId } = require("mongodb");
 
 /**
  * Represents a MongoDB client for interacting with the database.
  */
 class DBClient {
   constructor() {
-    const host = process.env.DB_HOST || 'localhost';const { MongoClient, ObjectId } = require('mongodb');
+    const host = process.env.DB_HOST || "localhost";
+    const { MongoClient, ObjectId } = require("mongodb");
 
     /**
      * Represents a MongoDB client for interacting with the database.
      */
     class DBClient {
       constructor() {
-        const host = process.env.DB_HOST || 'localhost';
+        const host = process.env.DB_HOST || "localhost";
         const port = process.env.DB_PORT || 27017;
-        const database = process.env.DB_DATABASE || 'FarmCon';
-    
+        const database = process.env.DB_DATABASE || "FarmCon";
+
         const uri = `mongodb://${host}:${port}/${database}`;
-        this.client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    
+        this.client = new MongoClient(uri, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
+
         this.connect();
       }
-    
+
       /**
        * Connects to the MongoDB database.
        * @returns {Promise<void>} A promise that resolves when the connection is established.
@@ -30,13 +34,13 @@ class DBClient {
         try {
           await this.client.connect();
           this.db = this.client.db(); // Assign the database instance
-          console.log('Connected to MongoDB');
+          console.log("Connected to MongoDB");
           await this.createCollections(); // Create collections after connecting
         } catch (error) {
-          console.error('Failed to connect to MongoDB:', error);
+          console.error("Failed to connect to MongoDB:", error);
         }
       }
-    
+
       /**
        * Checks if a collection already exists in the database.
        * @param {string} name The name of the collection to check.
@@ -46,73 +50,90 @@ class DBClient {
         const collections = await this.db.listCollections().toArray();
         return collections.some((collection) => collection.name === name);
       }
-    
+
       /**
        * Creates collections with specified validators.
        */
       async createCollections() {
         const collections = [
           {
-            name: 'feedbacks',
+            name: "feedbacks",
             validator: {
               $jsonSchema: {
-                bsonType: 'object',
-                required: ['rating', 'user_id', 'product_id'],
+                bsonType: "object",
+                required: ["rating", "user_id", "product_id"],
                 properties: {
-                  rating: { bsonType: 'int', minimum: 1, maximum: 5 },
-                  user_id: { bsonType: 'objectId' },
-                  product_id: { bsonType: 'objectId' },
-                  comment: { bsonType: 'string' }
-                }
-              }
-            }
+                  rating: { bsonType: "int", minimum: 1, maximum: 5 },
+                  user_id: { bsonType: "objectId" },
+                  product_id: { bsonType: "objectId" },
+                  comment: { bsonType: "string" },
+                },
+              },
+            },
           },
           {
-            name: 'products',
+            name: "products",
             validator: {
               $jsonSchema: {
-                bsonType: 'object',
-                required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
+                bsonType: "object",
+                required: [
+                  "name",
+                  "description",
+                  "planting_period_start",
+                  "planting_period_end",
+                  "harvesting_period_start",
+                  "harvesting_period_end",
+                  "location_id",
+                  "rate_of_production",
+                  "state",
+                  "address",
+                ],
                 properties: {
-                  name: { bsonType: 'string' },
-                  description: { bsonType: 'string' },
-                  planting_period_start: { bsonType: 'date' },
-                  planting_period_end: { bsonType: 'date' },
-                  harvesting_period_start: { bsonType: 'date' },
-                  harvesting_period_end: { bsonType: 'date' },
-                  location_id: { bsonType: 'objectId' },
-                  rate_of_production: { bsonType: 'double' },
-                  status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
-                  state: { bsonType: 'string' },
-                  address: { bsonType: 'string' },
-                  latitude: { bsonType: 'double' },
-                  longitude: { bsonType: 'double' }
-                }
-              }
-            }
+                  name: { bsonType: "string" },
+                  description: { bsonType: "string" },
+                  planting_period_start: { bsonType: "date" },
+                  planting_period_end: { bsonType: "date" },
+                  harvesting_period_start: { bsonType: "date" },
+                  harvesting_period_end: { bsonType: "date" },
+                  location_id: { bsonType: "objectId" },
+                  rate_of_production: { bsonType: "double" },
+                  status: {
+                    bsonType: "string",
+                    enum: ["Pending", "Approved", "Rejected"],
+                  },
+                  state: { bsonType: "string" },
+                  address: { bsonType: "string" },
+                  latitude: { bsonType: "double" },
+                  longitude: { bsonType: "double" },
+                },
+              },
+            },
           },
           {
-            name: 'users',
+            name: "users",
             validator: {
               $jsonSchema: {
-                bsonType: 'object',
-                required: ['username', 'email', 'password', 'role'],
+                bsonType: "object",
+                required: ["username", "email", "password", "role"],
                 properties: {
-                  username: { bsonType: 'string' },
-                  email: { bsonType: 'string' },
-                  password: { bsonType: 'string' },
-                  role: { bsonType: 'string', enum: ['Super Admin', 'Admin', 'User'] }
-                }
-              }
-            }
-          }
+                  username: { bsonType: "string" },
+                  email: { bsonType: "string" },
+                  password: { bsonType: "string" },
+                  role: {
+                    bsonType: "string",
+                    enum: ["Super Admin", "Admin", "User"],
+                  },
+                },
+              },
+            },
+          },
         ];
-    
+
         for (const collection of collections) {
           await this.createCollection(collection.name, collection.validator);
         }
       }
-    
+
       /**
        * Creates a collection with the specified name and validator if it doesn't already exist.
        * @param {string} name The name of the collection to create.
@@ -133,15 +154,18 @@ class DBClient {
         }
       }
     }
-    
+
     const dbClient = new DBClient();
     module.exports = dbClient;
-    
+
     const port = process.env.DB_PORT || 27017;
-    const database = process.env.DB_DATABASE || 'FarmCon';
+    const database = process.env.DB_DATABASE || "FarmCon";
 
     const uri = `mongodb://${host}:${port}/${database}`;
-    this.client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    this.client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     this.connect();
   }
@@ -154,10 +178,10 @@ class DBClient {
     try {
       await this.client.connect();
       this.db = this.client.db(); // Assign the database instance
-      console.log('Connected to MongoDB');
+      console.log("Connected to MongoDB");
       await this.createCollections(); // Create collections after connecting
     } catch (error) {
-      console.error('Failed to connect to MongoDB:', error);
+      console.error("Failed to connect to MongoDB:", error);
     }
   }
 
@@ -167,59 +191,76 @@ class DBClient {
   async createCollections() {
     const collections = [
       {
-        name: 'feedbacks',
+        name: "feedbacks",
         validator: {
           $jsonSchema: {
-            bsonType: 'object',
-            required: ['rating', 'user_id', 'product_id'],
+            bsonType: "object",
+            required: ["rating", "user_id", "product_id"],
             properties: {
-              rating: { bsonType: 'int', minimum: 1, maximum: 5 },
-              user_id: { bsonType: 'objectId' },
-              product_id: { bsonType: 'objectId' },
-              comment: { bsonType: 'string' }
-            }
-          }
-        }
+              rating: { bsonType: "int", minimum: 1, maximum: 5 },
+              user_id: { bsonType: "objectId" },
+              product_id: { bsonType: "objectId" },
+              comment: { bsonType: "string" },
+            },
+          },
+        },
       },
       {
-        name: 'products',
+        name: "products",
         validator: {
           $jsonSchema: {
-            bsonType: 'object',
-            required: ['name', 'description', 'planting_period_start', 'planting_period_end', 'harvesting_period_start', 'harvesting_period_end', 'location_id', 'rate_of_production', 'state', 'address'],
+            bsonType: "object",
+            required: [
+              "name",
+              "description",
+              "planting_period_start",
+              "planting_period_end",
+              "harvesting_period_start",
+              "harvesting_period_end",
+              "location_id",
+              "rate_of_production",
+              "state",
+              "address",
+            ],
             properties: {
-              name: { bsonType: 'string' },
-              description: { bsonType: 'string' },
-              planting_period_start: { bsonType: 'date' },
-              planting_period_end: { bsonType: 'date' },
-              harvesting_period_start: { bsonType: 'date' },
-              harvesting_period_end: { bsonType: 'date' },
-              location_id: { bsonType: 'objectId' },
-              rate_of_production: { bsonType: 'double' },
-              status: { bsonType: 'string', enum: ['Pending', 'Approved', 'Rejected'] },
-              state: { bsonType: 'string' },
-              address: { bsonType: 'string' },
-              latitude: { bsonType: 'double' },
-              longitude: { bsonType: 'double' }
-            }
-          }
-        }
+              name: { bsonType: "string" },
+              description: { bsonType: "string" },
+              planting_period_start: { bsonType: "date" },
+              planting_period_end: { bsonType: "date" },
+              harvesting_period_start: { bsonType: "date" },
+              harvesting_period_end: { bsonType: "date" },
+              location_id: { bsonType: "objectId" },
+              rate_of_production: { bsonType: "double" },
+              status: {
+                bsonType: "string",
+                enum: ["Pending", "Approved", "Rejected"],
+              },
+              state: { bsonType: "string" },
+              address: { bsonType: "string" },
+              latitude: { bsonType: "double" },
+              longitude: { bsonType: "double" },
+            },
+          },
+        },
       },
       {
-        name: 'users',
+        name: "users",
         validator: {
           $jsonSchema: {
-            bsonType: 'object',
-            required: ['username', 'email', 'password', 'role'],
+            bsonType: "object",
+            required: ["username", "email", "password", "role"],
             properties: {
-              username: { bsonType: 'string' },
-              email: { bsonType: 'string' },
-              password: { bsonType: 'string' },
-              role: { bsonType: 'string', enum: ['Super Admin', 'Admin', 'User'] }
-            }
-          }
-        }
-      }
+              username: { bsonType: "string" },
+              email: { bsonType: "string" },
+              password: { bsonType: "string" },
+              role: {
+                bsonType: "string",
+                enum: ["Super Admin", "Admin", "User"],
+              },
+            },
+          },
+        },
+      },
     ];
 
     for (const collection of collections) {
@@ -276,7 +317,9 @@ class DBClient {
    */
   async update(collectionName, id, newData) {
     try {
-      const result = await this.db.collection(collectionName).updateOne({ _id: ObjectId(id) }, { $set: newData });
+      const result = await this.db
+        .collection(collectionName)
+        .updateOne({ _id: ObjectId(id) }, { $set: newData });
       return result.modifiedCount > 0;
     } catch (error) {
       console.error(`Error updating document in ${collectionName}:`, error);
@@ -293,7 +336,9 @@ class DBClient {
    */
   async delete(collectionName, id) {
     try {
-      const result = await this.db.collection(collectionName).deleteOne({ _id: ObjectId(id) });
+      const result = await this.db
+        .collection(collectionName)
+        .deleteOne({ _id: ObjectId(id) });
       return result.deletedCount > 0;
     } catch (error) {
       console.error(`Error deleting document in ${collectionName}:`, error);
@@ -310,9 +355,18 @@ class DBClient {
    */
   async getById(collectionName, id) {
     try {
-      return await this.db.collection(collectionName).findOne({ _id: ObjectId(id) });
+      const result = await this.db
+        .collection(collectionName)
+        .findOne({ _id: ObjectId(id) });
+      if (!result) {
+        return false;
+      }
+      return result;
     } catch (error) {
-      console.error(`Error getting document by ID in ${collectionName}:`, error);
+      console.error(
+        `Error getting document by ID in ${collectionName}:`,
+        error,
+      );
       throw error;
     }
   }
@@ -345,10 +399,22 @@ class DBClient {
 
       if (criteria.user_id) query.user_id = ObjectId(criteria.user_id);
       if (criteria.product_id) query.product_id = ObjectId(criteria.product_id);
-      if (criteria.planting_period_start) query.planting_period_start = { $gte: new Date(criteria.planting_period_start) };
-      if (criteria.planting_period_end) query.planting_period_end = { $lte: new Date(criteria.planting_period_end) };
-      if (criteria.harvesting_period_start) query.harvesting_period_start = { $gte: new Date(criteria.harvesting_period_start) };
-      if (criteria.harvesting_period_end) query.harvesting_period_end = { $lte: new Date(criteria.harvesting_period_end) };
+      if (criteria.planting_period_start)
+        query.planting_period_start = {
+          $gte: new Date(criteria.planting_period_start),
+        };
+      if (criteria.planting_period_end)
+        query.planting_period_end = {
+          $lte: new Date(criteria.planting_period_end),
+        };
+      if (criteria.harvesting_period_start)
+        query.harvesting_period_start = {
+          $gte: new Date(criteria.harvesting_period_start),
+        };
+      if (criteria.harvesting_period_end)
+        query.harvesting_period_end = {
+          $lte: new Date(criteria.harvesting_period_end),
+        };
       if (criteria.status) query.status = criteria.status;
       if (criteria.state) query.state = criteria.state;
       if (criteria.email) query.email = criteria.email;
@@ -356,7 +422,10 @@ class DBClient {
 
       return await this.db.collection(collectionName).find(query).toArray();
     } catch (error) {
-      console.error(`Error getting documents by criteria in ${collectionName}:`, error);
+      console.error(
+        `Error getting documents by criteria in ${collectionName}:`,
+        error,
+      );
       throw error;
     }
   }
