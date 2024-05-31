@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 const redisClient = require("../utils/redis");
 const dbClient = require("../utils/db");
 const sha1 = require("sha1");
+
 /**
  * Handles the authentication process for a user.
  * @param {Object} req - The request object.
@@ -13,19 +14,16 @@ async function getConnect(req, res) {
     res.status(401).json({ error: "Unauthorized" });
   } else {
     const auth = req.headers.authorization;
-    const [email, passwd] = Buffer.from(auth.split(" ")[1], "base64")
+    const [email, password] = Buffer.from(auth.split(" ")[1], "base64")
       .toString("utf-8")
       .split(":");
-
-    const user = await dbClient.database
-      .collection("users")
-      .findOne({ email, password: sha1(passwd) });
-
+    const user = await dbClient.getByCriteria('users', { email, password });
     if (!user) {
       res.status(401).json({ error: "Unauthorized" });
     } else {
       const token = uuidv4();
-      await redisClient.set(`auth_${token}`, user._id.toString(), 86400);
+      console.log(user);
+      // await redisClient.set(`auth_${token}`, user._id.toString(), 86400);
       res.status(200).json({ token });
     }
   }

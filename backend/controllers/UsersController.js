@@ -6,29 +6,28 @@ const { validateRequestData, authUser } = require("../utils/tools");
 
 async function postNew(req, res, next) {
   const data = req.body;
-  console.log(data);
   const args = await validateRequestData(data, "users");
   if (args) {
-    console.log(args.errorCode);
     return res.status(400).json({ error: args.message }).end();
   }
+  
   try {
-    user = await dbClient.create("users", data);
+    const user = await dbClient.create("users", data);
     return res.status(201).json({ user }).end();
   } catch (err) {
-    return res.status(400).json({ error: "error creating user" }).end();
+    return res.status(400).json({ error: `error creating user [${err}]` }).end();
   }
 }
 
 async function updateMe(req, res, next) {
   const usr = await authUser(req, (data = true));
   if (usr) {
-    const jsonData = req.json();
+    const jsonData = req.body;
     if (Object.keys(jsonData).length === 0) {
       return res.status(400).json({ error: "Empty JSON object" }).end();
     }
     try {
-      user = await dbClient.update("users", usr._id, jsonData);
+      const user = await dbClient.update("users", usr.id, jsonData);
       return res.status(201).json({ user }).end();
     } catch (err) {
       return res.status(400).json({ error: "Error updating user" }).end();
@@ -42,7 +41,7 @@ async function deleteMe(req, res, next) {
   const usr = await authUser(req, (data = true));
   if (usr) {
     try {
-      user = await dbClient.delete("users", usr._id);
+      const user = await dbClient.delete("users", usr._id);
       return res.status(200).json({}).end();
     } catch (err) {
       return res.status(400).json({ error: "Error deleting user" }).end();

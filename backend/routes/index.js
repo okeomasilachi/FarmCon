@@ -18,9 +18,9 @@ router.get("/connect", AuthController.getConnect);
 router.get("/disconnect", AuthController.getDisconnect);
 
 router.post("/users", UsersController.postNew);
-// router.get("/users", UsersController.getAll);
-// router.get("/users/me", UsersController.getMe);
-// router.put("/users/me", UsersController.updateMe);
-// router.delete("/users/me", UsersController.deleteMe);
+router.get("/users", UsersController.getAll);
+router.get("/users/me", UsersController.getMe);
+router.put("/users/me", UsersController.updateMe);
+router.delete("/users/me", UsersController.deleteMe);
 
 module.exports = router;
