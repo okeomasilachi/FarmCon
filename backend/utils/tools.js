@@ -8,7 +8,7 @@ const { ObjectId } = require("mongodb");
  * @returns {Promise<boolean>} - A promise that resolves to a boolean
  *      indicating whether the user is authenticated or not.
  */
-async function authUser(req, data = undefined) {
+async function authUser(req) {
   const { "x-token": token } = req.headers;
   if (!token) return false;
   try {
@@ -16,7 +16,7 @@ async function authUser(req, data = undefined) {
     if (sessionToken) {
       try {
         const user = await dbClient.getById("users", sessionToken);
-        return data === undefined ? true : user;
+        return user;
       } catch (err) {
         return false;
       }
@@ -29,20 +29,12 @@ async function authUser(req, data = undefined) {
 }
 
 async function checkAuth(req, res, next) {
-  const authRoutes = [
-    "GET /disconnect",
-    "GET /users/me",
-    "PUT /user/me",
-    "Delete /user/me",
-  ];
-  const verbRoute = `${req.method} ${req.path}`;
-  if (authRoutes.includes(verbRoute)) {
-    const isAuthenticated = await authUser(req);
-    if (!isAuthenticated) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-    req.user = isAuthenticated;
+  const isAuthenticated = await authUser(req);
+  if (!isAuthenticated) {
+    return res.status(401).json({ message: "Unauthorized" }).end();
+    next();
   }
+  req.user = isAuthenticated;
   next();
 }
 
@@ -163,7 +155,7 @@ async function validateRequestData(data, collectionName) {
     }
 
     const fieldSchema = schema.validator.$jsonSchema.properties[field];
-    const fieldValue = data[field];
+    let fieldValue = data[field];
 
     if (fieldSchema) {
       const fieldType = fieldSchema.bsonType;
@@ -194,16 +186,8 @@ async function validateRequestData(data, collectionName) {
           message: `Field ${field} must be a valid ObjectId.`,
         };
       }
-
-      if (fieldType === "date" && !(fieldValue instanceof Date)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a Date object.`,
-        };
-      }
     }
   }
-
   return false;
 }
 

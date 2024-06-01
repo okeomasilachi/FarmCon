@@ -2,40 +2,30 @@ const dbClient = require("../utils/db");
 const { validateRequestData } = require("../utils/tools");
 
 async function postNewFeedback(req, res, next) {
-  const { userId, productId, rating, comment } = req.body;
-  const data = {
-    userId,
-    productId,
-    rating,
-    comment,
-  };
-  const args = await validateRequestData(data, "feedback");
+  const data = req.body;
+  const args = await validateRequestData(data, "feedbacks");
   if (args) {
     return res.status(400).json({ error: args.message }).end();
   }
-
+  if ((await dbClient.getById("users", data.user_id)) === false) {
+    return res.status(404).json({ error: "User not found" }).end();
+  }
+  if ((await dbClient.getById("products", data.product_id)) === false) {
+    return res.status(404).json({ error: "product not found" }).end();
+  }
   try {
-    const existingFeedback = await dbClient.getByCriteria("feedback", {
-      userId,
-      productId,
-    });
-    if (existingFeedback.length > 0) {
-      return res.status(409).json({ error: "Feedback already exists" }).end();
-    }
-    const feedback = await dbClient.create("feedback", data);
+    const feedback = await dbClient.create("feedbacks", data);
     return res.status(201).json(feedback).end();
   } catch (err) {
-    return res
-      .status(400)
-      .json({ error: `Error creating feedback [${err}]` })
-      .end();
+    console.error(err.errInfo.details);
+    return res.status(400).json({ error: `Error creating feedback` }).end();
   }
 }
 
 async function getFeedbackByUser(req, res) {
   const user_id = req.params.user_id;
   try {
-    const feedbacks = await dbClient.getByCriteria("feedback", { user_id });
+    const feedbacks = await dbClient.getByCriteria("feedbacks", { user_id });
     return res.status(200).json(feedbacks).end();
   } catch (err) {
     return res.status(500).json({ error: "Server error" }).end();
@@ -45,7 +35,7 @@ async function getFeedbackByUser(req, res) {
 async function getFeedbackByProduct(req, res) {
   const product_id = req.params.product_id;
   try {
-    const feedbacks = await dbClient.getByCriteria("feedback", { product_id });
+    const feedbacks = await dbClient.getByCriteria("feedbacks", { product_id });
     return res.status(200).json(feedbacks).end();
   } catch (err) {
     return res.status(500).json({ error: "Server error" }).end();
@@ -57,7 +47,7 @@ async function deleteFeedback(req, res, next) {
   if (usr) {
     const feedbackId = req.params.id;
     try {
-      const feedback = await dbClient.delete("feedback", feedbackId);
+      const feedback = await dbClient.delete("feedbacks", feedbackId);
       return res.status(200).json({}).end();
     } catch (err) {
       return res.status(400).json({ error: "Error deleting feedback" }).end();

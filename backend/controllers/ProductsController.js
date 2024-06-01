@@ -18,10 +18,7 @@ async function postNewProduct(req, res, next) {
     const newProduct = await dbClient.create("products", product);
     return res.status(201).json(newProduct).end();
   } catch (err) {
-    return res
-      .status(400)
-      .json({ error: `Error creating product [${err}]` })
-      .end();
+    return res.status(400).json({ error: `Error creating product` }).end();
   }
 }
 
@@ -33,7 +30,10 @@ async function updateProduct(req, res, next) {
   }
   try {
     const product = await dbClient.update("products", productId, jsonData);
-    return res.status(200).json(product).end();
+    if (product) {
+      return res.status(200).json({ message: "Update success" }).end();
+    }
+    return res.status(204).end();
   } catch (err) {
     return res.status(400).json({ error: "Error updating product" }).end();
   }
@@ -42,8 +42,12 @@ async function updateProduct(req, res, next) {
 async function deleteProduct(req, res, next) {
   const productId = req.params.id;
   try {
-    await dbClient.delete("products", productId);
-    return res.status(200).json({}).end();
+    const deleteCount = await dbClient.delete("products", productId);
+    if (deleteCount) {
+      return res.status(200).json({}).end();
+    } else {
+      return res.status(404).json({ error: "Not found" }).end();
+    }
   } catch (err) {
     return res.status(400).json({ error: "Error deleting product" }).end();
   }

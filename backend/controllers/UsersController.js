@@ -11,10 +11,8 @@ async function postNew(req, res, next) {
   }
   const { password, username, email, role } = usersData;
   const data = { password: sha1(password), username, email, role };
-  // console.log(data);
   try {
-    const existingUser = await dbClient.getByEmail(email);
-    // console.log(existingUser);
+    const existingUser = await dbClient.getByEmail(usersData.email);
     if (existingUser) {
       return res.status(409).json({ error: "User already exists" }).end();
     }
@@ -22,10 +20,7 @@ async function postNew(req, res, next) {
     const { email, _id } = user;
     return res.status(201).json({ email, id: _id }).end();
   } catch (err) {
-    return res
-      .status(400)
-      .json({ error: `error creating user [${err}]` })
-      .end();
+    return res.status(400).json({ error: `error creating user]` }).end();
   }
 }
 
@@ -35,8 +30,15 @@ async function updateMe(req, res, next) {
     return res.status(400).json({ error: "Empty JSON object" }).end();
   }
   try {
-    const user = await dbClient.update("users", usr._id.toString(), jsonData);
-    return res.status(201).json(user).end();
+    const user = await dbClient.update(
+      "users",
+      req.user._id.toString(),
+      jsonData,
+    );
+    if (user) {
+      return res.status(201).json({ message: "Update success" }).end();
+    }
+    return res.status(204).end();
   } catch (err) {
     return res.status(400).json({ error: "Error updating user" }).end();
   }
@@ -44,7 +46,7 @@ async function updateMe(req, res, next) {
 
 async function deleteMe(req, res, next) {
   try {
-    await dbClient.delete("users", usr._id);
+    await dbClient.delete("users", req.user._id.toString());
     return res.status(200).json({}).end();
   } catch (err) {
     return res.status(400).json({ error: "Error deleting user" }).end();
@@ -53,8 +55,11 @@ async function deleteMe(req, res, next) {
 
 async function getMe(req, res) {
   try {
-    const { _id, email } = usr;
-    return res.status(200).json({ _id, email }).end();
+    const { _id, email } = req.user;
+    return res
+      .status(200)
+      .json({ id: req.user._id, email: req.user.email, role: req.user.role })
+      .end();
   } catch (error) {
     return res.status(401).json({ error: "Unauthorized" }).end();
   }
