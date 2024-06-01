@@ -8,14 +8,14 @@ import StatesSearch from "../components/search/StatesSearch";
 import ProductsSearch from "../components/search/ProductsSearch";
 
 const Agriculture = () => {
-  const [searchAll, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   return (
     <div>
       <Nav />
-      <Hero search = {searchAll} setS = {setSearch}/>
-      <StatesSearch />
-      <ProductsSearch />
+      <Hero setSearchAll={setSearch}/>
+      <StatesSearch search={search}/>
+      <ProductsSearch search={search}/>
       <Footer />
     </div>
   );

@@ -1,14 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React, {useState} from "react";
 import "./StateSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import { StatesData } from "./StateData";
 
+import { StatesData } from "./StateData";
+import Paginations from "./Paginations"
 
 const StatesSearch = () => {
   const [searchState, setSearchState] = useState("");
 
+  // pagination feature 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostPerPage] = useState(8);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPost = StatesData.slice(firstPostIndex, lastPostIndex)
+  
 
   return (
     <section className="container container__states" id="states">
@@ -29,7 +39,7 @@ const StatesSearch = () => {
           <div className="row states">
 
             {
-              StatesData.filter((item) => {
+              currentPost.filter((item) => {
                 return searchState.toLowerCase() === "" ? item : item.location.toLowerCase().includes(searchState.toLowerCase());
               }).map((item, key) => {
                 return (
@@ -43,6 +53,16 @@ const StatesSearch = () => {
               })
             }
           
+          </div>
+          
+          <div className="row">
+            <Paginations  
+              totalPosts = {StatesData.length} 
+              postsPerPage = {postsPerPage}
+              setCurrentPage= {setCurrentPage}
+              currentPage={currentPage}
+              
+              />
           </div>
         </div>
       </div>

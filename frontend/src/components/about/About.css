@@ -58,8 +58,9 @@
 	border-radius: 0.5rem;
 	
 }
-.container__about .about_info .body p {
-	line-height: 1.5rem;
+.container__about .about_info p {
+	line-height: 2rem;
+	font-size: 1.1rem;
 }
 
 .container__about .about_info .title-2 {

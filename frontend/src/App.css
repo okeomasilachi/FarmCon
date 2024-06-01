@@ -24,6 +24,7 @@
 .logo {
   width: 8rem;
   padding-bottom: 2rem;
+  color: var(--dark-green);
 }
 
 .brand {

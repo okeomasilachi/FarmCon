@@ -5,6 +5,7 @@
 }
 .navbar-brand > h1 {
   font-weight: 900;
+  color: var(--dark-green);
 }
 
 .navbar .navbar-toggler {

@@ -1,14 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "./ProductsSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import Paginations from "./Paginations"
 import { ProductsData } from "./ProductsData";
 
 
 const ProductsSearch = () => {
   const [searchProduct, setSearchProduct] = useState("");
-console.log(searchProduct.toLowerCase())
+// pagination feature 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostPerPage] = useState(8);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPost = ProductsData.slice(firstPostIndex, lastPostIndex)
+  
+
   return (
     <section className="container container__products" id="products">
       <div className="row">
@@ -27,7 +37,10 @@ console.log(searchProduct.toLowerCase())
         <div className="col-12 bottom_product">
           <div className="row products">
             {
-              ProductsData.filter((item) => {
+              
+              currentPost.filter((item) => {
+                
+               
                 return searchProduct.toLowerCase() === "" ? item : item.name.toLowerCase().includes(searchProduct.toLowerCase());
               }).map((item, key)=> {
                 return (
@@ -40,6 +53,16 @@ console.log(searchProduct.toLowerCase())
                 );
               })
             }
+          </div>
+          <div className="row">
+           {/* <h1>We are Here</h1> */}
+           <Paginations  
+            totalPosts = {ProductsData.length} 
+            postsPerPage = {postsPerPage}
+            setCurrentPage= {setCurrentPage}
+            currentPage={currentPage}
+            
+            />
           </div>
         </div>
       </div>
