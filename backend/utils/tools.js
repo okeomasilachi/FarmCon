@@ -54,7 +54,6 @@ async function checkAuth(req, res, next) {
  * @property {Object} products - JSON schema for the "products" collection.
  * @property {Object} users - JSON schema for the "users" collection.
  */
-
 /**
  * Map of JSON schemas for different collections in the database.
  *

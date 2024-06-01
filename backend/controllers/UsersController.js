@@ -4,25 +4,23 @@ const upload = require("../utils/multer");
 const { validateRequestData } = require("../utils/tools");
 
 async function postNew(req, res, next) {
-  const { password, username, email, role } = req.body;
-  const data = {
-    password: sha1(password),
-    username,
-    email,
-    role,
-  };
-  const args = await validateRequestData(data, "users");
+  const usersData = req.body;
+  const args = await validateRequestData(usersData, "users");
   if (args) {
     return res.status(400).json({ error: args.message }).end();
   }
-
+  const { password, username, email, role } = usersData;
+  const data = { password: sha1(password), username, email, role };
+  // console.log(data);
   try {
-    const existingUser = await dbClient.getByCriteria("users", { email });
-    if (existingUser.length > 0) {
+    const existingUser = await dbClient.getByEmail(email);
+    // console.log(existingUser);
+    if (existingUser) {
       return res.status(409).json({ error: "User already exists" }).end();
     }
     const user = await dbClient.create("users", data);
-    return res.status(201).json(user).end();
+    const { email, _id } = user;
+    return res.status(201).json({ email, id: _id }).end();
   } catch (err) {
     return res
       .status(400)

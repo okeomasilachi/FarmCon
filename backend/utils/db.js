@@ -15,7 +15,7 @@ class DBClient {
       constructor() {
         const host = process.env.DB_HOST || "localhost";
         const port = process.env.DB_PORT || 27017;
-        const database = process.env.DB_DATABASE || "FarmCon";
+        const database = "FarmCon" || process.env.DB_DATABASE || "FarmCon";
 
         const uri = `mongodb://${host}:${port}/${database}`;
         this.client = new MongoClient(uri, {
@@ -365,6 +365,25 @@ class DBClient {
     } catch (error) {
       console.error(
         `Error getting document by ID in ${collectionName}:`,
+        error,
+      );
+      throw error;
+    }
+  }
+
+  async getByEmail(email) {
+    try {
+      const result = await this.db
+        .collection("users")
+        .findOne({ email: email });
+      console.log(result);
+      if (!result) {
+        return false;
+      }
+      return result;
+    } catch (error) {
+      console.error(
+        `Error getting document by Email in ${collectionName}:`,
         error,
       );
       throw error;
