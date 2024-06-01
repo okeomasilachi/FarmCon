@@ -95,6 +95,14 @@ async function getMe(req, res) {
   }
 }
 
+/**
+ * Retrieves all users from the database.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object with the list of users or an error message.
+ */
 async function getAll(req, res, next) {
   try {
     const data = await dbClient.getAll("users");
@@ -105,6 +113,17 @@ async function getAll(req, res, next) {
   }
 }
 
+/**
+ * Updates the profile picture of a user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.params - The parameters sent with the request.
+ * @param {string} req.params.id - The ID of the user.
+ * @param {Object} req.file - The uploaded file object.
+ * @param {string} req.file.path - The path of the uploaded file.
+ * @param {Object} res - The response object.
+ * @returns {Object} The updated user object.
+ */
 async function userImage(req, res) {
   const userId = req.params.id;
   const profilePicturePath = req.file.path;
