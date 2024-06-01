@@ -1,6 +1,13 @@
 const dbClient = require("../utils/db");
 const { validateRequestData } = require("../utils/tools");
 
+/**
+ * Handles the creation of a new product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function postNewProduct(req, res, next) {
   const product = req.body;
   const args = await validateRequestData(product, "products");
@@ -22,6 +29,13 @@ async function postNewProduct(req, res, next) {
   }
 }
 
+/**
+ * Handles the update of a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function updateProduct(req, res, next) {
   const productId = req.params.id;
   const jsonData = req.body;
@@ -39,6 +53,13 @@ async function updateProduct(req, res, next) {
   }
 }
 
+/**
+ * Handles the deletion of a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function deleteProduct(req, res, next) {
   const productId = req.params.id;
   try {
@@ -53,6 +74,12 @@ async function deleteProduct(req, res, next) {
   }
 }
 
+/**
+ * Handles the retrieval of a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
 async function getProduct(req, res) {
   const productId = req.params.id;
   try {
@@ -67,6 +94,13 @@ async function getProduct(req, res) {
   }
 }
 
+/**
+ * Handles the retrieval of all products.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function getAllProducts(req, res, next) {
   try {
     const products = await dbClient.getAll("products");
@@ -76,6 +110,13 @@ async function getAllProducts(req, res, next) {
   }
 }
 
+/**
+ * Handles the update of a product image.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function productImage(req, res, next) {
   const productId = req.params.id;
   const imagePath = req.file.path;
