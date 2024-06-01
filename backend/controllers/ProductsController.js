@@ -64,11 +64,9 @@ async function deleteProduct(req, res, next) {
   const productId = req.params.id;
   try {
     const deleteCount = await dbClient.delete("products", productId);
-    if (deleteCount) {
-      return res.status(200).json({}).end();
-    } else {
-      return res.status(404).json({ error: "Not found" }).end();
-    }
+    return deleteCount
+      ? res.status(200).json({}).end()
+      : res.status(404).json({ error: "Not found" }).end();
   } catch (err) {
     return res.status(400).json({ error: "Error deleting product" }).end();
   }

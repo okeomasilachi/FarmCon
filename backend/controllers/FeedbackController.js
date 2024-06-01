@@ -69,17 +69,14 @@ async function getFeedbackByProduct(req, res) {
  * @returns {Object} The response object.
  */
 async function deleteFeedback(req, res, next) {
-  const usr = await authUser(req, true);
-  if (usr) {
-    const feedbackId = req.params.id;
-    try {
-      const feedback = await dbClient.delete("feedbacks", feedbackId);
-      return res.status(200).json({}).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error deleting feedback" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  const feedbackId = req.params.id;
+  try {
+    const feedback = await dbClient.delete("feedbacks", feedbackId);
+    return feedback
+      ? res.status(200).json({}).end()
+      : res.status(404).json({ error: "Not found" }).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error deleting feedback" }).end();
   }
 }
 

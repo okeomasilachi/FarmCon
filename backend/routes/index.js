@@ -26,24 +26,23 @@ router.get("/users", UsersController.getAll);
 router.get("/users/me", checkAuth, UsersController.getMe);
 router.put("/users/me", checkAuth, UsersController.updateMe);
 router.delete("/users/me", checkAuth, UsersController.deleteMe);
-// router.post(
-//   "/users/:id/upload",
-//   upload.single("profile_picture"),
-//   checkAuth,
-//   UsersController.userImage,
-// );
+router.post(
+  "/users/:id/upload",
+  upload.single("profile_picture"),
+  checkAuth,
+  UsersController.userImage,
+);
 
 router.post("/products", checkAuth, ProductsController.postNewProduct);
 router.get("/products", checkAuth, ProductsController.getAllProducts);
 router.get("/products/:id", checkAuth, ProductsController.getProduct);
 router.put("/products/:id", checkAuth, ProductsController.updateProduct);
 router.delete("/products/:id", checkAuth, ProductsController.deleteProduct);
-
-// router.post(
-//   "/products/:id/upload",
-//   upload.single("image"),
-//   ProductsController.productImage,
-// );
+router.post(
+  "/products/:id/upload",
+  upload.single("product_image"),
+  ProductsController.productImage,
+);
 
 router.post("/feedback", FeedbackController.postNewFeedback);
 router.get("/feedback/user/:user_id", FeedbackController.getFeedbackByUser);
