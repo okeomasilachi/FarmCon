@@ -1,6 +1,13 @@
 const dbClient = require("../utils/db");
 const { validateRequestData } = require("../utils/tools");
 
+/**
+ * Handles the creation of a new feedback.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function postNewFeedback(req, res, next) {
   const data = req.body;
   const args = await validateRequestData(data, "feedbacks");
@@ -11,7 +18,7 @@ async function postNewFeedback(req, res, next) {
     return res.status(404).json({ error: "User not found" }).end();
   }
   if ((await dbClient.getById("products", data.product_id)) === false) {
-    return res.status(404).json({ error: "product not found" }).end();
+    return res.status(404).json({ error: "Product not found" }).end();
   }
   try {
     const feedback = await dbClient.create("feedbacks", data);
@@ -22,6 +29,12 @@ async function postNewFeedback(req, res, next) {
   }
 }
 
+/**
+ * Retrieves feedbacks by user ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
 async function getFeedbackByUser(req, res) {
   const user_id = req.params.user_id;
   try {
@@ -32,6 +45,12 @@ async function getFeedbackByUser(req, res) {
   }
 }
 
+/**
+ * Retrieves feedbacks by product ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
 async function getFeedbackByProduct(req, res) {
   const product_id = req.params.product_id;
   try {
@@ -42,6 +61,13 @@ async function getFeedbackByProduct(req, res) {
   }
 }
 
+/**
+ * Deletes a feedback by ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function deleteFeedback(req, res, next) {
   const usr = await authUser(req, true);
   if (usr) {
