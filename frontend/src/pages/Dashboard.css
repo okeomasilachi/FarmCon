@@ -98,9 +98,9 @@ body {
 .table-responsive {
   position: relative;
   z-index: 9;
-  height: 70vh;
-  overflow-y: scroll;
-  padding-bottom: 8rem;
+  height: 80vh;
+  /* overflow-y: scroll; */
+  /* padding-bottom: 8rem; */
 } 
 
 

@@ -1,11 +1,28 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, {useState} from "react";
 import Edituser from "./Edituser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Adduser from "./Adduser";
 
+
+
+import { UsersData } from "./UsersData";
+import Paginations from "../search/Paginations" 
+
 const Userstable = () => {
+
+// pagination feature 
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage, setPostPerPage] = useState(10);
+
+const lastPostIndex = currentPage * postsPerPage;
+const firstPostIndex = lastPostIndex - postsPerPage
+const currentPost = UsersData.slice(firstPostIndex, lastPostIndex)
+
+
+
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
       <div className="d-flex justify-content-between align-items-center flex-wrap flex-md-nowrap gap-5 align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -53,100 +70,61 @@ const Userstable = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1392</th>
-                <td>Joseph Sam</td>
-                <td>
-                  Male
-                </td>
-                <td>Kano</td>
-                <td>+234 913 0962 990</td>
-                <td>
-                  <div className="action">
-                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >edit</button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">view</a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>1393</th>
-                <td>Adamu Sunday</td>
-                <td>
-                  Male
-                </td>
-                <td>Osun</td>
-                <td>+234 903 0922 970</td>
-                <td>
-                  <div className="action">
-                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >edit</button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">view</a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>1394</th>
-                <td>Elizabeth Clone</td>
-                <td>
-                  Female
-                </td>
-                <td>Ebonyi</td>
-                <td>+234 803 0962 871</td>
-                <td>
-                  <div className="action">
-                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >edit</button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">view</a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+            {
+                currentPost.map((item)=> {
+                return(
+                 <tr className="px-2" key={item.id}>
+                  <th>{item.id}</th>
+                  <td>{item.first_name} {item.last_name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.gender}</td>
+                  <td>{item.ip_address}</td>
+                  <td>
+                    <div className="action">
+                      <span>
+                        <FontAwesomeIcon icon={faEllipsisV} />
+                      </span>
+                      <ul className="more-options">
+                        <li>
+                          <button
+                            id=""
+                            className="btn btn-warning user-edit-btn p-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                          >
+                            edit
+                          </button>
+                        </li>
+                        <li>
+                          <a href="./" className="btn btn-primary p-1">
+                            view
+                          </a>
+                        </li>
+                        <li>
+                          <a href=" " className="btn btn-danger p-1">
+                            delete
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                ) 
+                })
+              }
             </tbody>
           </table>
         </div>
       </section>
+      <div className="row">
+            <Paginations  
+              totalPosts = {UsersData.length} 
+              postsPerPage = {postsPerPage}
+              setCurrentPage= {setCurrentPage}
+              currentPage={currentPage}
+              
+              />
+          </div>
       <Adduser />
       <Edituser />
     </main>

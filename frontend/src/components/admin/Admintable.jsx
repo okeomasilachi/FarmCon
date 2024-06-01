@@ -1,11 +1,27 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, {useState} from "react";
 import "./Admintable.css";
 import Editadmin from "./Editadmin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Addadmin from "./Addadmin";
 
+import { AdminData } from "./AdminData";
+import Paginations from "../search/Paginations" 
+
 const Admintable = () => {
+
+// pagination feature 
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage, setPostPerPage] = useState(10);
+
+const lastPostIndex = currentPage * postsPerPage; 
+const firstPostIndex = lastPostIndex - postsPerPage
+const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
+
+
+
+
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
       <div className="d-flex justify-content-between align-items-center flex-wrap flex-md-nowrap gap-5 align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -52,162 +68,66 @@ const Admintable = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1392</th>
-                <td>Taofeeq</td>
-                <td>taofeeq@gmail.com</td>
-                <td>+63 983 0962 971</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href=" "
-                          className="btn btn-danger p-1"
-                        >
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>9841</th>
-                <td>Khadijah</td>
-                <td>khadijah@gmail.com</td>
-                <td>+01 352 1125 0192</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href=" "
-                          className="btn btn-danger p-1"
-                        >
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>4616</th>
-                <td>Aliyu</td>
-                <td>aliyu@gmail.com</td>
-                <td>+02 020 3994 929</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href=" "
-                          className="btn btn-danger p-1"
-                        >
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>9841</th>
-                <td>Okeoma</td>
-                <td>okeoma@gmail.com</td>
-                <td>+01 352 1125 0192</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href=" "
-                          className="btn btn-danger p-1"
-                        >
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+
+              {
+                currentPost.map (item => {
+                  return (
+                        <tr key={item.id}>
+                          <th>{item.id}</th>
+                          <td>{item.first_name} {item.last_name}</td>
+                          <td>{item.email}</td>
+                          <td>{item.contact}</td>
+                          <td>
+                            <div className="action">
+                              <span>
+                                <FontAwesomeIcon icon={faEllipsisV} />
+                              </span>
+                              <ul className="more-options">
+                                <li>
+                                  <button
+                                    id=""
+                                    className="btn btn-warning user-edit-btn p-1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editModal"
+                                  >
+                                    edit
+                                  </button>
+                                </li>
+                                <li>
+                                  <a href="./" className="btn btn-primary p-1">
+                                    view
+                                  </a>
+                                </li>
+                                <li>
+                                  <a
+                                    href=" "
+                                    className="btn btn-danger p-1"
+                                  >
+                                    delete
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+
+                  );
+                })
+              }
             </tbody>
           </table>
         </div>
       </section>
+      <div className="row">
+              {
+                AdminData.length > 10 ?   <Paginations  
+                totalPosts = {AdminData.length} 
+                postsPerPage = {postsPerPage}
+                setCurrentPage= {setCurrentPage}
+                currentPage={currentPage}
+                /> : ""
+              }
+          </div>
       <Addadmin />
       <Editadmin />
     </main>

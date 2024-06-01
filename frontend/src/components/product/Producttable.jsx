@@ -1,11 +1,25 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, {useState} from "react";
 import Editproduct from "./Editproduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
 
+import { ProductData } from "./ProductData";
+import Paginations from "../search/Paginations" 
+
 const Producttable = () => {
+
+// pagination feature 
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage, setPostPerPage] = useState(10);
+
+const lastPostIndex = currentPage * postsPerPage;
+const firstPostIndex = lastPostIndex - postsPerPage
+const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
+
+
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
       <div className="d-flex justify-content-between align-items-center flex-wrap flex-md-nowrap gap-5 align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -45,351 +59,69 @@ const Producttable = () => {
                 <th scope="col">S/N</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Location/State</th>
-                <th scope="col">Season</th>
+                <th scope="col">DescriptionSeason</th>
                 <th scope="col" tabIndex="2" className="text-center">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1392</th>
-                <td>Maize</td>
-                <td>Kaduna</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>3616</th>
-                <td>Bean</td>
-                <td>Kano</td>
-                <td>Summer</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>4841</th>
-                <td>Yam</td>
-                <td>Abuja</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >edit</button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">view</a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>4941</th>
-                <td>Cassava</td>
-                <td>Ogun</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>6841</th>
-                <td>Fishery</td>
-                <td>Cross river</td>
-                <td>All round</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>1392</th>
-                <td>Maize</td>
-                <td>Kaduna</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>3616</th>
-                <td>Bean</td>
-                <td>Kano</td>
-                <td>Summer</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>4841</th>
-                <td>Yam</td>
-                <td>Abuja</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span><FontAwesomeIcon icon={faEllipsisV} /></span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >edit</button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">view</a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>4941</th>
-                <td>Cassava</td>
-                <td>Ogun</td>
-                <td>Spring</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>6841</th>
-                <td>Fishery</td>
-                <td>Cross river</td>
-                <td>All round</td>
-                <td>
-                  <div className="action">
-                    <span>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </span>
-                    <ul className="more-options">
-                      <li>
-                        <button
-                          id=""
-                          className="btn btn-warning user-edit-btn p-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          edit
-                        </button>
-                      </li>
-                      <li>
-                        <a href="./" className="btn btn-primary p-1">
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a href=" " className="btn btn-danger p-1">
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+
+              {
+                currentPost.map((item)=> {
+                return(
+                 <tr className="px-2" key={item.id}>
+                  <th>{item.id}</th>
+                  <td>{item.name}</td>
+                  <td>{item.location}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <div className="action">
+                      <span>
+                        <FontAwesomeIcon icon={faEllipsisV} />
+                      </span>
+                      <ul className="more-options">
+                        <li>
+                          <button
+                            id=""
+                            className="btn btn-warning user-edit-btn p-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                          >
+                            edit
+                          </button>
+                        </li>
+                        <li>
+                          <a href="./" className="btn btn-primary p-1">
+                            view
+                          </a>
+                        </li>
+                        <li>
+                          <a href=" " className="btn btn-danger p-1">
+                            delete
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                ) 
+                })
+              }
+             
             </tbody>
           </table>
         </div>
       </section>
+      <div className="row">
+            <Paginations  
+              totalPosts = {ProductData.length} 
+              postsPerPage = {postsPerPage}
+              setCurrentPage= {setCurrentPage}
+              currentPage={currentPage}
+              
+              />
+          </div>
       <Addproduct />
       <Editproduct />
     </main>
