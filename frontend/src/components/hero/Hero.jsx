@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
-const Hero = () => {
+const Hero = ({searchAll, setSearch}) => {
+
+
   return ( 
 	<section className="container container__hero">
 		<div className="row title__row">
@@ -16,7 +18,7 @@ const Hero = () => {
 			</div>
 			<div className="col-12 hero_search">
 				<FontAwesomeIcon icon={faSearch}/> &nbsp;
-				<input type="text" className='hero_input' placeholder='Search for Anything...' />
+				<input type="text"  className='hero_input' placeholder='Search for Anything...' />
 			</div>
 		</div>
 	</section>

@@ -199,6 +199,7 @@ table tbody tr td {
 }
 
 @media (min-width: 768px) {
+
   .container__data .cards {
     gap: 0.5rem !important;
   }
@@ -212,6 +213,12 @@ table tbody tr td {
 }
 
 @media (min-width: 1024px) {
+  main {
+    height: 100vh;
+  }
+  .container__data .cards {
+    gap: 1.3rem !important;
+  }
   .container__data .card {
     height: 10rem;
   }
@@ -221,6 +228,20 @@ table tbody tr td {
   }
   .container__data .card p {
     font-size: 1.3rem !important;
+  }
+
+  .app {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 0;
+  }
+  
+  .container__data .row .chart {
+    width: 48% !important;
   }
   
 }

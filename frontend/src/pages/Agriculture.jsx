@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../App.css";
 
 import Nav from "../components/nav/Nav";
@@ -8,10 +8,12 @@ import StatesSearch from "../components/search/StatesSearch";
 import ProductsSearch from "../components/search/ProductsSearch";
 
 const Agriculture = () => {
+  const [searchAll, setSearch] = useState("");
+
   return (
     <div>
       <Nav />
-      <Hero />
+      <Hero search = {searchAll} setS = {setSearch}/>
       <StatesSearch />
       <ProductsSearch />
       <Footer />

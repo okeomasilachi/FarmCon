@@ -1,5 +1,20 @@
 import React from "react";
+import {defaults } from "chart.js/auto";
+import {Bar, Line} from "react-chartjs-2";
 import "./Main.css";
+import { ChartData } from "./Chartdata";
+
+
+defaults.maintainAspectRatio = false;
+defaults.responsive = true;
+
+defaults.plugins.title.display = true;
+defaults.plugins.title.align = "start";
+defaults.plugins.title.font.size = 20;
+defaults.plugins.title.color = "black";
+
+
+
 const Main = () => {
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
@@ -36,9 +51,61 @@ const Main = () => {
             </div>
           </div>
         </div>
-		<div className="row mt-2">
+		<div className="row mt-2 app">
 			<div className="col-12 chart">
-				<h1>Chart</h1>
+        <Line 
+            data={{
+                    labels: ChartData.map(item => item.states),
+                    datasets: [
+                      {
+                      label: 'Agro Products',
+                      data: ChartData.map(item => item.quantity),
+                      backgroundColor: "#00800bcc",
+                      borderColor: "#00800bcc",
+                    },
+                  ]
+                  }
+              }
+              options={{
+                elements: {
+                  line: {
+                    tension: 0.4,
+                  },
+                },
+                plugins: {
+                  title: {
+                    text: "Quantity of Products in States",
+                  },
+                },
+              }}
+              />
+			</div>
+			<div className="col-12 chart">
+        <Bar 
+            data={{
+                    labels: ChartData.map(item => item.states),
+                    datasets: [
+                      {
+                      label: 'Agro Products',
+                      data: ChartData.map(item => item.quantity),
+                      backgroundColor: [
+                        "rgba(0, 128, 11, 0.8)",
+                        "rgba(250, 192, 19, 0.8)",
+                        "rgba(253, 135, 135, 0.8)",
+                      ],
+                      borderRadius: 5,
+                    },
+                  ]
+                  }
+              }
+              options={{
+                plugins: {
+                  title: {
+                    text: "Revenue Source",
+                  },
+                },
+              }}
+              />
 			</div>
 		</div>
       </section>

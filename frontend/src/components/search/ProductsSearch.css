@@ -37,7 +37,7 @@
 	color: var(--text-white);
 	/* margin: 0.4rem auto; */
 	width: 48%;
-	padding-top: 3rem;
+	padding-top: 4rem !important;
 	overflow: hidden;
   }
   
@@ -67,7 +67,7 @@
 	margin-bottom: 1rem;
   }
   .container__products .bottom_product .products .product p {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	padding: 0.3rem 0.4rem;
 	margin: 0;
 	margin-bottom: 0.4rem;
