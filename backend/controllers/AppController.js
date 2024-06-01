@@ -1,6 +1,4 @@
 /**
- * @fileoverview This file contains the controller functions for retrieving the
- *                status and statistics of the application.
  * @module AppController
  */
 
