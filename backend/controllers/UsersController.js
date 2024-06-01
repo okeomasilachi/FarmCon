@@ -3,6 +3,14 @@ const dbClient = require("../utils/db");
 const upload = require("../utils/multer");
 const { validateRequestData } = require("../utils/tools");
 
+/**
+ * Handles the creation of a new user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function postNew(req, res, next) {
   const usersData = req.body;
   const args = await validateRequestData(usersData, "users");
@@ -24,6 +32,13 @@ async function postNew(req, res, next) {
   }
 }
 
+/**
+ * Updates the current user with the provided JSON data.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function updateMe(req, res, next) {
   const jsonData = req.body;
   if (Object.keys(jsonData).length === 0) {
@@ -44,6 +59,14 @@ async function updateMe(req, res, next) {
   }
 }
 
+/**
+ * Deletes the user associated with the request.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function deleteMe(req, res, next) {
   try {
     await dbClient.delete("users", req.user._id.toString());
@@ -53,6 +76,13 @@ async function deleteMe(req, res, next) {
   }
 }
 
+/**
+ * Retrieves the details of the authenticated user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object containing the user details or an error message.
+ */
 async function getMe(req, res) {
   try {
     const { _id, email } = req.user;
