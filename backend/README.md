@@ -311,8 +311,9 @@ curl -X GET http://localhost:3000/status
 **Response**:
 ```json
 {
-  "status": "OK",
-  "uptime": "24h"
+    "cache": true,
+    "db": true,
+    "uptime": "0d 0h 0m 58s"
 }
 ```
 
