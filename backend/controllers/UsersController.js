@@ -156,13 +156,16 @@ async function getMe(req, res) {
  */
 async function getAll(req, res, next) {
   try {
-    const data = await dbClient.getAll("users");
+    const totalProducts = await dbClient.count("users");
+    const totalPages = Math.ceil(totalProducts / 10);
+    const data = await dbClient.getAll("users", req.query.page || 1);
     const users = data.map(({ password, _id, ...rest }) => rest);
-    return res.status(200).json(users).end();
+    return res.status(200).json({ users, totalPages }).end();
   } catch (err) {
     return res.status(500).json({ error: "server error" }).end();
   }
 }
+
 
 /**
  * Updates the profile picture of a user.
