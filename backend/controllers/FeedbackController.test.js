@@ -17,7 +17,6 @@ describe("FeedbackController", () => {
         body: {
           user_id: "user_id",
           product_id: "product_id",
-          // Add other required properties for the feedback
         },
       };
       const res = {
@@ -65,7 +64,6 @@ describe("FeedbackController", () => {
         body: {
           user_id: "non_existing_user_id",
           product_id: "product_id",
-          // Add other required properties for the feedback
         },
       };
       const res = {
@@ -89,7 +87,6 @@ describe("FeedbackController", () => {
         body: {
           user_id: "user_id",
           product_id: "non_existing_product_id",
-          // Add other required properties for the feedback
         },
       };
       const res = {
@@ -115,7 +112,6 @@ describe("FeedbackController", () => {
         body: {
           user_id: "user_id",
           product_id: "product_id",
-          // Add other required properties for the feedback
         },
       };
       const res = {
