@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const routes = require("./routes");
@@ -5,15 +6,13 @@ const session = require("express-session");
 const RedisStore = require("connect-redis").default;
 const redisClient = require("./utils/redis");
 const fs = require("fs");
-
-const app = express();
-const port = 5000;
-
-const sec = "x#&e9^y@6SbT!LmD+K#*#N&v^d?PQz#G";
-
 const path = require("path");
 
-// Ensure directories exist before starting the server
+const app = express();
+const port = process.env.PORT || 5000;
+
+const secret = process.env.FC_SECRET;
+
 const ensureDirectoriesExist = (directories) => {
   directories.forEach((directory) => {
     if (!fs.existsSync(directory)) {
@@ -30,10 +29,10 @@ ensureDirectoriesExist([
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
-    secret: sec,
+    secret: secret,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }, // Set to true if using HTTPS
+    cookie: { secure: true },
   }),
 );
 
@@ -54,18 +53,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api", routes);
 
-// Middleware to handle requests to the root path (/)
 app.use((req, res) => {
   res.status(404).send({ message: "Not found" });
 });
 
-// Middleware to handle errors
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ message: "Internal server error" });
 });
 
-// Starts the server and listens on the specified port
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

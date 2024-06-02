@@ -1,14 +1,13 @@
 const { MongoClient, ObjectId } = require("mongodb");
+
 /**
  * Represents a MongoDB client for interacting with the database.
  */
 class DBClient {
   constructor() {
-    const host = process.env.DB_HOST || "localhost";
-    const port = process.env.DB_PORT || 27017;
-    const database = "FarmCon" || process.env.DB_DATABASE;
-    const username = "FarmCon" || process.env.DB_USERNAME; // Replace with your actual username
-    const password = "NyOkEoBmAl6gZbdK" || process.env.DB_PASSWORD; // Replace with your actual password
+    const database = process.env.DB_DATABASE || "FarmCon";
+    const username = process.env.DB_USERNAME || "FarmCon";
+    const password = process.env.DB_PASSWORD;
 
     const uri = `mongodb+srv://${encodeURIComponent(username)}:${encodeURIComponent(password)}@cluster0.qpa4khn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
     this.client = new MongoClient(uri, {

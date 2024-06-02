@@ -1,6 +1,5 @@
 const redisClient = require("./redis");
 const dbClient = require("./db");
-const { ObjectId } = require("mongodb");
 
 /**
  * Authenticates a user based on the provided request object.
@@ -32,7 +31,6 @@ async function checkAuth(req, res, next) {
   const isAuthenticated = await authUser(req);
   if (!isAuthenticated) {
     return res.status(401).json({ message: "Unauthorized" }).end();
-    next();
   }
   req.user = isAuthenticated;
   next();
