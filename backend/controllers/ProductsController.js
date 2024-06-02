@@ -135,9 +135,10 @@ async function getProduct(req, res) {
  */
 async function getAllProducts(req, res, next) {
   try {
-    const products = await dbClient.getAll("products");
+    var products = await dbClient.getAll("products", req.query.page || 1);
 
-    // Read and encode image data for each product
+    const totalProducts = await dbClient.count("products");
+    const totalPages = Math.ceil(totalProducts / 10);
     const productsWithImageData = await Promise.all(
       products.map(async (product) => {
         if (product.image_path) {
@@ -157,7 +158,7 @@ async function getAllProducts(req, res, next) {
       }),
     );
 
-    return res.status(200).json(productsWithImageData).end();
+    return res.status(200).json({productsWithImageData, totalPages }).end();
   } catch (err) {
     console.error("Error retrieving products:", err);
     return res.status(500).json({ error: "Server error" }).end();
