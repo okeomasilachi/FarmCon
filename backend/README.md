@@ -284,10 +284,6 @@ This API provides routes for handling various functionalities including authenti
 
 All routes include basic error handling, and specific middleware like `handleMulterErrors` is used to manage file upload errors. The default error handler captures any unhandled errors and returns a standardized error response.
 
-## Conclusion
-
-This API documentation provides a comprehensive overview of the routes, middleware, schemas, and utilities used in the application. Each endpoint includes necessary details such as method, endpoint, description, request parameters, and response structure to facilitate easy integration and usage.
-
 # API Query Guide
 
 This guide provides examples of how to query the API endpoints using different HTTP methods. For simplicity, we'll use `curl` for command-line examples and provide a brief explanation of the required headers, parameters, and body content.
@@ -812,4 +808,4 @@ curl -X DELETE http://localhost:3000/feedbacks/feedback_id
 
 ## Conclusion
 
-This guide provides a comprehensive set of examples for querying the API endpoints. Each example includes the necessary headers, request body, and expected response, enabling easy integration and usage of the API.
+This API documentation provides a comprehensive overview of the routes, middleware, schemas, and utilities used in the application. Each endpoint includes necessary details such as method, endpoint, description, request parameters, and response structure to facilitate easy integration and usage. This guide also provides a comprehensive set of examples for querying the API endpoints. Each example includes the necessary headers, request body, and expected response, enabling easy integration and usage of the API.
