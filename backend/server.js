@@ -7,7 +7,10 @@ const RedisStore = require("connect-redis").default;
 const redisClient = require("./utils/redis");
 const fs = require("fs");
 const path = require("path");
+const serverStartTime = require("./serverStartTime");
 
+
+console.log('serverStartTime:', Date(serverStartTime));
 const app = express();
 const port = process.env.PORT || 5000;
 
