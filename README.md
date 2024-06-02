@@ -77,6 +77,3 @@ For detailed information and technical documentation, please refer to the projec
 API End point
 https://farmcon.onrender.com/api
 
-
-git config --global user.name "Aliyumusamkk"
-git config --global user.email "aliyumusakalakala@gmail.com"
