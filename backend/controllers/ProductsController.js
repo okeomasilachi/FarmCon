@@ -1,5 +1,7 @@
 const dbClient = require("../utils/db");
 const { validateRequestData } = require("../utils/tools");
+const fs = require("fs").promises;
+const path = require("path");
 
 /**
  * Handles the creation of a new product.
@@ -10,6 +12,14 @@ const { validateRequestData } = require("../utils/tools");
  */
 async function postNewProduct(req, res, next) {
   const product = req.body;
+  if (!req.file) {
+    return res.status(400).json({ error: "Missing Product Image" }).end();
+  }
+  let newImagePath;
+  !req.file
+    ? (newImagePath = "uploads/profile_pictures/default_product_image.png")
+    : (newImagePath = req.file.path);
+
   const args = await validateRequestData(product, "products");
   if (args) {
     return res.status(400).json({ error: args.message }).end();
@@ -22,8 +32,22 @@ async function postNewProduct(req, res, next) {
     if (existingProduct.length > 0) {
       return res.status(409).json({ error: "Product already exists" }).end();
     }
-    const newProduct = await dbClient.create("products", product);
-    return res.status(201).json(newProduct).end();
+    const newProduct = await dbClient.create("products", {
+      ...product,
+      image_path: newImagePath,
+    });
+    const productImageBase64 = await fs.readFile(newImagePath, {
+      encoding: "base64",
+    });
+
+    // Send the response with product data and product image
+    return res
+      .status(201)
+      .json({
+        ...newProduct,
+        image_base64: `data:image/png;base64,${productImageBase64}`,
+      })
+      .end();
   } catch (err) {
     return res.status(400).json({ error: `Error creating product` }).end();
   }
@@ -83,7 +107,16 @@ async function getProduct(req, res) {
   try {
     const product = await dbClient.getById("products", productId);
     if (product) {
-      return res.status(200).json(product).end();
+      const productImageBase64 = await fs.readFile(product.image_path, {
+        encoding: "base64",
+      });
+      return res
+        .status(200)
+        .json({
+          ...product,
+          image_base64: `data:image/png;base64,${productImageBase64}`,
+        })
+        .end();
     } else {
       return res.status(404).json({ error: "Product not found" }).end();
     }
@@ -102,8 +135,30 @@ async function getProduct(req, res) {
 async function getAllProducts(req, res, next) {
   try {
     const products = await dbClient.getAll("products");
-    return res.status(200).json(products).end();
+
+    // Read and encode image data for each product
+    const productsWithImageData = await Promise.all(
+      products.map(async (product) => {
+        if (product.image_path) {
+          try {
+            const imageData = await fs.readFile(product.image_path, {
+              encoding: "base64",
+            });
+            product.image_data = `data:image/png;base64,${imageData}`;
+          } catch (error) {
+            console.error(
+              `Error reading image file for product ${product._id}:`,
+              error,
+            );
+          }
+        }
+        return product;
+      }),
+    );
+
+    return res.status(200).json(productsWithImageData).end();
   } catch (err) {
+    console.error("Error retrieving products:", err);
     return res.status(500).json({ error: "Server error" }).end();
   }
 }
@@ -117,14 +172,37 @@ async function getAllProducts(req, res, next) {
  */
 async function productImage(req, res, next) {
   const productId = req.params.id;
-  const imagePath = req.file.path;
+  if (!productId) {
+    return res.status(400).json({ error: " Empty request :id" }).end();
+  }
+  if (!req.file) {
+    return res.status(400).json({ error: "No file Attached" }).end();
+  }
+  const newImagePath = req.file.path;
 
   try {
+    // Fetch the existing product
+    const product = await dbClient.getById("products", productId);
+    const currentImagePath = product.image_path;
+
+    // Check if the current image is not default.png
+    if (currentImagePath && path.basename(currentImagePath) !== "default.png") {
+      try {
+        await fs.unlink(currentImagePath);
+        console.log(`Deleted file: ${currentImagePath}`);
+      } catch (err) {
+        console.error(`Error deleting file: ${currentImagePath}`, err);
+      }
+    }
+
+    // Update product's image path
     const updatedProduct = await dbClient.update("products", productId, {
-      image_path: imagePath,
+      image_path: newImagePath,
     });
+
     return res.status(200).json(updatedProduct).end();
   } catch (err) {
+    console.error("Error updating product image:", err);
     return res
       .status(400)
       .json({ error: "Error updating product image" })

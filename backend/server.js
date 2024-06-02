@@ -4,11 +4,28 @@ const routes = require("./routes");
 const session = require("express-session");
 const RedisStore = require("connect-redis").default;
 const redisClient = require("./utils/redis");
+const fs = require("fs");
 
 const app = express();
 const port = 5000;
 
 const sec = "x#&e9^y@6SbT!LmD+K#*#N&v^d?PQz#G";
+
+const path = require("path");
+
+// Ensure directories exist before starting the server
+const ensureDirectoriesExist = (directories) => {
+  directories.forEach((directory) => {
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(directory, { recursive: true });
+    }
+  });
+};
+
+ensureDirectoriesExist([
+  path.join(__dirname, "uploads/profile_pictures"),
+  path.join(__dirname, "uploads/product_images"),
+]);
 
 app.use(
   session({
@@ -33,6 +50,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api", routes);
 

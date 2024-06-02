@@ -153,40 +153,6 @@ async function validateRequestData(data, collectionName) {
         message: `Missing '${field}' field.`,
       };
     }
-
-    const fieldSchema = schema.validator.$jsonSchema.properties[field];
-    let fieldValue = data[field];
-
-    if (fieldSchema) {
-      const fieldType = fieldSchema.bsonType;
-      if (fieldType === "int" && !Number.isInteger(fieldValue)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be an integer.`,
-        };
-      }
-
-      if (fieldType === "double" && typeof fieldValue !== "number") {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a double.`,
-        };
-      }
-
-      if (fieldType === "string" && typeof fieldValue !== "string") {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a string.`,
-        };
-      }
-
-      if (fieldType === "objectId" && !ObjectId.isValid(fieldValue)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a valid ObjectId.`,
-        };
-      }
-    }
   }
   return false;
 }
