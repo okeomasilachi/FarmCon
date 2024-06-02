@@ -3,6 +3,7 @@ const redis = require("redis");
 /**
  * Represents a Redis client.
  */
+
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
