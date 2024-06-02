@@ -1,95 +1,88 @@
-const sha1 = require("sha1");
-
 const dbClient = require("../utils/db");
-const redisClient = require("../utils/redis");
-const { validateRequestData, authUser } = require("../utils/tools");
+const { validateRequestData } = require("../utils/tools");
 
+/**
+ * Handles the creation of a new feedback.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
 async function postNewFeedback(req, res, next) {
-  const { userId, productId, rating, comment } = req.body;
-  const data = {
-    userId,
-    productId,
-    rating,
-    comment
-  };
-  const args = await validateRequestData(data, "feedback");
+  const data = req.body;
+  const args = await validateRequestData(data, "feedbacks");
   if (args) {
     return res.status(400).json({ error: args.message }).end();
   }
-
+  if ((await dbClient.getById("users", data.user_id)) === false) {
+    return res.status(404).json({ error: "User not found" }).end();
+  }
+  if ((await dbClient.getById("products", data.product_id)) === false) {
+    return res.status(404).json({ error: "Product not found" }).end();
+  }
   try {
-    const existingFeedback = await dbClient.getByCriteria("feedback", { userId, productId });
-    if (existingFeedback.length > 0) {
-      return res.status(409).json({ error: "Feedback already exists" }).end();
-    }
-    const feedback = await dbClient.create("feedback", data);
+    const feedback = await dbClient.create("feedbacks", data);
     return res.status(201).json(feedback).end();
   } catch (err) {
-    return res.status(400).json({ error: `Error creating feedback [${err}]` }).end();
+    console.error(err.errInfo.details);
+    return res.status(400).json({ error: `Error creating feedback` }).end();
   }
 }
 
-async function updateFeedback(req, res, next) {
-  const usr = await authUser(req, true);
-  if (usr) {
-    const feedbackId = req.params.id;
-    const jsonData = req.body;
-    if (Object.keys(jsonData).length === 0) {
-      return res.status(400).json({ error: "Empty JSON object" }).end();
-    }
-    try {
-      const feedback = await dbClient.update("feedback", feedbackId, jsonData);
-      return res.status(200).json(feedback).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error updating feedback" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-}
-
-async function deleteFeedback(req, res, next) {
-  const usr = await authUser(req, true);
-  if (usr) {
-    const feedbackId = req.params.id;
-    try {
-      const feedback = await dbClient.delete("feedback", feedbackId);
-      return res.status(200).json({}).end();
-    } catch (err) {
-      return res.status(400).json({ error: "Error deleting feedback" }).end();
-    }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-}
-
-async function getFeedback(req, res) {
-  const feedbackId = req.params.id;
+/**
+ * Retrieves feedbacks by user ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
+async function getFeedbackByUser(req, res) {
+  const user_id = req.params.user_id;
   try {
-    const feedback = await dbClient.getById("feedback", feedbackId);
-    if (feedback) {
-      return res.status(200).json(feedback).end();
-    } else {
-      return res.status(404).json({ error: "Feedback not found" }).end();
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Server error" }).end();
-  }
-}
-
-async function getAllFeedback(req, res, next) {
-  try {
-    const feedbacks = await dbClient.getAll("feedback");
+    const feedbacks = await dbClient.getByCriteria("feedbacks", { user_id });
     return res.status(200).json(feedbacks).end();
   } catch (err) {
     return res.status(500).json({ error: "Server error" }).end();
   }
 }
 
+/**
+ * Retrieves feedbacks by product ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
+async function getFeedbackByProduct(req, res) {
+  const product_id = req.params.product_id;
+  try {
+    const feedbacks = await dbClient.getByCriteria("feedbacks", { product_id });
+    return res.status(200).json(feedbacks).end();
+  } catch (err) {
+    return res.status(500).json({ error: "Server error" }).end();
+  }
+}
+
+/**
+ * Deletes a feedback by ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} The response object.
+ */
+async function deleteFeedback(req, res, next) {
+  const feedbackId = req.params.id;
+  try {
+    const feedback = await dbClient.delete("feedbacks", feedbackId);
+    return feedback
+      ? res.status(200).json({}).end()
+      : res.status(404).json({ error: "Not found" }).end();
+  } catch (err) {
+    return res.status(400).json({ error: "Error deleting feedback" }).end();
+  }
+}
+
 module.exports = {
   postNewFeedback,
-  getFeedback,
+  getFeedbackByUser,
+  getFeedbackByProduct,
   deleteFeedback,
-  updateFeedback,
-  getAllFeedback,
 };

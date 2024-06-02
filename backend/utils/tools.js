@@ -1,6 +1,5 @@
 const redisClient = require("./redis");
 const dbClient = require("./db");
-const { ObjectId } = require("mongodb");
 
 /**
  * Authenticates a user based on the provided request object.
@@ -8,16 +7,15 @@ const { ObjectId } = require("mongodb");
  * @returns {Promise<boolean>} - A promise that resolves to a boolean
  *      indicating whether the user is authenticated or not.
  */
-async function authUser(req, data = undefined) {
+async function authUser(req) {
   const { "x-token": token } = req.headers;
-
   if (!token) return false;
   try {
     const sessionToken = await redisClient.get(`auth_${token}`);
     if (sessionToken) {
       try {
         const user = await dbClient.getById("users", sessionToken);
-        return data === undefined ? true : user;
+        return user;
       } catch (err) {
         return false;
       }
@@ -29,6 +27,24 @@ async function authUser(req, data = undefined) {
   }
 }
 
+const formatUptime = (uptime) => {
+  const seconds = Math.floor((uptime / 1000) % 60);
+  const minutes = Math.floor((uptime / (1000 * 60)) % 60);
+  const hours = Math.floor((uptime / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(uptime / (1000 * 60 * 60 * 24));
+
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+};
+
+async function checkAuth(req, res, next) {
+  const isAuthenticated = await authUser(req);
+  if (!isAuthenticated) {
+    return res.status(401).json({ message: "Unauthorized" }).end();
+  }
+  req.user = isAuthenticated;
+  next();
+}
+
 /**
  * Represents a map of JSON schemas for different collections in the database.
  *
@@ -37,7 +53,6 @@ async function authUser(req, data = undefined) {
  * @property {Object} products - JSON schema for the "products" collection.
  * @property {Object} users - JSON schema for the "users" collection.
  */
-
 /**
  * Map of JSON schemas for different collections in the database.
  *
@@ -48,7 +63,7 @@ const schemaMap = {
     validator: {
       $jsonSchema: {
         bsonType: "object",
-        required: ["rating", "user_id", "product_id"],
+        required: ["rating", "user_id", "product_id", "comment"],
         properties: {
           rating: { bsonType: "int", minimum: 1, maximum: 5 },
           user_id: { bsonType: "objectId" },
@@ -69,7 +84,6 @@ const schemaMap = {
           "planting_period_end",
           "harvesting_period_start",
           "harvesting_period_end",
-          "location_id",
           "rate_of_production",
           "state",
           "address",
@@ -81,7 +95,7 @@ const schemaMap = {
           planting_period_end: { bsonType: "date" },
           harvesting_period_start: { bsonType: "date" },
           harvesting_period_end: { bsonType: "date" },
-          location_id: { bsonType: "objectId" },
+          user_id: { bsonType: "objectId" },
           rate_of_production: { bsonType: "double" },
           status: {
             bsonType: "string",
@@ -91,6 +105,7 @@ const schemaMap = {
           address: { bsonType: "string" },
           latitude: { bsonType: "double" },
           longitude: { bsonType: "double" },
+          image_path: { bsonType: "string" },
         },
       },
     },
@@ -105,6 +120,7 @@ const schemaMap = {
           email: { bsonType: "string" },
           password: { bsonType: "string" },
           role: { bsonType: "string", enum: ["Super Admin", "Admin", "User"] },
+          profile_picture: { bsonType: "string" },
         },
       },
     },
@@ -143,53 +159,13 @@ async function validateRequestData(data, collectionName) {
         message: `Missing '${field}' field.`,
       };
     }
-
-    const fieldSchema = schema.validator.$jsonSchema.properties[field];
-    const fieldValue = data[field];
-
-    if (fieldSchema) {
-      const fieldType = fieldSchema.bsonType;
-      if (fieldType === "int" && !Number.isInteger(fieldValue)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be an integer.`,
-        };
-      }
-
-      if (fieldType === "double" && typeof fieldValue !== "number") {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a double.`,
-        };
-      }
-
-      if (fieldType === "string" && typeof fieldValue !== "string") {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a string.`,
-        };
-      }
-
-      if (fieldType === "objectId" && !ObjectId.isValid(fieldValue)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a valid ObjectId.`,
-        };
-      }
-
-      if (fieldType === "date" && !(fieldValue instanceof Date)) {
-        return {
-          errorCode: 400,
-          message: `Field ${field} must be a Date object.`,
-        };
-      }
-    }
   }
-
   return false;
 }
 
 module.exports = {
   authUser,
   validateRequestData,
+  checkAuth,
+  formatUptime,
 };
