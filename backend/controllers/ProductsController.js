@@ -27,13 +27,14 @@ async function postNewProduct(req, res, next) {
   try {
     const existingProduct = await dbClient.getByCriteria("products", {
       name: product.name,
-      user_id: product.user_id,
+      user_id: req.user._id.toString(),
     });
     if (existingProduct.length > 0) {
       return res.status(409).json({ error: "Product already exists" }).end();
     }
     const newProduct = await dbClient.create("products", {
       ...product,
+      user_id: req.user._id.toString(),
       image_path: newImagePath,
     });
     const productImageBase64 = await fs.readFile(newImagePath, {

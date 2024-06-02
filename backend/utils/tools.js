@@ -75,7 +75,6 @@ const schemaMap = {
           "planting_period_end",
           "harvesting_period_start",
           "harvesting_period_end",
-          "user_id",
           "rate_of_production",
           "state",
           "address",

@@ -47,7 +47,7 @@ router.post(
   handleMulterErrors,
   ProductsController.postNewProduct,
 );
-router.get("/products", checkAuth, ProductsController.getAllProducts);
+router.get("/products", ProductsController.getAllProducts);
 router.get("/products/:id", checkAuth, ProductsController.getProduct);
 router.put("/products/:id", checkAuth, ProductsController.updateProduct);
 router.delete("/products/:id", checkAuth, ProductsController.deleteProduct);
