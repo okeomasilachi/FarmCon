@@ -3,6 +3,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 /**
  * Represents a MongoDB client for interacting with the database.
  */
+
 class DBClient {
   constructor() {
     const database = process.env.DB_DATABASE || "FarmCon";
