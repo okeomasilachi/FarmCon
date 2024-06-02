@@ -86,6 +86,21 @@ class DBClient {
   }
 
   /**
+    * Retrieves the total number of objects in a collection.
+    * @param {string} collectionName - The name of the collection.
+    * @returns {Promise<number>} A promise that resolves with the total number of objects in the collection.
+    * @throws {Error} If an error occurs while retrieving the total number of objects.
+    */
+  async count(collectionName) {
+    try {
+     return await this.db.collection(collectionName).countDocuments();
+    } catch (error) {
+     console.error(`Error counting objects in ${collectionName}:`, error);
+     throw error;
+    }
+   }
+
+  /**
    * Checks if the database connection is alive.
    * @returns {boolean} Returns true if the database connection is alive, otherwise false.
    */
@@ -186,6 +201,12 @@ class DBClient {
     }
   }
 
+  /**
+   * Retrieves a document from the "users" collection by email.
+   * @param {string} email - The email of the document to retrieve.
+   * @returns {Promise<Object|boolean>} - A promise that resolves to the retrieved document if found, or false if not found.
+   * @throws {Error} - If there is an error retrieving the document.
+   */
   async getByEmail(email) {
     if (email !== undefined) {
       try {
@@ -234,9 +255,10 @@ class DBClient {
    * @returns {Promise<Array<Object>>} A promise that resolves with an array of all documents in the collection.
    * @throws {Error} If an error occurs while retrieving the documents.
    */
-  async getAll(collectionName) {
+  async getAll(collectionName, page = 1, pageSize = 10) {
     try {
-      return await this.db.collection(collectionName).find().toArray();
+      const skip = (page - 1) * pageSize;
+      return await this.db.collection(collectionName).find().skip(skip).limit(pageSize).toArray();
     } catch (error) {
       console.error(`Error getting all documents in ${collectionName}:`, error);
       throw error;
