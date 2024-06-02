@@ -7,7 +7,7 @@ import { faEllipsisV, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Addadmin from "./Addadmin";
 
 import { AdminData } from "./AdminData";
-import Paginations from "../search/Paginations" 
+import Paginations from "../pagination/Paginations" 
 
 const Admintable = () => {
 

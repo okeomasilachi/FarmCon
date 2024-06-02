@@ -1,15 +1,28 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Editproduct from "./Editproduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-
+import './ProductDataApi.json'
 import { ProductData } from "./ProductData";
-import Paginations from "../search/Paginations" 
+import Paginations from "../pagination/Paginations" 
 
 const Producttable = () => {
+
+  const [blog, setData] = useState();
+
+  useEffect(() => {
+    fetch("./ProductDataApi.json")
+      .then((response) => response.json())
+      .then((products) => console.log(products))
+      // .then((products) => setData(products))
+      .catch((err) => {
+        console.error(err);
+      })
+  }, []);
+
 
 // pagination feature 
 const [currentPage, setCurrentPage] = useState(1);
@@ -84,7 +97,7 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
                         <li>
                           <button
                             id=""
-                            className="btn btn-warning user-edit-btn p-1"
+                            className="btn btn-warning p-1"
                             data-bs-toggle="modal"
                             data-bs-target="#editModal"
                           >

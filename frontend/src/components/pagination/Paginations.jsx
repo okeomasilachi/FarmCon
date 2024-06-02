@@ -8,10 +8,10 @@ const Paginations = ({totalPosts, postsPerPage, setCurrentPage, currentPage}) =>
 	}
 
   return (
-	<div className='btn-pagination text-center d-flex gap-2 justify-content-center'>
+	<div className='btn-pagination text-center d-flex flex-wrap gap-2 mt-3 justify-content-center'>
 		{pages.map((page, index) => {
 		return <button 
-		className={'btn btn-md p-2 px-3 '+ (page === currentPage ? 'active': '')} 
+		className={'btn btn-md p-1 px-2 '+ (page === currentPage ? 'active': '')} 
 		key={index} 
 		onClick={()=> setCurrentPage(page)}
 		

@@ -45,6 +45,10 @@ const Profiledata = () => {
                     <td>taofeeq</td>
                   </tr>
                   <tr>
+                    <th scope="row">Email:</th>
+                    <td>taofeeq@example.com</td>
+                  </tr>
+                  <tr>
                     <th scope="row">Contact:</th>
                     <td>+01 352 1125 0192</td>
                   </tr>

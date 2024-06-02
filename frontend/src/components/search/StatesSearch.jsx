@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 import { StatesData } from "./StateData";
-import Paginations from "./Paginations"
+import Paginations from "../pagination/Paginations" 
 
 const StatesSearch = () => {
   const [searchState, setSearchState] = useState("");

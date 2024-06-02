@@ -9,7 +9,7 @@ import Adduser from "./Adduser";
 
 
 import { UsersData } from "./UsersData";
-import Paginations from "../search/Paginations" 
+import Paginations from "../pagination/Paginations" 
 
 const Userstable = () => {
 
