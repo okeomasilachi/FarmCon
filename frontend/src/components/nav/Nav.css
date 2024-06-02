@@ -1,0 +1,34 @@
+.navbar {
+  background: var(--text-white) !important;
+  border-bottom: 1px solid var(--text-faint);
+  /* box-shadow: 0.1rem 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.5); */
+}
+.navbar-brand > h1 {
+  font-weight: 900;
+  color: var(--dark-green);
+}
+
+.navbar .navbar-toggler {
+  background: var(--text-white);
+}
+
+.navbar #navbarText{
+  text-align: center;
+  margin-left:0;
+  padding: 0;
+}
+
+.navbar #navbarText .nav-item .nav-link {
+  color: var(--text-dark) !important;
+  margin: 0.4rem 0.5rem;
+  padding: 0.5rem;
+}
+/* .navbar #navbarText .nav-item a:hover {
+  border-bottom: 2px solid var(--text-dark);
+  font-weight: 700;
+}
+
+.navbar #navbarText .nav-item a.active {
+  border-bottom: 0.2rem solid var(--secondary-color);
+  border-radius: 0.5rem;
+} */
