@@ -74,6 +74,7 @@ FarmCon facilitates the acquisition of farm products for both business and consu
 For detailed information and technical documentation, please refer to the project's source code and documentation within this repository. Feel free to reach out to the team members listed above for any inquiries or collaboration opportunities related to FarmCon. Thank you for your interest in our project! 🌱🚜
 
 
+
 # API Documentation
 
 ## Overview
@@ -359,3 +360,11 @@ This API provides routes for handling various functionalities including authenti
 ## Error Handling
 
 All routes include basic error handling, and specific middleware like `handleMulterErrors` is used to manage file upload errors. The default error handler captures any unhandled errors and returns a standardized error response.
+=======
+API End point
+https://farmcon.onrender.com/api
+
+
+git config --global user.name "Aliyumusamkk"
+git config --global user.email "aliyumusakalakala@gmail.com"
+
