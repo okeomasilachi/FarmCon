@@ -624,9 +624,7 @@ curl -X GET http://localhost:3000/products
     "name": "Potato",
     "description": "Fresh potatoes",
     "planting_period_start": "2024-02-01",
-    "planting_period_end": "2024-04
-
--01",
+    "planting_period_end": "2024-04-01",
     "harvesting_period_start": "2024-07-01",
     "harvesting_period_end": "2024-09-01",
     "rate_of_production": 500,
