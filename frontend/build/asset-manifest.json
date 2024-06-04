@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ea153b1c.css",
+    "main.js": "/static/js/main.c12f4e45.js",
+    "static/media/cowfeild.jpg": "/static/media/cowfeild.6912226a91da8b9d7c40.jpg",
+    "static/media/cassava.jpg": "/static/media/cassava.bc57d052422e4e534d22.jpg",
+    "static/media/map.svg": "/static/media/map.4b90cd3ef76d57d973f4.svg",
+    "static/media/kwara-agro.jpg": "/static/media/kwara-agro.911b9985e8a80d616a3f.jpg",
+    "static/media/tomatoefarm.jpg": "/static/media/tomatoefarm.143a4005ecc765def705.jpg",
+    "static/media/Ogun-cargo-airports-1.png": "/static/media/Ogun-cargo-airports-1.9ecc56fd328460ff3611.png",
+    "static/media/cocoa.jpg": "/static/media/cocoa.9bab7fcb9c7f2659ae43.jpg",
+    "static/media/rivers-agbokim-waterfalls.jpg": "/static/media/rivers-agbokim-waterfalls.4d2162d8ac169123a8db.jpg",
+    "static/media/Cocoa_House,_Ibadan.JPG": "/static/media/Cocoa_House,_Ibadan.d4cf6f7011ab7482e755.JPG",
+    "static/media/beanfarm.jpg": "/static/media/beanfarm.70f7d6dee5f2fb080544.jpg",
+    "static/media/maizefarm.jpg": "/static/media/maizefarm.2bd7207760e75aacc74a.jpg",
+    "static/media/banana.avif": "/static/media/banana.f752ccd275f946760027.avif",
+    "static/media/kano.jpg": "/static/media/kano.9293d5b9e6da474c8a89.jpg",
+    "index.html": "/index.html",
+    "main.ea153b1c.css.map": "/static/css/main.ea153b1c.css.map",
+    "main.c12f4e45.js.map": "/static/js/main.c12f4e45.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea153b1c.css",
+    "static/js/main.c12f4e45.js"
+  ]
+}
