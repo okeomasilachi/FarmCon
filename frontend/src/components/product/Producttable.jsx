@@ -12,8 +12,6 @@ import Paginations from "../pagination/Paginations"
 
 const Producttable = () => {
 
-  // const [products, setData] = useState();
-
   const [product, setProduct] = useState();
 
   
