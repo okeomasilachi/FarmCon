@@ -76,3 +76,8 @@ For detailed information and technical documentation, please refer to the projec
 
 API End point
 https://farmcon.onrender.com/api
+
+
+json-server
+yup and formik
+toastify
