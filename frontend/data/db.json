@@ -1,4 +1,5 @@
 {
+
   "Users": [
     {
       "id": "info@example.com",
@@ -195,90 +196,89 @@
     }
   ],
   "States": [
-		{
-			"id": "1",
-			"location" : "Oyo",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-1"
-		},
-		{
-			"id": "2",
-			"location" : "Kwara",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
-			"image" : "state-2"
-		},
-		{
-			"id": "3",
-			"location" : "Ogun",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-3"
-		},
-		{
-			"id": "4",
-			"location" : "Rivers",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-4"
-		},
-		{
-			"id": "5",
-			"location" : "Kano",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-5"
-		},
-		{
-			"id": "6",
-			"location" : "Kwara",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
-			"image" : "state-2"
-		},
-		{
-			"id": "7",
-			"location" : "Ogun",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-3"
-		},
-		{
-			"id": "8",
-			"location" : "Rivers",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-4"
-		},
-		{
-			"id": "9",
-			"location" : "Kano",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-5"
-		},
-		{
-			"id": "10",
-			"location" : "Oyo",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-1"
-		},
-		{
-			"id": "11",
-			"location" : "Kwara",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
-			"image" : "state-2"
-		},
-		{
-			"id": "12",
-			"location" : "Ogun",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-3"
-		},
-		{
-			"id": "13",
-			"location" : "Rivers",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-4"
-		},
-		{
-			"id": "14",
-			"location" : "Kano",
-			"description"  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
-			"image" : "state-5"
-		}
-	]
-
+    {
+      "id": "1",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "2",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "3",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "4",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "5",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "6",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "7",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "8",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "9",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "10",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "11",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "12",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "13",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "14",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    }
+  ]
 }

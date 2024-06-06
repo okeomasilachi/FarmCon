@@ -94,13 +94,8 @@ const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
                                   </button>
                                 </li>
                                 <li>
-                                  <a href="./" className="btn btn-primary p-1">
-                                    view
-                                  </a>
-                                </li>
-                                <li>
                                   <a
-                                    href=" "
+                                    href="# "
                                     className="btn btn-danger p-1"
                                   >
                                     delete
