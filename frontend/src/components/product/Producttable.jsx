@@ -13,20 +13,18 @@ const Producttable = () => {
 
   // const [products, setData] = useState();
 
- 
+
     
-  console.log("I am here");
-    
-    fetch("https://farmcon.onrender.com/api/products", {
-      method: 'GET',
-      headers: {
-        "Content-Type" :"Access-Control-Allow-Origin"
-      },
-      mode: "no-cors",
-      cache: "default"
-    })
-      .then(response => response.json())
-      .then (data => console.log(data))
+    // fetch("https://farmcon.onrender.com/api/products", {
+    //   method: 'GET',
+    //   headers: {
+    //     "Content-Type" :"Access-Control-Allow-Origin"
+    //   },
+    //   mode: "no-cors",
+    //   cache: "default"
+    // })
+      // .then(response => response.json())
+      // .then (data => console.log(data))
 
       
     // fetch("https://farmcon.onrender.com/api/products")

@@ -4,9 +4,13 @@ import "./Nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { navList } from "./Navlist";
+import { userInfo } from "../../atoms/User.jsx";
+import { useRecoilValue } from "recoil";
+
+
 
 const Nav = () => {
-	
+  let user = useRecoilValue(userInfo);
   return (
     <nav className="navbar navbar-expand-lg fixed-top p-3">
       <div className="container">
@@ -42,7 +46,9 @@ const Nav = () => {
               }
 			  else{
 				  return (
-					<li className={!item.icon ? "nav-item" : ""} key={item.id}>
+					<li 
+          // style={item.id === 0 ? { display: !user.isLoggedIn ? "none" : "flex" }:{display:"flex"}}
+          className={!item.icon ? "nav-item" : ""} key={item.id}>
 					  <NavLink className={!item.icon? "nav-link": "btn-sm-alt" } to={item.to}>
 						{item.navName}&nbsp;{ item.icon &&  <FontAwesomeIcon icon={faRightToBracket} />}
 					  </NavLink>
