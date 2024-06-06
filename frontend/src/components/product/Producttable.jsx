@@ -5,24 +5,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-import './ProductDataApi.json'
+
 import { ProductData } from "./ProductData";
 import Paginations from "../pagination/Paginations" 
 
 const Producttable = () => {
 
-  const [blog, setData] = useState();
+  // const [products, setData] = useState();
 
-  useEffect(() => {
-    fetch("./ProductDataApi.json")
-      .then((response) => response.json())
-      .then((products) => console.log(products))
+ 
+    
+  console.log("I am here");
+    
+    fetch("https://farmcon.onrender.com/api/products", {
+      method: 'GET',
+      headers: {
+        "Content-Type" :"Access-Control-Allow-Origin"
+      },
+      mode: "no-cors",
+      cache: "default"
+    })
+      .then(response => response.json())
+      .then (data => console.log(data))
+
+      
+    // fetch("https://farmcon.onrender.com/api/products")
       // .then((products) => setData(products))
-      .catch((err) => {
-        console.error(err);
-      })
-  }, []);
-
+      // .catch((err) => {
+      //   console.error(err);
+      // })
+  
 
 // pagination feature 
 const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +46,7 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
 
 
   return (
+    
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
       <div className="d-flex justify-content-between align-items-center flex-wrap flex-md-nowrap gap-5 align-items-center pt-3 pb-2 mb-3 border-bottom">
         <span className="d-flex gap-5 gap-lg-0 align-items-center">

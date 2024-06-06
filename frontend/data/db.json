@@ -1,0 +1,277 @@
+{
+  "Users": [
+    {
+      "id": "info@example.com",
+      "firstName": "Taofeeq",
+      "lastName": "John",
+	  "userName": "info",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "admin"
+    },
+    {
+      "id": "okeo@example.com",
+      "firstName": "Okeo",
+      "lastName": "Samuel",
+	  "userName": "okay",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "admin"
+    },
+    {
+      "id": "kaydjay@example.com",
+      "firstName": "Khadijah",
+      "lastName": "Hassan",
+	  "userName": "kaydjay",
+      "password": "123456",
+      "gender": "female",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "aliyu@example.com",
+      "firstName": "Aliyu",
+      "lastName": "Musa",
+	  "userName": "aliyu",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "taofeeq3@gmail.com",
+      "firstName": "TAOFEEQ",
+      "lastName": "OGUNSANYA",
+	  "userName": "taofeeq",
+      "password": "Aa12345@",
+      "confirmPassword": "Aa12345@",
+      "gender": "male",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "info2@example.com",
+	  "firstName": "",
+      "lastName": "",
+      "userName": "user",
+      "password": "Taofeeq1883@",
+      "confirmPassword": "Taofeeq1883@",
+      "terms": true,
+      "role": "user"
+    }
+  ],
+  "Posts": [
+    {
+      "id": "1",
+      "userId": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    },
+    {
+      "userId": 1,
+      "id": "2",
+      "title": "qui est esse",
+      "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+    },
+    {
+      "userId": 1,
+      "id": "3",
+      "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+      "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+    },
+    {
+      "userId": 1,
+      "id": "4",
+      "title": "eum et est occaecati",
+      "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
+    },
+    {
+      "userId": 1,
+      "id": "5",
+      "title": "nesciunt quas odio",
+      "body": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque"
+    },
+    {
+      "userId": 2,
+      "id": "6",
+      "title": "et ea vero quia laudantium autem",
+      "body": "delectus reiciendis molestiae occaecati non minima eveniet qui voluptatibus\naccusamus in eum beatae sit\nvel qui neque voluptates ut commodi qui incidunt\nut animi commodi"
+    },
+    {
+      "userId": 2,
+      "id": "7",
+      "title": "in quibusdam tempore odit est dolorem",
+      "body": "itaque id aut magnam\npraesentium quia et ea odit et ea voluptas et\nsapiente quia nihil amet occaecati quia id voluptatem\nincidunt ea est distinctio odio"
+    },
+    {
+      "userId": 2,
+      "id": "8",
+      "title": "dolorum ut in voluptas mollitia et saepe quo animi",
+      "body": "aut dicta possimus sint mollitia voluptas commodi quo doloremque\niste corrupti reiciendis voluptatem eius rerum\nsit cumque quod eligendi laborum minima\nperferendis recusandae assumenda consectetur porro architecto ipsum ipsam"
+    },
+    {
+      "userId": 3,
+      "id": "9",
+      "title": "asperiores ea ipsam voluptatibus modi minima quia sint",
+      "body": "repellat aliquid praesentium dolorem quo\nsed totam minus non itaque\nnihil labore molestiae sunt dolor eveniet hic recusandae veniam\ntempora et tenetur expedita sunt"
+    },
+    {
+      "userId": 3,
+      "id": "10",
+      "title": "dolor sint quo a velit explicabo quia nam",
+      "body": "eos qui et ipsum ipsam suscipit aut\nsed omnis non odio\nexpedita earum mollitia molestiae aut atque rem suscipit\nnam impedit esse"
+    },
+    {
+      "userId": 3,
+      "id": "11",
+      "title": "iusto eius quod necessitatibus culpa ea",
+      "body": "odit magnam ut saepe sed non qui\ntempora atque nihil\naccusamus illum doloribus illo dolor\neligendi repudiandae odit magni similique sed cum maiores"
+    },
+    {
+      "userId": 3,
+      "id": "12",
+      "title": "a quo magni similique perferendis",
+      "body": "alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia"
+    },
+    {
+      "userId": 4,
+      "id": "13",
+      "title": "ullam ut quidem id aut vel consequuntur",
+      "body": "debitis eius sed quibusdam non quis consectetur vitae\nimpedit ut qui consequatur sed aut in\nquidem sit nostrum et maiores adipisci atque\nquaerat voluptatem adipisci repudiandae"
+    },
+    {
+      "userId": 4,
+      "id": "14",
+      "title": "explicabo et eos deleniti nostrum ab id repellendus",
+      "body": "animi esse sit aut sit nesciunt assumenda eum voluptas\nquia voluptatibus provident quia necessitatibus ea\nrerum repudiandae quia voluptatem delectus fugit aut id quia\nratione optio eos iusto veniam iure"
+    },
+    {
+      "userId": 4,
+      "id": "15",
+      "title": "eos dolorem iste accusantium est eaque quam",
+      "body": "corporis rerum ducimus vel eum accusantium\nmaxime aspernatur a porro possimus iste omnis\nest in deleniti asperiores fuga aut\nvoluptas sapiente vel dolore minus voluptatem incidunt ex"
+    },
+    {
+      "userId": 4,
+      "id": "16",
+      "title": "enim quo cumque",
+      "body": "ut voluptatum aliquid illo tenetur nemo sequi quo facilis\nipsum rem optio mollitia quas\nvoluptatem eum voluptas qui\nunde omnis voluptatem iure quasi maxime voluptas nam"
+    },
+    {
+      "userId": 5,
+      "id": "17",
+      "title": "ut voluptatem illum ea doloribus itaque eos",
+      "body": "voluptates quo voluptatem facilis iure occaecati\nvel assumenda rerum officia et\nillum perspiciatis ab deleniti\nlaudantium repellat ad ut et autem reprehenderit"
+    },
+    {
+      "userId": 5,
+      "id": "18",
+      "title": "laborum non sunt aut ut assumenda perspiciatis voluptas",
+      "body": "inventore ab sint\nnatus fugit id nulla sequi architecto nihil quaerat\neos tenetur in in eum veritatis non\nquibusdam officiis aspernatur cumque aut commodi aut"
+    },
+    {
+      "userId": 5,
+      "id": "19",
+      "title": "repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem",
+      "body": "error suscipit maxime adipisci consequuntur recusandae\nvoluptas eligendi et est et voluptates\nquia distinctio ab amet quaerat molestiae et vitae\nadipisci impedit sequi nesciunt quis consectetur"
+    },
+    {
+      "userId": 6,
+      "id": "20",
+      "title": "soluta aliquam aperiam consequatur illo quis voluptas",
+      "body": "sunt dolores aut doloribus\ndolore doloribus voluptates tempora et\ndoloremque et quo\ncum asperiores sit consectetur dolorem"
+    },
+    {
+      "userId": 6,
+      "id": "21",
+      "title": "qui enim et consequuntur quia animi quis voluptate quibusdam",
+      "body": "iusto est quibusdam fuga quas quaerat molestias\na enim ut sit accusamus enim\ntemporibus iusto accusantium provident architecto\nsoluta esse reprehenderit qui laborum"
+    },
+    {
+      "userId": 6,
+      "id": "22",
+      "title": "ut quo aut ducimus alias",
+      "body": "minima harum praesentium eum rerum illo dolore\nquasi exercitationem rerum nam\nporro quis neque quo\nconsequatur minus dolor quidem veritatis sunt non explicabo similique"
+    },
+    {
+      "userId": 8,
+      "id": "23",
+      "title": "pariatur consequatur quia magnam autem omnis non amet",
+      "body": "libero accusantium et et facere incidunt sit dolorem\nnon excepturi qui quia sed laudantium\nquisquam molestiae ducimus est\nofficiis esse molestiae iste et quos"
+    },
+    {
+      "userId": 8,
+      "id": "24",
+      "title": "labore in ex et explicabo corporis aut quas",
+      "body": "ex quod dolorem ea eum iure qui provident amet\nquia qui facere excepturi et repudiandae\nasperiores molestias provident\nminus incidunt vero fugit rerum sint sunt excepturi provident"
+    },
+    {
+      "userId": 9,
+      "id": "25",
+      "title": "tempora rem veritatis voluptas quo dolores vero",
+      "body": "facere qui nesciunt est voluptatum voluptatem nisi\nsequi eligendi necessitatibus ea at rerum itaque\nharum non ratione velit laboriosam quis consequuntur\nex officiis minima doloremque voluptas ut aut"
+    },
+    {
+      "userId": 9,
+      "id": "26",
+      "title": "laudantium voluptate suscipit sunt enim enim",
+      "body": "ut libero sit aut totam inventore sunt\nporro sint qui sunt molestiae\nconsequatur cupiditate qui iste ducimus adipisci\ndolor enim assumenda soluta laboriosam amet iste delectus hic"
+    },
+    {
+      "userId": 9,
+      "id": "27",
+      "title": "odit et voluptates doloribus alias odio et",
+      "body": "est molestiae facilis quis tempora numquam nihil qui\nvoluptate sapiente consequatur est qui\nnecessitatibus autem aut ipsa aperiam modi dolore numquam\nreprehenderit eius rem quibusdam"
+    },
+    {
+      "userId": 9,
+      "id": "28",
+      "title": "optio ipsam molestias necessitatibus occaecati facilis veritatis dolores aut",
+      "body": "sint molestiae magni a et quos\neaque et quasi\nut rerum debitis similique veniam\nrecusandae dignissimos dolor incidunt consequatur odio"
+    },
+    {
+      "userId": 9,
+      "id": "29",
+      "title": "dolore veritatis porro provident adipisci blanditiis et sunt",
+      "body": "similique sed nisi voluptas iusto omnis\nmollitia et quo\nassumenda suscipit officia magnam sint sed tempora\nenim provident pariatur praesentium atque animi amet ratione"
+    },
+    {
+      "userId": 9,
+      "id": "30",
+      "title": "ad iusto omnis odit dolor voluptatibus",
+      "body": "minus omnis soluta quia\nqui sed adipisci voluptates illum ipsam voluptatem\neligendi officia ut in\neos soluta similique molestias praesentium blanditiis"
+    },
+    {
+      "userId": 10,
+      "id": "31",
+      "title": "aut amet sed",
+      "body": "libero voluptate eveniet aperiam sed\nsunt placeat suscipit molestias\nsimilique fugit nam natus\nexpedita consequatur consequatur dolores quia eos et placeat"
+    },
+    {
+      "userId": 10,
+      "id": "32",
+      "title": "ratione ex tenetur perferendis",
+      "body": "aut et excepturi dicta laudantium sint rerum nihil\nlaudantium et at\na neque minima officia et similique libero et\ncommodi voluptate qui"
+    },
+    {
+      "userId": 10,
+      "id": "33",
+      "title": "beatae soluta recusandae",
+      "body": "dolorem quibusdam ducimus consequuntur dicta aut quo laboriosam\nvoluptatem quis enim recusandae ut sed sunt\nnostrum est odit totam\nsit error sed sunt eveniet provident qui nulla"
+    },
+    {
+      "userId": 10,
+      "id": "34",
+      "title": "qui qui voluptates illo iste minima",
+      "body": "aspernatur expedita soluta quo ab ut similique\nexpedita dolores amet\nsed temporibus distinctio magnam saepe deleniti\nomnis facilis nam ipsum natus sint similique omnis"
+    },
+    {
+      "userId": 10,
+      "id": "35",
+      "title": "id minus libero illum nam ad officiis",
+      "body": "earum voluptatem facere provident blanditiis velit laboriosam\npariatur accusamus odio saepe\ncumque dolor qui a dicta ab doloribus consequatur omnis\ncorporis cupiditate eaque assumenda ad nesciunt"
+    }
+  ]
+}
