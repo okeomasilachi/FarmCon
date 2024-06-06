@@ -5,33 +5,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
+import  Axios  from "axios";
 
-import { ProductData } from "./ProductData";
+// import { ProductData } from "./ProductData";
 import Paginations from "../pagination/Paginations" 
 
 const Producttable = () => {
 
   // const [products, setData] = useState();
 
+  const [product, setProduct] = useState();
 
+  
+  useEffect(() => {
+    Axios.get("http://localhost:8000/Products")
+    .then(
+      (response) => {
+        // console.log(response.data);
+        setProduct(response.data);
+      }
+    ).catch(error => console.error(error));
+  },[])
     
-    // fetch("https://farmcon.onrender.com/api/products", {
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type" :"Access-Control-Allow-Origin"
-    //   },
-    //   mode: "no-cors",
-    //   cache: "default"
-    // })
-      // .then(response => response.json())
-      // .then (data => console.log(data))
-
-      
-    // fetch("https://farmcon.onrender.com/api/products")
-      // .then((products) => setData(products))
-      // .catch((err) => {
-      //   console.error(err);
-      // })
+  
   
 
 // pagination feature 
@@ -40,7 +36,7 @@ const [postsPerPage, setPostPerPage] = useState(10);
 
 const lastPostIndex = currentPage * postsPerPage;
 const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
+const currentPost = product.slice(firstPostIndex, lastPostIndex)
 
 
   return (
@@ -83,7 +79,8 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
                 <th scope="col">S/N</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Location/State</th>
-                <th scope="col">DescriptionSeason</th>
+                <th scope="col">Quantity (Ton)</th>
+                <th scope="col">Price (#)</th>
                 <th scope="col" tabIndex="2" className="text-center">
                   Actions
                 </th>
@@ -98,7 +95,8 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
                   <th>{item.id}</th>
                   <td>{item.name}</td>
                   <td>{item.location}</td>
-                  <td>{item.description}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.price}</td>
                   <td>
                     <div className="action">
                       <span>
@@ -139,7 +137,7 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
       </section>
       <div className="row">
             <Paginations  
-              totalPosts = {ProductData.length} 
+              totalPosts = {product.length} 
               postsPerPage = {postsPerPage}
               setCurrentPage= {setCurrentPage}
               currentPage={currentPage}
