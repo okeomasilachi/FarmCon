@@ -4,8 +4,8 @@ FarmCon is an innovative application that bridges the gap between consumers, far
 
 ## Team Members
 
-- Aliyu Musa Kalakala: Front-end Engineer ([Email](mailto:aliyu@example.com), [LinkedIn](https://www.linkedin.com/in/aliyu-musa-kalakala/), [Twitter](https://twitter.com/aliyukalakala))
-- Taofeeq Ogunsanya: Front-end Engineer ([Email](mailto:taofeeq@example.com), [LinkedIn](https://www.linkedin.com/in/taofeeqogunsanya/), [Twitter](https://twitter.com/taofeeqogunsanya))
+- Aliyu Musa Kalakala: Front-end Engineer ([Email](mailto:aliyumusakalakala@gmail.com), [LinkedIn](https://www.linkedin.com/in/aliyu-musa-kalakala/), [Twitter](https://twitter.com/aliyukalakala))
+- Taofeeq Ogunsanya: Front-end Engineer ([Email](mailto:taofeeq.muhammad22@gmail.com), [LinkedIn](https://www.linkedin.com/in/taofeeqogunsanya/), [Twitter](https://twitter.com/Nupda8))
 - Khadijat Rasaq: Back-end Engineer ([Email](mailto:khadijat@example.com), [LinkedIn](https://www.linkedin.com/in/khadijat-rasaq/), [Twitter](https://twitter.com/khadijatrasaq))
 - Okeomasilachi Onyedibia: Back-end Engineer ([Email](mailto:okeomasilachi@example.com), [LinkedIn](https://www.linkedin.com/in/okeomasilachi), [Twitter](https://twitter.com/okeomasilachi1))
 

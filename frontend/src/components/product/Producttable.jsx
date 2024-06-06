@@ -13,15 +13,15 @@ const Producttable = () => {
 
   const [blog, setData] = useState();
 
-  useEffect(() => {
-    fetch("./ProductDataApi.json")
-      .then((response) => response.json())
-      .then((products) => console.log(products))
-      // .then((products) => setData(products))
-      .catch((err) => {
-        console.error(err);
-      })
-  }, []);
+  // useEffect(() => {
+  //   fetch("./ProductDataApi.json")
+  //     .then((response) => response.json())
+  //     .then((products) => console.log(products))
+  //     // .then((products) => setData(products))
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  // }, []);
 
 
 // pagination feature 
