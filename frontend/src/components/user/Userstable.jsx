@@ -17,7 +17,6 @@ const Userstable = () => {
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostPerPage] = useState(10);
 
-
 useEffect(() => {
   Axios.get("http://localhost:8000/Users")
     .then((response) => {
@@ -69,7 +68,7 @@ const currentPost = users && users.slice(firstPostIndex, lastPostIndex)
               <tr>
                 <th scope="col">S/N</th>
                 <th scope="col">Name</th>
-                <th scope="col">Status</th>
+                <th scope="col">Email</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Location/State</th>
                 <th scope="col" tabIndex="2" className="text-center">
@@ -82,9 +81,9 @@ const currentPost = users && users.slice(firstPostIndex, lastPostIndex)
                 currentPost.map((item, key)=> {
                 return(
                  <tr className="px-2" key={key}>
-                  <th>{item.id}</th>
+                  <th>{++key}</th>
                   <td>{item.first_name} {item.last_name}</td>
-                  <td>{item.email}</td>
+                  <td>{item.id}</td>
                   <td>{item.gender}</td>
                   <td>{item.ip_address}</td>
                   <td>
