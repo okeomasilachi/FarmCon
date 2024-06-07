@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Edituser from "./Edituser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,20 +7,28 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Adduser from "./Adduser";
 
 
-
-import { UsersData } from "./UsersData";
 import Paginations from "../pagination/Paginations" 
+import  Axios from "axios";
 
 const Userstable = () => {
 
+  const [users, setUsers] = useState();
 // pagination feature 
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostPerPage] = useState(10);
 
+
+useEffect(() => {
+  Axios.get("http://localhost:8000/Users")
+    .then((response) => {
+      console.log(response.data);
+      setUsers(response.data);
+    })
+    .catch((error) => console.error(error));
+}, []);
 const lastPostIndex = currentPage * postsPerPage;
 const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = UsersData.slice(firstPostIndex, lastPostIndex)
-
+const currentPost = users && users.slice(firstPostIndex, lastPostIndex)
 
 
   return (
@@ -70,10 +78,10 @@ const currentPost = UsersData.slice(firstPostIndex, lastPostIndex)
               </tr>
             </thead>
             <tbody>
-            {
-                currentPost.map((item)=> {
+            {currentPost &&
+                currentPost.map((item, key)=> {
                 return(
-                 <tr className="px-2" key={item.id}>
+                 <tr className="px-2" key={key}>
                   <th>{item.id}</th>
                   <td>{item.first_name} {item.last_name}</td>
                   <td>{item.email}</td>
@@ -118,7 +126,7 @@ const currentPost = UsersData.slice(firstPostIndex, lastPostIndex)
       </section>
       <div className="row">
             <Paginations  
-              totalPosts = {UsersData.length} 
+              totalPosts = {users && users.length} 
               postsPerPage = {postsPerPage}
               setCurrentPage= {setCurrentPage}
               currentPage={currentPage}

@@ -32,74 +32,59 @@
   "Users": [
     {
       "id": "info@example.com",
-      "firstName": "Taofeeq",
-      "lastName": "John",
+      "first_name": "Taofeeq",
+      "last_name": "John",
       "userName": "info",
       "password": "123456",
       "gender": "male",
       "terms": true,
-      "role": "admin"
+      "role": "author",
+      "image" : "http://dummyimage.com/219x159.png/cc0000/ffffff"
     },
     {
       "id": "okeo@example.com",
-      "firstName": "Okeo",
-      "lastName": "Samuel",
+      "first_name": "Okeo",
+      "last_name": "Samuel",
       "userName": "okay",
       "password": "123456",
       "gender": "male",
       "terms": true,
-      "role": "admin"
+      "role": "author",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
     },
     {
       "id": "kaydjay@example.com",
-      "firstName": "Khadijah",
-      "lastName": "Hassan",
+      "first_name": "Khadijah",
+      "last_name": "Hassan",
       "userName": "kaydjay",
       "password": "123456",
       "gender": "female",
       "terms": true,
-      "role": "user"
+      "role": "user",
+       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
     },
     {
       "id": "aliyu@example.com",
-      "firstName": "Aliyu",
-      "lastName": "Musa",
+      "first_name": "Aliyu",
+      "last_name": "Musa",
       "userName": "aliyu",
       "password": "123456",
       "gender": "male",
       "terms": true,
-      "role": "user"
+      "role": "user",
+       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
     },
     {
       "id": "taofeeq3@gmail.com",
-      "firstName": "TAOFEEQ",
-      "lastName": "OGUNSANYA",
+      "first_name": "TAOFEEQ",
+      "last_name": "OGUNSANYA",
       "userName": "taofeeq",
       "password": "Aa12345@",
       "confirmPassword": "Aa12345@",
       "gender": "male",
       "terms": true,
-      "role": "user"
-    },
-    {
-      "id": "info2@example.com",
-      "firstName": "",
-      "lastName": "",
-      "userName": "user",
-      "password": "Taofeeq1883@",
-      "confirmPassword": "Taofeeq1883@",
-      "terms": true,
-      "role": "user"
-    },
-    {
-      "id": "info3@example.com",
-      "firstName": "",
-      "lastName": "",
-      "userName": "info3",
-      "password": "Taofeeq1993@",
-      "confirmPassword": "Taofeeq1993@",
-      "terms": true,
-      "role": "user"
+      "role": "user",
+       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
     }
   ],
   "Products": [

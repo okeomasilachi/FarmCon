@@ -1,13 +1,7 @@
 
 
-.navbar-toggler {
-  border: 1px solid var(--text-dark);
-  margin-top: -0.7rem;
-  border-radius: 0.2rem;
-  padding: 0.2rem;
-}
 
-.navbar-toggler .navbar-toggler-icon {
+.navbar-toggler span.d-icon {
   color: black !important;
   background-color: var(--dark-green);
 }

@@ -23,7 +23,7 @@ const Main = () => {
 				<button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
 					data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
 					aria-label="Toggle navigation">
-					<span className="navbar-toggler-icon"></span>
+					<span className="navbar-toggler-icon d-icon"></span>
 				</button>
 		</div>
 		<h1 className="h2">Dashboard</h1>

@@ -98,7 +98,18 @@ input[type="text"] {
 }
 
 
+.navbar-toggler {
+  border: 1px solid var(--text-dark);
+  margin-top: -0.7rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  color: var(--dark-green) !important;
+}
 
+.navbar-toggler .navbar-toggler-icon {
+  color: var(--dark-green) !important;
+  /* background-color: var(--dark-green); */
+}
 
 
 

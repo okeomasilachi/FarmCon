@@ -32,7 +32,7 @@ const [postsPerPage, setPostPerPage] = useState(10);
 
 const lastPostIndex = currentPage * postsPerPage; 
 const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = admin.slice(firstPostIndex, lastPostIndex)
+const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
 
 
 
@@ -84,7 +84,7 @@ const currentPost = admin.slice(firstPostIndex, lastPostIndex)
             </thead>
             <tbody>
 
-              {
+              {currentPost &&
                 currentPost.map (item => {
                   return (
                         <tr key={item.id}>
@@ -129,7 +129,7 @@ const currentPost = admin.slice(firstPostIndex, lastPostIndex)
         </div>
       </section>
       <div className="row">
-              {
+              {admin &&
                 admin.length > 10 ?   <Paginations  
                 totalPosts = {admin.length} 
                 postsPerPage = {postsPerPage}
