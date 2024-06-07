@@ -1,37 +1,33 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Editproduct from "./Editproduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-import './ProductDataApi.json'
-import { ProductData } from "./ProductData";
-import Paginations from "../pagination/Paginations" 
+import Axios from "axios";
+
+import Paginations from "../pagination/Paginations";
 
 const Producttable = () => {
-
-  const [blog, setData] = useState();
+  const [prods, setProduct] = useState();
 
   useEffect(() => {
-    fetch("./ProductDataApi.json")
-      .then((response) => response.json())
-      .then((products) => console.log(products))
-      // .then((products) => setData(products))
-      .catch((err) => {
-        console.error(err);
+    Axios.get("http://localhost:8000/Products")
+      .then((response) => {
+        console.log(response.data);
+        setProduct(response.data);
       })
+      .catch((error) => console.error(error));
   }, []);
 
+  // pagination feature
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostPerPage] = useState(10);
 
-// pagination feature 
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostPerPage] = useState(10);
-
-const lastPostIndex = currentPage * postsPerPage;
-const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
-
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPost = prods.slice(firstPostIndex, lastPostIndex);
 
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
@@ -72,69 +68,67 @@ const currentPost = ProductData.slice(firstPostIndex, lastPostIndex)
                 <th scope="col">S/N</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Location/State</th>
-                <th scope="col">DescriptionSeason</th>
+                <th scope="col">Quantity (Ton)</th>
+                <th scope="col">Price (#)</th>
                 <th scope="col" tabIndex="2" className="text-center">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-
-              {
-                currentPost.map((item)=> {
-                return(
-                 <tr className="px-2" key={item.id}>
-                  <th>{item.id}</th>
-                  <td>{item.name}</td>
-                  <td>{item.location}</td>
-                  <td>{item.description}</td>
-                  <td>
-                    <div className="action">
-                      <span>
-                        <FontAwesomeIcon icon={faEllipsisV} />
-                      </span>
-                      <ul className="more-options">
-                        <li>
-                          <button
-                            id=""
-                            className="btn btn-warning p-1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editModal"
-                          >
-                            edit
-                          </button>
-                        </li>
-                        <li>
-                          <a href="./" className="btn btn-primary p-1">
-                            view
-                          </a>
-                        </li>
-                        <li>
-                          <a href=" " className="btn btn-danger p-1">
-                            delete
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                ) 
-                })
-              }
-             
+              {currentPost.map((item) => {
+                return (
+                  <tr className="px-2" key={item.id}>
+                    <th>{item.id}</th>
+                    <td>{item.name}</td>
+                    <td>{item.location}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <div className="action">
+                        <span>
+                          <FontAwesomeIcon icon={faEllipsisV} />
+                        </span>
+                        <ul className="more-options">
+                          <li>
+                            <button
+                              id=""
+                              className="btn btn-warning p-1"
+                              data-bs-toggle="modal"
+                              data-bs-target="#editModal"
+                            >
+                              edit
+                            </button>
+                          </li>
+                          <li>
+                            <a href="./" className="btn btn-primary p-1">
+                              view
+                            </a>
+                          </li>
+                          <li>
+                            <a href=" " className="btn btn-danger p-1">
+                              delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </section>
       <div className="row">
-            <Paginations  
-              totalPosts = {ProductData.length} 
-              postsPerPage = {postsPerPage}
-              setCurrentPage= {setCurrentPage}
-              currentPage={currentPage}
-              
-              />
-          </div>
+        <Paginations
+          // totalPosts={[1,2,3,4,5,].length}
+          totalPosts={prods.length}
+          postsPerPage={postsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </div>
       <Addproduct />
       <Editproduct />
     </main>

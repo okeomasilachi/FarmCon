@@ -1,0 +1,313 @@
+{
+  "Admin": [
+    {
+      "id": "1",
+      "first_name": "Taofeeq",
+      "last_name": "Ogunsanya",
+      "email": "taofeeq@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "2",
+      "first_name": "Khadijah",
+      "last_name": "Rasaq",
+      "email": "khadijah@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "3",
+      "first_name": "Okeomasilachi",
+      "last_name": "Onyedibia",
+      "email": "okeoma@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "4",
+      "first_name": "Aliyu",
+      "last_name": "Musa",
+      "email": "aliyu@gmail.com",
+      "contact": "+63 983 0962 971"
+    }
+  ],
+  "Users": [
+    {
+      "id": "info@example.com",
+      "firstName": "Taofeeq",
+      "lastName": "John",
+      "userName": "info",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "admin"
+    },
+    {
+      "id": "okeo@example.com",
+      "firstName": "Okeo",
+      "lastName": "Samuel",
+      "userName": "okay",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "admin"
+    },
+    {
+      "id": "kaydjay@example.com",
+      "firstName": "Khadijah",
+      "lastName": "Hassan",
+      "userName": "kaydjay",
+      "password": "123456",
+      "gender": "female",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "aliyu@example.com",
+      "firstName": "Aliyu",
+      "lastName": "Musa",
+      "userName": "aliyu",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "taofeeq3@gmail.com",
+      "firstName": "TAOFEEQ",
+      "lastName": "OGUNSANYA",
+      "userName": "taofeeq",
+      "password": "Aa12345@",
+      "confirmPassword": "Aa12345@",
+      "gender": "male",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "info2@example.com",
+      "firstName": "",
+      "lastName": "",
+      "userName": "user",
+      "password": "Taofeeq1883@",
+      "confirmPassword": "Taofeeq1883@",
+      "terms": true,
+      "role": "user"
+    },
+    {
+      "id": "info3@example.com",
+      "firstName": "",
+      "lastName": "",
+      "userName": "info3",
+      "password": "Taofeeq1993@",
+      "confirmPassword": "Taofeeq1993@",
+      "terms": true,
+      "role": "user"
+    }
+  ],
+  "Products": [
+    {
+      "id": "1",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "2",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "3",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "4",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "5",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    },
+    {
+      "id": "6",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "7",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "8",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "9",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "10",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    },
+    {
+      "id": "11",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "12",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "13",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "14",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "15",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    }
+  ],
+  "States": [
+    {
+      "id": "1",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "2",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "3",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "4",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "5",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "6",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "7",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "8",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "9",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "10",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "11",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "12",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "13",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "14",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    }
+  ]
+}

@@ -1,9 +1,27 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { sidebarRoutes } from "./Sidebarroutes";
-import './Sidebar.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { userInfo } from "../../atoms/User.jsx";
+import { useRecoilValue, useRecoilState } from "recoil";
+
+import "./Sidebar.css";
+
+
 
 const Sidebar = () => {
+
+  let user = useRecoilValue(userInfo);
+  let [signout, setSignout] =  useRecoilState(userInfo);
+  let redir = useNavigate()
+
+  const handleLogout = () => {
+    setSignout({isLoggedIn:false, data: {}})
+    redir("../")
+  }
+
   return (
     <section className="container_sidebar">
       <nav
@@ -12,22 +30,32 @@ const Sidebar = () => {
       >
         <div className="position-sticky sidebar-sticky">
           <div className="sidebar-brand">
+            <NavLink to="../">
             <h2 className="brand">FarmCon</h2>
+            </NavLink>
           </div>
           <ul className="nav flex-column">
             {sidebarRoutes.map((item) => {
               return (
                 <li className="nav-item" key={item.id}>
                   <NavLink
-                    className={item.current?"nav-link active":"nav-link"}
+                    className={item.current ? "nav-link active" : "nav-link"}
                     aria-current="page"
-                    to={item.to}    
+                    to={item.to}
                   >
                     {item.icon} {item.title}
                   </NavLink>
                 </li>
               );
             })}
+
+            <li className="nav-item my-2 ms-3" >
+              <NavLink className="nav-lin" aria-current="page" to="#" 
+              onClick={() => handleLogout()}
+              >
+                <FontAwesomeIcon className='me-2' icon={faCircleArrowLeft} /> Logout
+              </NavLink>
+            </li>
           </ul>
           <div className="profile-dp">
             <img src="../images/avatar.png" alt="profile" />
