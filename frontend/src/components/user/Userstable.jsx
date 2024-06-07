@@ -124,13 +124,16 @@ const currentPost = users && users.slice(firstPostIndex, lastPostIndex)
         </div>
       </section>
       <div className="row">
-            <Paginations  
-              totalPosts = {users && users.length} 
-              postsPerPage = {postsPerPage}
-              setCurrentPage= {setCurrentPage}
-              currentPage={currentPage}
-              
-              />
+        {users &&
+          users.length > 10 ? <Paginations  
+          totalPosts = {users && users.length} 
+          postsPerPage = {postsPerPage}
+          setCurrentPage= {setCurrentPage}
+          currentPage={currentPage} 
+          
+          /> : ""
+        }
+            
           </div>
       <Adduser />
       <Edituser />

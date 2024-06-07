@@ -121,12 +121,16 @@ const Producttable = () => {
         </div>
       </section>
       <div className="row">
+        {prods && 
+        prods.length > 10 ?
         <Paginations
           totalPosts={prods && prods.length}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
-        />
+        />:""
+        
+        }
       </div>
       <Addproduct />
       <Editproduct />
