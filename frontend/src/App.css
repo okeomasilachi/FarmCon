@@ -237,6 +237,21 @@ input[type="text"] {
     width: 24.36% !important; 
     height: 15rem;
   }
+
+
+
+  .container__data .card .card-body {
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .container__data .cards .card .card-body .dash-icon {
+    font-size: 3rem !important;
+  }
+
+  .container__data .cards .card .card-body > .title{
+    width: 60% !important;
+  }
 }
 
 

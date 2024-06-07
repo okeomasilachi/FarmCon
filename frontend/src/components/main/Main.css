@@ -1,6 +1,3 @@
-
-
-
 .navbar-toggler span.d-icon {
   color: black !important;
   background-color: var(--dark-green);
@@ -32,6 +29,22 @@
 .container__data .card p {
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.container__data .card .card-body {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container__data .cards .card .card-body > .title {
+  /* width: 100%; */
+}
+
+.container__data .cards .card .card-body .dash-icon {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .app {
