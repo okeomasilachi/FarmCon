@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
+
 // import { userInfo } from '../atoms/User';
 // import { useRecoilState } from 'recoil';
 
@@ -39,6 +40,7 @@ const Schema = Yup.object().shape({
 });
 
 const Signup = () => {
+
 //   let [user, setUser] = useRecoilState(userInfo);
   let redir = useNavigate();
 
@@ -124,6 +126,7 @@ const Signup = () => {
                 if (!isUnique) {
                   Axios.post(`${baseURL}`, userdata)
                     .then((response) => {
+
                     //   setUser({isLoggedIn: true, data: response.data});
                       notify("Signed up successfully");
                         redir("../login");

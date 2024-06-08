@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-
 import Paginations from "../pagination/Paginations";
+
 
 const Producttable = () => {
   const [prods, setProduct] = useState();
@@ -23,6 +23,7 @@ const Producttable = () => {
       })
       .catch((error) => console.error(error));
   }, []);
+
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;

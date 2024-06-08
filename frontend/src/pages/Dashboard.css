@@ -13,8 +13,6 @@
   --hover-color: #d4f3ab;
 }
 
-
-
 ::-webkit-scrollbar {
   width: 0.4rem;
   height: 0.4rem;
@@ -31,9 +29,6 @@
   background: var(--dark-green);
   border-radius: 10px;
 }
-
-
-
 
 
 body {
@@ -94,8 +89,6 @@ body {
   flex-flow: row;
 }
 
-
-
 .table-responsive {
   /* position: relative; */
   z-index: 1;
@@ -120,9 +113,9 @@ table tbody tr td {
   padding: 1rem !important;
 }
 
-.action {
-	/* position: relative; */
-}
+/* .action {
+	 position: relative; 
+} */
 
 .action .more-options {
 	list-style: none;
@@ -147,9 +140,6 @@ table tbody tr td {
   .action:hover .more-options {
 	display: block;
   }
-
-
-
 
 
 .container__profile {
@@ -213,14 +203,12 @@ table tbody tr td {
   .action .more-options {
     right: 2rem;
     }
-  
- 
 }
 
 @media (min-width: 1024px) {
-  .table-responsive {
-    /* height: 90vh; */
-  } 
+  /* .table-responsive {
+     height: 90vh; 
+  }  */
   main {
     height: 100vh;
   }
@@ -255,8 +243,6 @@ table tbody tr td {
   .action .more-options {
     right: 3rem;
     }
-  
-  
 }
 
 @media (min-width: 1440px) {
