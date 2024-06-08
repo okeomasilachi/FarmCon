@@ -48,7 +48,8 @@ router.post(
   ProductsController.postNewProduct,
 );
 router.get("/products", ProductsController.getAllProducts);
-router.get("/products/:id", checkAuth, ProductsController.getProduct);
+router.get("/product/:id", checkAuth, ProductsController.getProduct);
+router.get("/products/:user_id", ProductsController.getProductByUser);
 router.put("/products/:id", checkAuth, ProductsController.updateProduct);
 router.delete("/products/:id", checkAuth, ProductsController.deleteProduct);
 router.post(

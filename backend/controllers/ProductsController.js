@@ -127,6 +127,45 @@ async function getProduct(req, res) {
 }
 
 /**
+ * Handles the retrieval of a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object.
+ */
+async function getProductByUser(req, res) {
+  const userId = req.params.user_id;
+  try {
+    const products = await dbClient.getByCriteria("products", { user_id: userId });
+    if (products.length > 0) {
+      const productsWithImageData = await Promise.all(
+        products.map(async (product) => {
+          if (product.image_path) {
+            try {
+              const imageData = await fs.readFile(product.image_path, {
+                encoding: "base64",
+              });
+              product.image_base64 = `data:image/png;base64,${imageData}`;
+            } catch (error) {
+              console.error(
+                `Error reading image file for product ${product._id}:`,
+                error
+              );
+            }
+          }
+          return product;
+        })
+      );
+      return res.status(200).json(productsWithImageData).end();
+    } else {
+      return res.status(404).json({ error: "No products found" }).end();
+    }
+  } catch (error) {
+    console.error("Error retrieving products:", error);
+    return res.status(500).json({ error: "Server error" }).end();
+  }
+}
+
+/**
  * Handles the retrieval of all products.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
@@ -219,4 +258,5 @@ module.exports = {
   updateProduct,
   getAllProducts,
   productImage,
+  getProductByUser,
 };
