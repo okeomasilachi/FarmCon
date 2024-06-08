@@ -6,11 +6,11 @@ const redis = require("redis");
 
 class RedisClient {
   constructor() {
-    // this.client = redis.createClient({
-    //   url: "redis://red-cpdjlitds78s73ejmieg:6379",
-    // });
+    this.client = redis.createClient({
+      url: "redis://red-cpdjlitds78s73ejmieg:6379",
+    });
 
-    this.client = redis.createClient();
+    // this.client = redis.createClient();
     this.client.on("error", (err) => {
       console.error(err);
     });
