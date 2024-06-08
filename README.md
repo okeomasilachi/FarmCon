@@ -362,11 +362,10 @@ This API provides routes for handling various functionalities including authenti
 ## Error Handling
 
 All routes include basic error handling, and specific middleware like `handleMulterErrors` is used to manage file upload errors. The default error handler captures any unhandled errors and returns a standardized error response.
-=======
+
 API End point
 https://farmcon.onrender.com/api
 
-=====
 json-server
 yup and formik
 toastify

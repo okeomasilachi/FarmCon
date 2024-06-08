@@ -8,11 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
-<<<<<<< HEAD
-// import { userInfo } from '../../atoms/User';
-=======
+
 // import { userInfo } from '../atoms/User';
->>>>>>> 4c890be0f3ae4e8fe7433f8cb30f01288ad74d2b
 // import { useRecoilState } from 'recoil';
 
 const Schema = Yup.object().shape({
@@ -43,11 +40,8 @@ const Schema = Yup.object().shape({
 });
 
 const Signup = () => {
-<<<<<<< HEAD
-  // let [user, setUser] = useRecoilState(userInfo);
-=======
+
 //   let [user, setUser] = useRecoilState(userInfo);
->>>>>>> 4c890be0f3ae4e8fe7433f8cb30f01288ad74d2b
   let redir = useNavigate();
 
   // Dynamic notification
@@ -132,15 +126,10 @@ const Signup = () => {
                 if (!isUnique) {
                   Axios.post(`${baseURL}`, userdata)
                     .then((response) => {
-<<<<<<< HEAD
-                      // setUser({isLoggedIn: true, data: response.data});
-                      notify("Signed up successfully");
-                      //   redir("../signin");
-=======
+
                     //   setUser({isLoggedIn: true, data: response.data});
                       notify("Signed up successfully");
                         redir("../login");
->>>>>>> 4c890be0f3ae4e8fe7433f8cb30f01288ad74d2b
                     })
                     .catch((error) => {
                       console.error(error);
