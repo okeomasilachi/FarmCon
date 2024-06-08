@@ -127,7 +127,7 @@ async function getProduct(req, res) {
 }
 
 /**
- * Handles the retrieval of a product.
+ * Handles the retrieval of a product by user id.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {Object} The response object.
