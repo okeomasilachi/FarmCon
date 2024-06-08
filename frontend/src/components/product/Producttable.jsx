@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-import './ProductDataApi.json'
 import { ProductData } from "./ProductData";
 import Paginations from "../pagination/Paginations" 
 
