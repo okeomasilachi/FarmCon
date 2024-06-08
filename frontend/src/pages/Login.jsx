@@ -28,7 +28,19 @@ const Login = () => {
   const notify = (val) =>
     toast.success(val, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  const Errnotify = (val) =>
+    toast.error(val, {
+      position: "top-right",
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -72,14 +84,16 @@ const Login = () => {
                 if (getUser.data.password === values.password) {
                   notify("account logged in successfully");
                   setUser({ isLoggedIn: true, data: getUser.data });
-                  redir("../dashboard");
+                  setTimeout(()=> {
+                    redir("../dashboard");
+                  }, 2000)
                 } else {
-                  notify("Invalid login details");
+                  Errnotify("Invalid login details");
                 }
               } catch (error) {
                 console.log(error);
                 if (error.response.status === 404) {
-                  notify("User does not exist");
+                  Errnotify("User does not exist");
                 }
               }
 

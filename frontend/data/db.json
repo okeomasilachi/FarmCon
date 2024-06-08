@@ -39,7 +39,7 @@
       "gender": "male",
       "terms": true,
       "role": "author",
-      "image" : "http://dummyimage.com/219x159.png/cc0000/ffffff"
+      "image": "http://dummyimage.com/219x159.png/cc0000/ffffff"
     },
     {
       "id": "okeo@example.com",
@@ -61,7 +61,7 @@
       "gender": "female",
       "terms": true,
       "role": "user",
-       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
+      "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
     },
     {
       "id": "aliyu@example.com",
@@ -72,7 +72,7 @@
       "gender": "male",
       "terms": true,
       "role": "user",
-       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
+      "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
     },
     {
       "id": "taofeeq3@gmail.com",
@@ -84,7 +84,17 @@
       "gender": "male",
       "terms": true,
       "role": "user",
-       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
+      "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
+    },
+    {
+      "id": "info22@example.com",
+      "firstName": "",
+      "lastName": "",
+      "userName": "user22",
+      "password": "Ta123456@",
+      "confirmPassword": "Ta123456@",
+      "terms": true,
+      "role": "user"
     }
   ],
   "Products": [
