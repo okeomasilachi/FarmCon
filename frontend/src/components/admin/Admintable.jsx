@@ -1,15 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Admintable.css";
 import Editadmin from "./Editadmin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Addadmin from "./Addadmin";
 
-import { AdminData } from "./AdminData";
 import Paginations from "../pagination/Paginations" 
+import Axios  from "axios";
 
 const Admintable = () => {
+
+
+  const [admin, setAdmin] = useState();
+
+  
+  useEffect (() => {
+    Axios.get("http://localhost:8000/Admin")
+    .then(
+      (response) => {
+        console.log(response.data);
+        setAdmin(response.data);
+      }
+    ).catch(error => console.error(error));
+  },[])
+
 
 // pagination feature 
 const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +32,7 @@ const [postsPerPage, setPostPerPage] = useState(10);
 
 const lastPostIndex = currentPage * postsPerPage; 
 const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
+const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
 
 
 
@@ -69,7 +84,7 @@ const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
             </thead>
             <tbody>
 
-              {
+              {currentPost &&
                 currentPost.map (item => {
                   return (
                         <tr key={item.id}>
@@ -94,13 +109,8 @@ const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
                                   </button>
                                 </li>
                                 <li>
-                                  <a href="./" className="btn btn-primary p-1">
-                                    view
-                                  </a>
-                                </li>
-                                <li>
                                   <a
-                                    href=" "
+                                    href="# "
                                     className="btn btn-danger p-1"
                                   >
                                     delete
@@ -119,9 +129,9 @@ const currentPost = AdminData.slice(firstPostIndex, lastPostIndex)
         </div>
       </section>
       <div className="row">
-              {
-                AdminData.length > 10 ?   <Paginations  
-                totalPosts = {AdminData.length} 
+              {admin &&
+                admin.length > 10 ?   <Paginations  
+                totalPosts = {admin.length} 
                 postsPerPage = {postsPerPage}
                 setCurrentPage= {setCurrentPage}
                 currentPage={currentPage}

@@ -9,6 +9,7 @@ import User from "../../pages/User";
 import Product from "../../pages/Product";
 import Profile from "../../pages/Profile";
 import Error from "../../pages/Error";
+import { RecoilRoot } from "recoil";
 
 let id = 0;
 
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
   {
 	id:id++,
     path: "/login",
-    element: <Login />,
+    element: <RecoilRoot><Login /></RecoilRoot>,
   },
   {
 	id:id++,
@@ -36,27 +37,27 @@ export const router = createBrowserRouter([
   {
 	id:id++,
     path: "/dashboard",
-    element: <Dashboard />,
+    element:  <RecoilRoot><Dashboard /></RecoilRoot>,
   },
   {
 	id:id++,
     path: "/admin",
-    element: <Admin />,
+    element: <RecoilRoot><Admin /></RecoilRoot>,
   },
   {
 	id:id++,
     path: "/user",
-    element: <User />,
+    element: <RecoilRoot><User /></RecoilRoot>,
   },
   {
 	id:id++,
     path: "/products",
-    element: <Product />,
+    element: <RecoilRoot><Product /></RecoilRoot>,
   },
   {
 	id:id++,
     path: "/profile",
-    element: <Profile />,
+    element: <RecoilRoot><Profile /></RecoilRoot>,
   },
   {
 	id:id++,

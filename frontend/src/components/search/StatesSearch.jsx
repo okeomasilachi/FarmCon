@@ -1,23 +1,32 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./StateSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-
-import { StatesData } from "./StateData";
 import Paginations from "../pagination/Paginations" 
+import  Axios from "axios";
 
 const StatesSearch = () => {
   const [searchState, setSearchState] = useState("");
-
+  const [states, setStates] = useState ("")
   // pagination feature 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostPerPage] = useState(8);
 
+
+  useEffect(() => {
+    Axios.get("http://localhost:8000/States")
+      .then((response) => {
+        console.log(response.data);
+        setStates(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage
-  const currentPost = StatesData.slice(firstPostIndex, lastPostIndex)
+  const currentPost = states && states.slice(firstPostIndex, lastPostIndex)
   
 
   return (
@@ -38,7 +47,7 @@ const StatesSearch = () => {
         <div className="col-12 bottom_state">
           <div className="row states">
 
-            {
+            {currentPost &&
               currentPost.filter((item) => {
                 return searchState.toLowerCase() === "" ? item : item.location.toLowerCase().includes(searchState.toLowerCase());
               }).map((item, key) => {
@@ -57,7 +66,7 @@ const StatesSearch = () => {
           
           <div className="row">
             <Paginations  
-              totalPosts = {StatesData.length} 
+              totalPosts = {states && states.length} 
               postsPerPage = {postsPerPage}
               setCurrentPage= {setCurrentPage}
               currentPage={currentPage}
