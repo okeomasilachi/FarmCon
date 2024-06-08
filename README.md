@@ -4,8 +4,8 @@ FarmCon is an innovative application that bridges the gap between consumers, far
 
 ## Team Members
 
-- Aliyu Musa Kalakala: Front-end Engineer ([Email](mailto:aliyu@example.com), [LinkedIn](https://www.linkedin.com/in/aliyu-musa-kalakala/), [Twitter](https://twitter.com/aliyukalakala))
-- Taofeeq Ogunsanya: Front-end Engineer ([Email](mailto:taofeeq@example.com), [LinkedIn](https://www.linkedin.com/in/taofeeqogunsanya/), [Twitter](https://twitter.com/taofeeqogunsanya))
+- Aliyu Musa Kalakala: Front-end Engineer ([Email](mailto:aliyumusakalakala@gmail.com), [LinkedIn](https://www.linkedin.com/in/aliyu-musa-kalakala/), [Twitter](https://twitter.com/aliyukalakala))
+- Taofeeq Ogunsanya: Front-end Engineer ([Email](mailto:taofeeq.muhammad22@gmail.com), [LinkedIn](https://www.linkedin.com/in/taofeeqogunsanya/), [Twitter](https://twitter.com/taofeeqogunsanya))
 - Khadijat Rasaq: Back-end Engineer ([Email](mailto:khadijat@example.com), [LinkedIn](https://www.linkedin.com/in/khadijat-rasaq/), [Twitter](https://twitter.com/khadijatrasaq))
 - Okeomasilachi Onyedibia: Back-end Engineer ([Email](mailto:okeomasilachi@example.com), [LinkedIn](https://www.linkedin.com/in/okeomasilachi), [Twitter](https://twitter.com/okeomasilachi1))
 
@@ -72,6 +72,7 @@ FarmCon facilitates the acquisition of farm products for both business and consu
 ---
 
 For detailed information and technical documentation, please refer to the project's source code and documentation within this repository. Feel free to reach out to the team members listed above for any inquiries or collaboration opportunities related to FarmCon. Thank you for your interest in our project! 🌱🚜
+
 
 
 # API Documentation
@@ -359,3 +360,12 @@ This API provides routes for handling various functionalities including authenti
 ## Error Handling
 
 All routes include basic error handling, and specific middleware like `handleMulterErrors` is used to manage file upload errors. The default error handler captures any unhandled errors and returns a standardized error response.
+=======
+API End point
+https://farmcon.onrender.com/api
+
+=======
+json-server
+yup and formik
+toastify
+

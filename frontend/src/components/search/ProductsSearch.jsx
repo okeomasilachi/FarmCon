@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductsSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Paginations from "../pagination/Paginations"
-import { ProductsData } from "./ProductsData";
+import Axios from "axios";
 
 
 const ProductsSearch = () => {
@@ -13,10 +13,22 @@ const ProductsSearch = () => {
 // pagination feature 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostPerPage] = useState(8);
+const [products, setProducts] = useState("");
+
+
+  useEffect(() => {
+    Axios.get("http://localhost:8000/Products")
+      .then((response) => {
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage
-  const currentPost = ProductsData.slice(firstPostIndex, lastPostIndex)
+  const currentPost = products && products.slice(firstPostIndex, lastPostIndex)
   
 
   return (
@@ -37,7 +49,7 @@ const ProductsSearch = () => {
         <div className="col-12 bottom_product">
           <div className="row products">
             {
-              
+              currentPost &&
               currentPost.filter((item) => {
                 
                
@@ -57,7 +69,7 @@ const ProductsSearch = () => {
           <div className="row">
            {/* <h1>We are Here</h1> */}
            <Paginations  
-            totalPosts = {ProductsData.length} 
+            totalPosts = {products && products.length} 
             postsPerPage = {postsPerPage}
             setCurrentPage= {setCurrentPage}
             currentPage={currentPage}

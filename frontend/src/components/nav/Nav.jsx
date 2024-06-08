@@ -1,12 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { navList } from "./Navlist";
+import { userInfo } from "../../atoms/User.jsx";
+import { useRecoilValue } from "recoil";
+
+
 
 const Nav = () => {
-	
+  // let user = useRecoilValue(userInfo);
   return (
     <nav className="navbar navbar-expand-lg fixed-top p-3">
       <div className="container">
@@ -42,7 +47,8 @@ const Nav = () => {
               }
 			  else{
 				  return (
-					<li className={!item.icon ? "nav-item" : ""} key={item.id}>
+					<li 
+          className={!item.icon ? "nav-item" : ""} key={item.id}>
 					  <NavLink className={!item.icon? "nav-link": "btn-sm-alt" } to={item.to}>
 						{item.navName}&nbsp;{ item.icon &&  <FontAwesomeIcon icon={faRightToBracket} />}
 					  </NavLink>

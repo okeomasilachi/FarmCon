@@ -1,0 +1,298 @@
+{
+  "Admin": [
+    {
+      "id": "1",
+      "first_name": "Taofeeq",
+      "last_name": "Ogunsanya",
+      "email": "taofeeq@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "2",
+      "first_name": "Khadijah",
+      "last_name": "Rasaq",
+      "email": "khadijah@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "3",
+      "first_name": "Okeomasilachi",
+      "last_name": "Onyedibia",
+      "email": "okeoma@gmail.com",
+      "contact": "+63 983 0962 971"
+    },
+    {
+      "id": "4",
+      "first_name": "Aliyu",
+      "last_name": "Musa",
+      "email": "aliyu@gmail.com",
+      "contact": "+63 983 0962 971"
+    }
+  ],
+  "Users": [
+    {
+      "id": "info@example.com",
+      "first_name": "Taofeeq",
+      "last_name": "John",
+      "userName": "info",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "author",
+      "image" : "http://dummyimage.com/219x159.png/cc0000/ffffff"
+    },
+    {
+      "id": "okeo@example.com",
+      "first_name": "Okeo",
+      "last_name": "Samuel",
+      "userName": "okay",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "author",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
+    },
+    {
+      "id": "kaydjay@example.com",
+      "first_name": "Khadijah",
+      "last_name": "Hassan",
+      "userName": "kaydjay",
+      "password": "123456",
+      "gender": "female",
+      "terms": true,
+      "role": "user",
+       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
+    },
+    {
+      "id": "aliyu@example.com",
+      "first_name": "Aliyu",
+      "last_name": "Musa",
+      "userName": "aliyu",
+      "password": "123456",
+      "gender": "male",
+      "terms": true,
+      "role": "user",
+       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
+    },
+    {
+      "id": "taofeeq3@gmail.com",
+      "first_name": "TAOFEEQ",
+      "last_name": "OGUNSANYA",
+      "userName": "taofeeq",
+      "password": "Aa12345@",
+      "confirmPassword": "Aa12345@",
+      "gender": "male",
+      "terms": true,
+      "role": "user",
+       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
+    }
+  ],
+  "Products": [
+    {
+      "id": "1",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "2",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "3",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "4",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "5",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    },
+    {
+      "id": "6",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "7",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "8",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "9",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "10",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    },
+    {
+      "id": "11",
+      "name": "Cassava",
+      "location": "Ogun",
+      "price": 30000,
+      "quantity": 100000,
+      "image": "product-1"
+    },
+    {
+      "id": "12",
+      "name": "Vegetables",
+      "location": "Kaduna",
+      "price": 45000,
+      "quantity": 20000,
+      "image": "product-2"
+    },
+    {
+      "id": "13",
+      "name": "Banana",
+      "location": "Ogun",
+      "price": 32000,
+      "quantity": 200000,
+      "image": "product-3"
+    },
+    {
+      "id": "14",
+      "name": "Cocoa",
+      "location": "Oyo",
+      "price": 25000,
+      "quantity": 100000,
+      "image": "product-4"
+    },
+    {
+      "id": "15",
+      "name": "Maize",
+      "location": "Kano",
+      "price": 20000,
+      "quantity": 11000000,
+      "image": "product-5"
+    }
+  ],
+  "States": [
+    {
+      "id": "1",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "2",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "3",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "4",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "5",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "6",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "7",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "8",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "9",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    },
+    {
+      "id": "10",
+      "location": "Oyo",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-1"
+    },
+    {
+      "id": "11",
+      "location": "Kwara",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae .",
+      "image": "state-2"
+    },
+    {
+      "id": "12",
+      "location": "Ogun",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-3"
+    },
+    {
+      "id": "13",
+      "location": "Rivers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-4"
+    },
+    {
+      "id": "14",
+      "location": "Kano",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, molestiae.",
+      "image": "state-5"
+    }
+  ]
+}
