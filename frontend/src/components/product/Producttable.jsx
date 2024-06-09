@@ -8,21 +8,34 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
 import Paginations from "../pagination/Paginations";
 
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { userInfo } from "../../atoms/User";
+
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Producttable = () => {
+  let user = useRecoilValue(userInfo);
+  let redir = useNavigate();
+
+
+
+
+
   const [prods, setProduct] = useState();
   const [editData, setEditData] = useState("");
   // pagination feature
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostPerPage] = useState(9);
-
+  const [postsPerPage, setPostPerPage] = useState(10);
+  
   // const [del, setDelete ] = useState (prods);
 
   useEffect(() => {
     setProduct(prods);
   }, [prods]);
+
+   const dismissAll = () =>  toast.dismiss();
 
   // Dynamic notification
   const notify = (val) =>
@@ -48,9 +61,11 @@ const Producttable = () => {
   const handleDelete = (values) => {
     Axios.delete(baseURL + `${values}`).then(() => {
       notify("Product deleted successfully");
+      redir("../user");
       setTimeout(() => {
-        window.location.reload();
-        }, 1000)
+        redir("../products");
+        // window.location.reload();
+        }, 50)
     });
   };
 
@@ -62,7 +77,7 @@ const Producttable = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const lastPostIndex = currentPage * postsPerPage;
+  let lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPost = prods && prods.slice(firstPostIndex, lastPostIndex);
 
@@ -117,7 +132,7 @@ const Producttable = () => {
                 currentPost.map((item, key) => {
                   return (
                     <tr className="px-2" key={key}>
-                      <th>{++key}</th>
+                      <th>{++lastPostIndex - 10}</th>
                       <td>{item.name}</td>
                       <td>{item.location}</td>
                       <td>{item.quantity}</td>
@@ -163,7 +178,7 @@ const Producttable = () => {
         </div>
       </section>
       <div className="row">
-        {prods && prods.length > 9 ? (
+        {prods && prods.length > 10 ? (
           <Paginations
             totalPosts={prods && prods.length}
             postsPerPage={postsPerPage}

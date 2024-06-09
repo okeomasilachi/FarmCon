@@ -143,7 +143,6 @@
       "role": "user",
       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
     }
-  
   ],
   "Products": [
     {
@@ -189,42 +188,34 @@
     {
       "id": "8",
       "name": "Banana",
-      "location": "Ogun",
-      "price": 32000,
       "quantity": 200000,
+      "price": 32000,
+      "location": "Ogun",
       "image": "product-3"
     },
     {
       "id": "9",
-      "name": "Cocoa",
-      "location": "Oyo",
-      "price": 25000,
-      "quantity": 100000,
-      "image": "product-4"
-    },
-    {
-      "id": "8",
-      "name": "Yam",
-      "quantity": "60000000",
-      "price": "26000",
-      "location": "Abuja",
+      "name": "Beans",
+      "quantity": "20000000",
+      "price": "23000",
+      "location": "Kebbi",
       "image": "product-3"
-    },
-    {
-      "id": "9",
-      "name": "Sugar Cane",
-      "quantity": "40000000",
-      "price": "26000",
-      "location": "Zamfara",
-      "image": "product-2"
     },
     {
       "id": "10",
-      "name": "Beans",
-      "quantity": "40000000",
-      "price": "16000",
-      "location": "Gombe",
-      "image": "product-3"
+      "name": "Soya Bean",
+      "quantity": "60000000",
+      "price": "13445",
+      "location": "Zamfara",
+      "image": "product-4"
+    },
+    {
+      "id": "11",
+      "name": "Sugar Cane",
+      "quantity": "2550000",
+      "price": "21000",
+      "location": "Niger",
+      "image": "product-1"
     }
   ],
   "States": [

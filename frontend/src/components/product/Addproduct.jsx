@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +16,7 @@ const Schema = Yup.object().shape({
 });
 
 const Addproduct = () => {
-  // let redir = useNavigate();
+  let redir = useNavigate();
 
 
 
@@ -91,8 +91,11 @@ const Addproduct = () => {
                    */
                   let baseURL = "http://localhost:8000/Products";
                   let allUser = await Axios.get(`${baseURL}`);
-                  let id = allUser.data.length;
-                    id++;
+                  let dataLength = allUser.data.length;
+
+                // console.log(allUser.data[dataLength - 1].id); 
+                let id = allUser.data[dataLength - 1].id; 
+                    ++id;
 
                   let userdata = {
                     id: `${id}`,
@@ -102,16 +105,18 @@ const Addproduct = () => {
                     location: values.location,
                     image: values.image,
                   };
-                  // console.log(userdata);
+                  console.log(userdata);
 
                   try {
                    // use the typed location to check if the location already exist
                       Axios.post(`${baseURL}`, userdata)
                         .then((response) => {
                           notify("Product created successfully");
+                          redir("../user");
                           setTimeout(() => {
-                            window.location.reload();
-                            }, 1000)
+                            redir("../products");
+                            // window.location.reload();
+                            }, 50)
                         })
                         .catch((error) => {
                           errorNotify("Something went wrong!")

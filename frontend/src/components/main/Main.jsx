@@ -52,7 +52,7 @@ const Main = () => {
         .catch((error) => console.error(error));
   }, []);
 
-  console.log(user.data)
+  // console.log(user.data)
 
 
   return (

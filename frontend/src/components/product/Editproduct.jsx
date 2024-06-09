@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 // import { useNavigate } from "react-router-dom";
@@ -6,21 +6,25 @@ import * as Yup from "yup";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Schema = Yup.object().shape({
-  prodName: Yup.string().required("Required"),
-  location: Yup.string().required("Required"),
-  quantity: Yup.string().required("Required"),
-  price: Yup.string().required("Required"),
-  image: Yup.string().required("Required"),
+  prodName: Yup.string(),
+  location: Yup.string(),
+  quantity: Yup.string(),
+  price: Yup.string(),
+  image: Yup.string(),
 });
 
 const Editproduct = ({ editData }) => {
+
+ let redir = useNavigate();
+
   // Dynamic notification
   const notify = (val) =>
     toast.success(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -33,7 +37,7 @@ const Editproduct = ({ editData }) => {
   const errorNotify = (val) =>
     toast.error(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -42,8 +46,27 @@ const Editproduct = ({ editData }) => {
       theme: "light",
       transition: Bounce,
     });
+
   // To remove toast programmatically
   // const dismissAll = () =>  toast.dismiss();
+
+
+  const [editName, setEditName] = useState("");
+  const [editLocation, setEditLocation] = useState("");
+  const [editQuantity, setEditQuantity] = useState("");
+  const [editPrice, setEditPrice] = useState("");
+  const [editImage, setEditImage] = useState("");
+
+  
+  useEffect(()=> {
+    // console.log(editData);
+    setEditName(editData.name);
+    setEditLocation(editData.location);
+    setEditQuantity(editData.quantity);
+    setEditPrice(editData.price);
+    setEditImage(editData.image);
+  }, [editData])
+
 
   return (
     <div
@@ -83,30 +106,28 @@ const Editproduct = ({ editData }) => {
                    * get data
                    * sed to db in object format
                    */
-                  let baseURL = "http://localhost:8000/Products";
-                  let allUser = await Axios.get(`${baseURL}`);
-                  let id = allUser.data.length;
-                  id++;
-
+                  let baseURL = "http://localhost:8000/Products/";
+                
                   let userdata = {
-                    id: `${id}`,
-                    name: values.prodName,
-                    quantity: values.quantity,
-                    price: values.price,
-                    location: values.location,
-                    image: values.image,
+                    id: editData.id,
+                    name: editName,
+                    quantity: editQuantity,
+                    price: editPrice,
+                    location: editLocation,
+                    image: editImage,
                   };
-                  // console.log(userdata);
-
+                    
                   try {
                     // use the typed location to check if the location already exist
-                    Axios.post(`${baseURL}`, userdata)
-                      .then((response) => {
-                        notify("Product created successfully");
-                        setTimeout(() => {
-                          window.location.reload();
-                        }, 1000);
-                      })
+                    Axios.put(baseURL + `${editData.id}`, userdata)
+                    .then((response) => {
+                      notify("Product editted successfully");
+                      redir("../user");
+                          setTimeout(() => {
+                            redir("../products");
+                            // window.location.reload();
+                            }, 100)
+                     })
                       .catch((error) => {
                         errorNotify("Something went wrong!");
                         console.error(error);
@@ -116,6 +137,8 @@ const Editproduct = ({ editData }) => {
                   } catch (error) {
                     console.error(error);
                   }
+
+
                 }}
               >
                 {({ errors, touched }) => (
@@ -125,7 +148,8 @@ const Editproduct = ({ editData }) => {
                         Product Name:{" "}
                       </label>
                       <Field
-                        value={editData.name}
+                        value={editName}
+                        onChange={(e)=>setEditName(e.target.value)}
                         name="prodName"
                         id="prodName"
                         className="form-control"
@@ -141,7 +165,8 @@ const Editproduct = ({ editData }) => {
                         Location/State:{" "}
                       </label>
                       <Field
-                        value={editData.location}
+                      onChange={(e)=>setEditLocation(e.target.value) }
+                        value={editLocation}
                         name="location"
                         id="location"
                         className="form-control"
@@ -155,7 +180,8 @@ const Editproduct = ({ editData }) => {
                         Quantity:{" "}
                       </label>
                       <Field
-                        value={editData.quantity}
+                      onChange={(e)=>setEditQuantity(e.target.value) }
+                        value={editQuantity}
                         name="quantity"
                         id="quantity"
                         className="form-control"
@@ -169,7 +195,8 @@ const Editproduct = ({ editData }) => {
                         Price:{" "}
                       </label>
                       <Field
-                        value={editData.price}
+                      onChange={(e)=>setEditPrice(e.target.value) }
+                        value={editPrice}
                         name="price"
                         id="price"
                         className="form-control"
@@ -183,7 +210,8 @@ const Editproduct = ({ editData }) => {
                         Image:{" "}
                       </label>
                       <Field
-                        value={editData.image}
+                      onChange={(e)=>setEditImage(e.target.value) }
+                        value={editImage}
                         name="image"
                         id="price"
                         className="form-control"

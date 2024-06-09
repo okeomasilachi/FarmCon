@@ -13,7 +13,6 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   let user = useRecoilValue(userInfo);
-
   let [signout, setSignout] =  useRecoilState(userInfo);
   let redir = useNavigate()
 
