@@ -57,7 +57,7 @@ const Login = () => {
     <div className="container_fluid container__signin">
       <div className="h-100 row justify-content-center align-items-center flex-column signin__section">
         <div className="col-12 col-10 col-md-4 col-lg-4 col-xl-4 mb-3 text-center">
-          {/* <img src="./assets/images/logo.png" className="logo text-center" alt="" /> */}
+
           <h1>FarmCon</h1>
         </div>
         <div className="col-11 col-md-6 ">
@@ -68,9 +68,6 @@ const Login = () => {
             }}
             validationSchema={Schema}
             onSubmit={async (values) => {
-              // same shape as initial values
-              // setIsShow(true);
-              // console.log(values);
               /****
                * Steps to login a user
                * use the typed email to verify if the user exist in db
@@ -86,7 +83,7 @@ const Login = () => {
                   setUser({ isLoggedIn: true, data: getUser.data });
                   setTimeout(()=> {
                     redir("../dashboard");
-                  }, 2000)
+                  }, 1500)
                 } else {
                   Errnotify("Invalid login details");
                 }

@@ -1,7 +1,11 @@
 import React from "react";
 import Editprofile from "./Editprofile";
+import { userInfo } from "../../atoms/User.jsx";
+import { useRecoilValue } from "recoil";
 
 const Profiledata = () => {
+  let user = useRecoilValue(userInfo);
+
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -22,7 +26,8 @@ const Profiledata = () => {
         <div className="row">
           <div className="col-12 col-md-4 ">
             <div className="profile mx-auto">
-              <img src="../images/avatar.png" alt="" />
+              {/* <img src="../images/avatar.png" alt="" /> */}
+              <img src={user.data.image} alt="" />
             </div>
           </div>
           <div className="col-12 col-md-8">
@@ -38,19 +43,19 @@ const Profiledata = () => {
                 <tbody>
                   <tr>
                     <th scope="row">Name:</th>
-                    <td>OGUNSANYA TAOFEEQ</td>
+                    <td>{user.data.first_name} {user.data.last_name}</td>
                   </tr>
                   <tr>
                     <th scope="row">Username:</th>
-                    <td>taofeeq</td>
+                    <td>{user.data.userName}</td>
                   </tr>
                   <tr>
                     <th scope="row">Email:</th>
-                    <td>taofeeq@example.com</td>
+                    <td>{user.data.id}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Contact:</th>
-                    <td>+01 352 1125 0192</td>
+                    <th scope="row">Role:</th>
+                    <td>{user.data.role}</td>
                   </tr>
                 </tbody>
               </table>

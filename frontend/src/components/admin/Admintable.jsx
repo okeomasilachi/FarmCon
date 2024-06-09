@@ -19,7 +19,6 @@ const Admintable = () => {
     Axios.get("http://localhost:8000/Admin")
     .then(
       (response) => {
-        console.log(response.data);
         setAdmin(response.data);
       }
     ).catch(error => console.error(error));
@@ -76,7 +75,7 @@ const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
                 <th scope="col">S/N</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Role</th>
+                <th scope="col">Contacts</th>
                 <th scope="col" tabIndex="2" className="text-center">
                   Actions
                 </th>
@@ -85,12 +84,12 @@ const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
             <tbody>
 
               {currentPost &&
-                currentPost.map (item => {
+                currentPost.map ((item, key) => {
                   return (
-                        <tr key={item.id}>
-                          <th>{item.id}</th>
+                        <tr key={key}>
+                          <th>{++key}</th>
                           <td>{item.first_name} {item.last_name}</td>
-                          <td>{item.email}</td>
+                          <td>{item.id}</td>
                           <td>{item.contact}</td>
                           <td>
                             <div className="action">
@@ -120,7 +119,6 @@ const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
                             </div>
                           </td>
                         </tr>
-
                   );
                 })
               }

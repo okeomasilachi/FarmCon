@@ -1,37 +1,87 @@
 {
-
   "Admin": [
     {
-      "id": "1",
       "first_name": "Taofeeq",
       "last_name": "Ogunsanya",
-      "email": "taofeeq@gmail.com",
-      "contact": "+63 983 0962 971"
+      "userName": "Admin",
+      "id": "taofeeq@gmail.com",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000",
+      "role": "sadmin"
     },
     {
-      "id": "2",
       "first_name": "Khadijah",
       "last_name": "Rasaq",
-      "email": "khadijah@gmail.com",
-      "contact": "+63 983 0962 971"
+      "userName": "Admin",
+      "id": "khadijah@gmail.com",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
     },
     {
-      "id": "3",
       "first_name": "Okeomasilachi",
       "last_name": "Onyedibia",
-      "email": "okeoma@gmail.com",
-      "contact": "+63 983 0962 971"
+      "userName": "Admin",
+      "id": "okeoma@gmail.com",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
     },
     {
-      "id": "4",
       "first_name": "Aliyu",
       "last_name": "Musa",
-      "email": "aliyu@gmail.com",
-      "contact": "+63 983 0962 971"
+      "userName": "Admin",
+      "id": "aliyu@gmail.com",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
     }
   ],
-  
   "Users": [
+    {
+      "first_name": "Taofeeq",
+      "last_name": "Ogunsanya",
+      "userName": "Admin",
+      "id": "taofeeq@gmail.com",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000",
+      "role": "sadmin"
+    },
+    {
+      "id": "khadijah@gmail.com",
+      "first_name": "Khadijah",
+      "last_name": "Rasaq",
+      "userName": "Admin",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
+    },
+    {
+      "id": "okeoma@gmail.com",
+      "first_name": "Okeomasilachi",
+      "last_name": "Onyedibia",
+      "userName": "Admin",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
+    },
+    {
+      "id": "aliyu@gmail.com",
+      "first_name": "Aliyu",
+      "last_name": "Musa",
+      "userName": "Admin",
+      "contact": "+63 983 0962 971",
+      "password": "123456",
+      "role": "admin",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
+    },
     {
       "id": "info@example.com",
       "first_name": "Taofeeq",
@@ -39,8 +89,9 @@
       "userName": "info",
       "password": "123456",
       "gender": "male",
+      "contact": "+63 983 0962 971",
       "terms": true,
-      "role": "author",
+      "role": "admin",
       "image": "http://dummyimage.com/219x159.png/cc0000/ffffff"
     },
     {
@@ -50,6 +101,7 @@
       "userName": "okay",
       "password": "123456",
       "gender": "male",
+      "contact": "+63 983 0962 971",
       "terms": true,
       "role": "author",
       "image": "http://dummyimage.com/157x158.png/dddddd/000000"
@@ -61,8 +113,9 @@
       "userName": "kaydjay",
       "password": "123456",
       "gender": "female",
+      "contact": "+63 983 0962 971",
       "terms": true,
-      "role": "user",
+      "role": "author",
       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
     },
     {
@@ -72,6 +125,7 @@
       "userName": "aliyu",
       "password": "123456",
       "gender": "male",
+      "contact": "+63 983 0962 971",
       "terms": true,
       "role": "user",
       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
@@ -84,20 +138,12 @@
       "password": "Aa12345@",
       "confirmPassword": "Aa12345@",
       "gender": "male",
+      "contact": "+63 983 0962 971",
       "terms": true,
       "role": "user",
       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
-    },
-    {
-      "id": "info22@example.com",
-      "firstName": "",
-      "lastName": "",
-      "userName": "user22",
-      "password": "Ta123456@",
-      "confirmPassword": "Ta123456@",
-      "terms": true,
-      "role": "user"
     }
+  
   ],
   "Products": [
     {
@@ -107,14 +153,6 @@
       "price": 30000,
       "quantity": 100000,
       "image": "product-1"
-    },
-    {
-      "id": "2",
-      "name": "Vegetables",
-      "location": "Kaduna",
-      "price": 45000,
-      "quantity": 20000,
-      "image": "product-2"
     },
     {
       "id": "3",
@@ -141,14 +179,6 @@
       "image": "product-5"
     },
     {
-      "id": "6",
-      "name": "Cassava",
-      "location": "Ogun",
-      "price": 30000,
-      "quantity": 100000,
-      "image": "product-1"
-    },
-    {
       "id": "7",
       "name": "Vegetables",
       "location": "Kaduna",
@@ -173,52 +203,28 @@
       "image": "product-4"
     },
     {
-      "id": "10",
-      "name": "Maize",
-      "location": "Kano",
-      "price": 20000,
-      "quantity": 11000000,
-      "image": "product-5"
-    },
-    {
-      "id": "11",
-      "name": "Cassava",
-      "location": "Ogun",
-      "price": 30000,
-      "quantity": 100000,
-      "image": "product-1"
-    },
-    {
-      "id": "12",
-      "name": "Vegetables",
-      "location": "Kaduna",
-      "price": 45000,
-      "quantity": 20000,
-      "image": "product-2"
-    },
-    {
-      "id": "13",
-      "name": "Banana",
-      "location": "Ogun",
-      "price": 32000,
-      "quantity": 200000,
+      "id": "8",
+      "name": "Yam",
+      "quantity": "60000000",
+      "price": "26000",
+      "location": "Abuja",
       "image": "product-3"
     },
     {
-      "id": "14",
-      "name": "Cocoa",
-      "location": "Oyo",
-      "price": 25000,
-      "quantity": 100000,
-      "image": "product-4"
+      "id": "9",
+      "name": "Sugar Cane",
+      "quantity": "40000000",
+      "price": "26000",
+      "location": "Zamfara",
+      "image": "product-2"
     },
     {
-      "id": "15",
-      "name": "Maize",
-      "location": "Kano",
-      "price": 20000,
-      "quantity": 11000000,
-      "image": "product-5"
+      "id": "10",
+      "name": "Beans",
+      "quantity": "40000000",
+      "price": "16000",
+      "location": "Gombe",
+      "image": "product-3"
     }
   ],
   "States": [

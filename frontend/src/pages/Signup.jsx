@@ -40,15 +40,14 @@ const Schema = Yup.object().shape({
 });
 
 const Signup = () => {
-
-//   let [user, setUser] = useRecoilState(userInfo);
+  //   let [user, setUser] = useRecoilState(userInfo);
   let redir = useNavigate();
 
   // Dynamic notification
   const notify = (val) =>
     toast.success(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -61,7 +60,7 @@ const Signup = () => {
   const errorNotify = (val) =>
     toast.error(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -70,7 +69,6 @@ const Signup = () => {
       theme: "light",
       transition: Bounce,
     });
-
   // To remove toast programmatically
   // const dismissAll = () =>  toast.dismiss();
 
@@ -100,8 +98,8 @@ const Signup = () => {
                */
 
               let userdata = {
-				firstName: "",
-				lastName: "",
+                firstName: "",
+                lastName: "",
                 id: values.email,
                 userName: values.userName,
                 password: values.password,
@@ -126,10 +124,11 @@ const Signup = () => {
                 if (!isUnique) {
                   Axios.post(`${baseURL}`, userdata)
                     .then((response) => {
-
-                    //   setUser({isLoggedIn: true, data: response.data});
+                      //   setUser({isLoggedIn: true, data: response.data});
                       notify("Signed up successfully");
+                      setTimeout(() => {
                         redir("../login");
+                      }, 1500);
                     })
                     .catch((error) => {
                       console.error(error);

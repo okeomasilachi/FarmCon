@@ -20,7 +20,6 @@ const [postsPerPage, setPostPerPage] = useState(10);
 useEffect(() => {
   Axios.get("http://localhost:8000/Users")
     .then((response) => {
-      console.log(response.data);
       setUsers(response.data);
     })
     .catch((error) => console.error(error));
