@@ -116,7 +116,6 @@ const Adduser = () => {
                       .then((response) => {
                         //   setUser({isLoggedIn: true, data: response.data});
                         notify("User created successfully");
-                        redir("../user");
                         setTimeout(() => {
                           redir("../admin");
                         }, 1000);

@@ -51,11 +51,13 @@ const Userstable = () => {
   const handleDelete = (values) => {
     Axios.delete(baseURL + `/${values}`).then(() => {
       notify("User deleted successfully");
-      redir("../admin");
+      setTimeout(() => {
+        redir("../admin");
+      }, 1000);
       setTimeout(() => {
         redir("../user");
-        // window.location.reload();
-      }, 50);
+      }, 1020);
+      // window.location.reload();
     });
   };
 

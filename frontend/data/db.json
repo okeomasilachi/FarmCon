@@ -144,6 +144,18 @@
       "terms": true,
       "role": "user",
       "image": "../images/avatar.png"
+    },
+    {
+      "id": "news@example.com",
+      "first_name": "News",
+      "last_name": "users",
+      "userName": "newss",
+      "password": "News",
+      "gender": "default",
+      "contact": "+63 983 0962 224",
+      "terms": true,
+      "role": "user",
+      "image": "../images/avatar.png"
     }
   ],
   "Products": [

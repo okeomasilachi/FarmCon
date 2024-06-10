@@ -108,12 +108,14 @@ const Edituser = ({ editData }) => {
                   // use the typed location to check if the location already exist
                   Axios.put(baseURL + `${editData.id}`, userdata)
                     .then((response) => {
-                      redir("../admin");
+                      notify("Product editted successfully");
+                      setTimeout(() => {
+                        redir("../admin");
+                      }, 1000);
                       setTimeout(() => {
                         redir("../user");
-                        // window.location.reload();
-                        }, 100);
-                      notify("Product editted successfully");
+                      }, 1020);
+                      // window.location.reload();
                     })
                     .catch((error) => {
                       errorNotify("Something went wrong!");
