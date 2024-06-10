@@ -15,7 +15,7 @@
       "last_name": "Rasaq",
       "userName": "Admin",
       "id": "khadijah@gmail.com",
-      "contact": "+63 983 0962 971",
+      "contact": "+63 983 0962 979",
       "password": "123456",
       "role": "admin",
       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
@@ -39,6 +39,16 @@
       "password": "123456",
       "role": "admin",
       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
+    },
+    {
+      "id": "admin@example.com",
+      "first_name": "New",
+      "last_name": "Admin",
+      "userName": "newadmin",
+      "contact": "+23481 8923 4444",
+      "password": "New",
+      "role": "admin",
+      "image": "../images/avatar.png"
     }
   ],
   "Users": [
@@ -89,9 +99,9 @@
     {
       "id": "info@example.com",
       "first_name": "Taofeeq",
-      "last_name": "John",
-      "userName": "info",
-      "contact": "+63 983 0962 971",
+      "last_name": "Okheo",
+      "userName": "Admin2",
+      "contact": "+63 983 0962 979",
       "password": "123456",
       "gender": "male",
       "role": "admin",
@@ -225,10 +235,10 @@
     {
       "id": "11",
       "name": "Sugar Cane",
-      "quantity": "2550000",
-      "price": "21000",
-      "location": "Niger",
-      "image": "product-1"
+      "quantity": "50000230",
+      "price": "12000",
+      "location": "Gombe",
+      "image": "product-4"
     }
   ],
   "States": [
