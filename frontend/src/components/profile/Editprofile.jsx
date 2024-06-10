@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -101,7 +102,7 @@ const Editprofile = ({editData}) => {
                   image: editData.image,
                 };
 
-				
+
                 try {
                   // use the typed location to check if the location already exist
                   Axios.put(baseURL + `${editData.id}`, userdata)
