@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
+
 // import { userInfo } from '../atoms/User';
 // import { useRecoilState } from 'recoil';
 
@@ -39,14 +40,14 @@ const Schema = Yup.object().shape({
 });
 
 const Signup = () => {
-//   let [user, setUser] = useRecoilState(userInfo);
+  //   let [user, setUser] = useRecoilState(userInfo);
   let redir = useNavigate();
 
   // Dynamic notification
   const notify = (val) =>
     toast.success(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -59,7 +60,7 @@ const Signup = () => {
   const errorNotify = (val) =>
     toast.error(val, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -68,7 +69,6 @@ const Signup = () => {
       theme: "light",
       transition: Bounce,
     });
-
   // To remove toast programmatically
   // const dismissAll = () =>  toast.dismiss();
 
@@ -98,16 +98,18 @@ const Signup = () => {
                */
 
               let userdata = {
-				firstName: "",
-				lastName: "",
                 id: values.email,
+                firstName: "New",
+                lastName: "User",
                 userName: values.userName,
                 password: values.password,
-                confirmPassword: values.confirmPassword,
+                gender: "default",
+                contact: "none",
                 terms: values.terms,
                 role: "user",
+                image: "../images/avatar.png"
               };
-              console.log(userdata);
+              // console.log(userdata);
 
               let baseURL = "http://localhost:8000/Users";
               try {
@@ -126,7 +128,9 @@ const Signup = () => {
                     .then((response) => {
                     //   setUser({isLoggedIn: true, data: response.data});
                       notify("Signed up successfully");
+                      setTimeout(() => {
                         redir("../login");
+                      }, 1500);
                     })
                     .catch((error) => {
                       console.error(error);

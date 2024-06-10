@@ -18,7 +18,6 @@ const StatesSearch = () => {
   useEffect(() => {
     Axios.get("http://localhost:8000/States")
       .then((response) => {
-        console.log(response.data);
         setStates(response.data);
       })
       .catch((error) => console.error(error));

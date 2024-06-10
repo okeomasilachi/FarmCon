@@ -12,7 +12,6 @@ import "./Sidebar.css";
 
 
 const Sidebar = () => {
-
   let user = useRecoilValue(userInfo);
   let [signout, setSignout] =  useRecoilState(userInfo);
   let redir = useNavigate()
@@ -21,7 +20,7 @@ const Sidebar = () => {
     setSignout({isLoggedIn:false, data: {}})
     redir("../")
   }
-
+  // console.log(user);
   return (
     <section className="container_sidebar">
       <nav
@@ -35,9 +34,11 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <ul className="nav flex-column">
-            {sidebarRoutes.map((item) => {
+            {  sidebarRoutes.map((item, key) => {
               return (
-                <li className="nav-item" key={item.id}>
+                <li
+                style={key !== 0 && key !== 4 ? user.data.role === "admin"? {display : "block"}:{display:"none"}:{display : "block"}}
+                className="nav-item" key={key}>
                   <NavLink
                     className={item.current ? "nav-link active" : "nav-link"}
                     aria-current="page"
@@ -47,6 +48,7 @@ const Sidebar = () => {
                   </NavLink>
                 </li>
               );
+
             })}
 
             <li className="nav-item my-2 ms-3" >
@@ -58,7 +60,8 @@ const Sidebar = () => {
             </li>
           </ul>
           <div className="profile-dp">
-            <img src="../images/avatar.png" alt="profile" />
+            {/* <img src="../images/avatar.png" alt="profile" /> */}
+            <img src={user.data.image} alt="profile" />
           </div>
         </div>
       </nav>

@@ -19,7 +19,6 @@ const [products, setProducts] = useState("");
   useEffect(() => {
     Axios.get("http://localhost:8000/Products")
       .then((response) => {
-        console.log(response.data);
         setProducts(response.data);
       })
       .catch((error) => console.error(error));
@@ -58,7 +57,7 @@ const [products, setProducts] = useState("");
                 return (
                   <div className={"col-6 col-md-3 product "+item.image} key={key}>
                     <h4>{item.name}</h4>
-                    <p><b>Location:</b> {item.name.toUpperCase()}</p>
+                    <p><b>Location:</b> {item.location.toUpperCase()}</p>
                     <span className="price_tag">{item.price} Per Ton</span>
                     <p><b>Quantity:</b> {item.quantity}</p>
                   </div>
