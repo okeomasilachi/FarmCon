@@ -155,11 +155,11 @@ const Producttable = () => {
                                 edit
                               </button>
                             </li>
-                            <li>
+                            {/* <li>
                               <a href="./" className="btn btn-primary p-1">
                                 view
                               </a>
-                            </li>
+                            </li> */}
                             <li>
                               <button
                                 onClick={() => handleDelete(item.id)}
