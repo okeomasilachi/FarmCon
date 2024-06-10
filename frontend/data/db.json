@@ -91,10 +91,9 @@
       "first_name": "Taofeeq",
       "last_name": "John",
       "userName": "info",
+      "contact": "+63 983 0962 971",
       "password": "123456",
       "gender": "male",
-      "contact": "+63 983 0962 971",
-      "terms": true,
       "role": "admin",
       "image": "http://dummyimage.com/219x159.png/cc0000/ffffff"
     },

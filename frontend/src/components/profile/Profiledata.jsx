@@ -1,10 +1,28 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Editprofile from "./Editprofile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
+
+import Axios from "axios";
 import { userInfo } from "../../atoms/User.jsx";
 import { useRecoilValue } from "recoil";
 
 const Profiledata = () => {
   let user = useRecoilValue(userInfo);
+  
+
+  const [editData, setEditData] = useState("");
+
+  let baseURL = "http://localhost:8000/Users";
+
+  useEffect(() => {
+    Axios.get(baseURL + `/${user.data.id}`)
+      .then((response) => {
+        setEditData(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, [baseURL, user]);
+
 
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -17,7 +35,8 @@ const Profiledata = () => {
               data-bs-toggle="modal"
               data-bs-target="#editModal"
             >
-              Edit Profile
+              <FontAwesomeIcon icon={faUserEdit} className="me-2" />
+              Edit Profile 
             </button>
           </div>
         </div>
@@ -54,6 +73,10 @@ const Profiledata = () => {
                     <td>{user.data.id}</td>
                   </tr>
                   <tr>
+                    <th scope="row">Contact:</th>
+                    <td>{user.data.contact}</td>
+                  </tr>
+                  <tr>
                     <th scope="row">Role:</th>
                     <td>{user.data.role}</td>
                   </tr>
@@ -63,7 +86,7 @@ const Profiledata = () => {
           </div>
         </div>
       </section>
-      <Editprofile />
+      <Editprofile editData={editData}/>
     </main>
   );
 };

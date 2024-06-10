@@ -20,7 +20,7 @@ const Userstable = () => {
   let user = useRecoilValue(userInfo);
   let redir = useNavigate();
 
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState("");
   const [editData, setEditData] = useState("");
 
   let baseURL = "http://localhost:8000/Users";
