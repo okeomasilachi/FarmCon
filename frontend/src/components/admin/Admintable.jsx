@@ -50,11 +50,12 @@ const Admintable = () => {
   const handleDelete = (values) => {
     Axios.delete(baseURL + `/${values}`).then(() => {
       notify("User deleted successfully");
-      redir("../user");
+      setTimeout(() => {
+        redir("../user");
+      }, 1000);
       setTimeout(() => {
         redir("../admin");
-        // window.location.reload();
-      }, 50);
+      }, 1020);
     });
   };
 

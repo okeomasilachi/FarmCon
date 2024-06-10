@@ -98,38 +98,40 @@ const Addadmin = () => {
                 };
                 console.log(userData);
 
-                  let baseURL = "http://localhost:8000/Admin";
-                  try {
-                    let allUser = await Axios.get(`${baseURL}`);
+                let baseURL = "http://localhost:8000/Admin";
+                try {
+                  let allUser = await Axios.get(`${baseURL}`);
 
-                    let isUnique = false;
-                    allUser.data.forEach((each) => {
-                      if (each.id === values.email) {
-                        isUnique = true;
-                      }
-                    });
-
-                    // use the typed email to check if the email already exist
-                    if (!isUnique) {
-                      Axios.post(`${baseURL}`, userData)
-                        .then((response) => {
-                          //   setUser({isLoggedIn: true, data: response.data});
-                          notify("User created successfully");
-						  redir("../user");
-                          setTimeout(() => {
-                            redir("../admin");
-                          }, 1500);
-                        })
-                        .catch((error) => {
-                          console.error(error);
-                        });
-                    } else {
-                      errorNotify("User already exit");
+                  let isUnique = false;
+                  allUser.data.forEach((each) => {
+                    if (each.id === values.email) {
+                      isUnique = true;
                     }
-                    // if unique email allow to signup else dont
-                  } catch (error) {
-                    console.error(error);
+                  });
+
+                  // use the typed email to check if the email already exist
+                  if (!isUnique) {
+                    Axios.post(`${baseURL}`, userData)
+                      .then((response) => {
+                        //   setUser({isLoggedIn: true, data: response.data});
+                        notify("User created successfully");
+                        setTimeout(() => {
+                          redir("../user");
+                        }, 1000);
+                        setTimeout(() => {
+                          redir("../admin");
+                        }, 1020);
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                      });
+                  } else {
+                    errorNotify("User already exit");
                   }
+                  // if unique email allow to signup else dont
+                } catch (error) {
+                  console.error(error);
+                }
               }}
             >
               {({ errors, touched }) => (
@@ -200,13 +202,13 @@ const Addadmin = () => {
                     {touched.email && errors.email && (
                       <div className="errors">{errors.email}</div>
                     )}
-                  </fieldset> 
+                  </fieldset>
 
                   <fieldset className="text-center mt-3">
                     <button
                       type="submit"
                       name="submit"
-					  data-bs-dismiss="modal"
+                      data-bs-dismiss="modal"
                       className="btn w-50 btn-lg me-auto"
                     >
                       Submit
