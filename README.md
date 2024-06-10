@@ -86,6 +86,7 @@ FarmCon is an innovative application that bridges the gap between consumers, far
 
 - Aliyu Musa Kalakala: Front-end Engineer ([Email](mailto:aliyumusakalakala@gmail.com), [LinkedIn](https://www.linkedin.com/in/aliyu-musa-kalakala/), [Twitter](https://twitter.com/aliyukalakala))
 - Taofeeq Ogunsanya: Front-end Engineer ([Email](mailto:taofeeq.muhammad22@gmail.com), [LinkedIn](https://www.linkedin.com/in/taofeeqogunsanya/), [Twitter](https://twitter.com/Nupda8))
+
 - Khadijat Rasaq: Back-end Engineer ([Email](mailto:khadijat@example.com), [LinkedIn](https://www.linkedin.com/in/khadijat-rasaq/), [Twitter](https://twitter.com/khadijatrasaq))
 - Okeomasilachi Onyedibia: Back-end Engineer ([Email](mailto:okeomasilachi@example.com), [LinkedIn](https://www.linkedin.com/in/okeomasilachi), [Twitter](https://twitter.com/okeomasilachi1))
 
@@ -439,3 +440,12 @@ This API provides routes for handling various functionalities including authenti
 ## Error Handling
 
 All routes include basic error handling, and specific middleware like `handleMulterErrors` is used to manage file upload errors. The default error handler captures any unhandled errors and returns a standardized error response.
+
+API End point
+https://farmcon.onrender.com/api
+
+json-server
+yup and formik
+toastify
+
+

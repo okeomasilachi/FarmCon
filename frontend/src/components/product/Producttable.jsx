@@ -6,25 +6,79 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import Addproduct from "./Addproduct";
-
 import Paginations from "../pagination/Paginations";
 
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "../../atoms/User";
+
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Producttable = () => {
+  let user = useRecoilValue(userInfo);
+  let redir = useNavigate();
+
+
+
+
+
   const [prods, setProduct] = useState();
+  const [editData, setEditData] = useState("");
   // pagination feature
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostPerPage] = useState(10);
+  
+  // const [del, setDelete ] = useState (prods);
+
+  useEffect(() => {
+    setProduct(prods);
+  }, [prods]);
+
+  //  const dismissAll = () =>  toast.dismiss();
+
+  // Dynamic notification
+  const notify = (val) =>
+    toast.success(val, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
+  let baseURL = "http://localhost:8000/Products/";
+
+  const handleEdit = (values) => {
+    Axios.get(baseURL + `${values}`).then((response) => {
+     setEditData(response.data);
+    });
+  };
+  const handleDelete = (values) => {
+    Axios.delete(baseURL + `${values}`).then(() => {
+      notify("Product deleted successfully");
+      setTimeout(() => {
+        redir("../user");
+        }, 1000);
+        setTimeout(() => {
+          redir("../products");
+        }, 1020);
+    });
+  };
 
   useEffect(() => {
     Axios.get("http://localhost:8000/Products")
       .then((response) => {
-        console.log(response.data);
         setProduct(response.data);
       })
       .catch((error) => console.error(error));
   }, []);
 
-  const lastPostIndex = currentPage * postsPerPage;
+  let lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPost = prods && prods.slice(firstPostIndex, lastPostIndex);
 
@@ -76,22 +130,23 @@ const Producttable = () => {
             </thead>
             <tbody>
               {currentPost &&
-                currentPost.map((item) => {
+                currentPost.map((item, key) => {
                   return (
-                    <tr className="px-2" key={item.id}>
-                      <th>{item.id}</th>
+                    <tr className="px-2" key={key}>
+                      <th>{++lastPostIndex - 10}</th>
                       <td>{item.name}</td>
                       <td>{item.location}</td>
                       <td>{item.quantity}</td>
                       <td>{item.price}</td>
                       <td>
                         <div className="action">
-                          <span>
+                          <span className="text-center w-100">
                             <FontAwesomeIcon icon={faEllipsisV} />
                           </span>
                           <ul className="more-options">
                             <li>
                               <button
+                                onClick={() => handleEdit(item.id)}
                                 id=""
                                 className="btn btn-warning p-1"
                                 data-bs-toggle="modal"
@@ -106,9 +161,12 @@ const Producttable = () => {
                               </a>
                             </li>
                             <li>
-                              <a href=" " className="btn btn-danger p-1">
+                              <button
+                                onClick={() => handleDelete(item.id)}
+                                className="btn btn-danger p-1"
+                              >
                                 delete
-                              </a>
+                              </button>
                             </li>
                           </ul>
                         </div>
@@ -121,19 +179,20 @@ const Producttable = () => {
         </div>
       </section>
       <div className="row">
-        {prods && 
-        prods.length > 10 ?
-        <Paginations
-          totalPosts={prods && prods.length}
-          postsPerPage={postsPerPage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />:""
-        
-        }
+        {prods && prods.length > 10 ? (
+          <Paginations
+            totalPosts={prods && prods.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        ) : (
+          ""
+        )}
+        <ToastContainer />
       </div>
       <Addproduct />
-      <Editproduct />
+      <Editproduct editData={editData}/>
     </main>
   );
 };

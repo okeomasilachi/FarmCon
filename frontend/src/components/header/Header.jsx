@@ -1,6 +1,5 @@
 import React from 'react'
 import Nav from '../nav/Nav'
-import './Header.css'
 import CaroSlide from '../carousel/CaroSlide'
 import { RecoilRoot } from 'recoil'
 
