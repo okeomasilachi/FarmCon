@@ -1,40 +1,74 @@
 /* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from "react";
-import "./Admintable.css";
+import React, { useEffect, useState } from "react";
 import Editadmin from "./Editadmin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Addadmin from "./Addadmin";
 
-import Paginations from "../pagination/Paginations" 
-import Axios  from "axios";
+import Paginations from "../pagination/Paginations";
+import Axios from "axios";
+
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "../../atoms/User";
+
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Admintable = () => {
-
+  let user = useRecoilValue(userInfo);
+  let redir = useNavigate();
 
   const [admin, setAdmin] = useState();
+  const [editData, setEditData] = useState("");
 
-  
-  useEffect (() => {
-    Axios.get("http://localhost:8000/Admin")
-    .then(
-      (response) => {
+  let baseURL = "http://localhost:8000/Admin";
+
+  // pagination feature
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostPerPage] = useState(10);
+
+  // Dynamic notification
+  const notify = (val) =>
+    toast.success(val, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
+  const handleEdit = (values) => {
+    Axios.get(baseURL + `/${values}`).then((response) => {
+      setEditData(response.data);
+    });
+  };
+  const handleDelete = (values) => {
+    Axios.delete(baseURL + `/${values}`).then(() => {
+      notify("User deleted successfully");
+      redir("../user");
+      setTimeout(() => {
+        redir("../admin");
+        // window.location.reload();
+      }, 50);
+    });
+  };
+
+  useEffect(() => {
+    Axios.get(baseURL)
+      .then((response) => {
         setAdmin(response.data);
-      }
-    ).catch(error => console.error(error));
-  },[])
+      })
+      .catch((error) => console.error(error));
+  }, [baseURL]);
 
-
-// pagination feature 
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostPerPage] = useState(10);
-
-const lastPostIndex = currentPage * postsPerPage; 
-const firstPostIndex = lastPostIndex - postsPerPage
-const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
-
-
-
+  let lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex);
 
   return (
     <main className="col-md-9 ms-sm-auto bg-light col-lg-10 px-md-4">
@@ -82,62 +116,66 @@ const currentPost = admin && admin.slice(firstPostIndex, lastPostIndex)
               </tr>
             </thead>
             <tbody>
-
               {currentPost &&
-                currentPost.map ((item, key) => {
+                currentPost.map((item, key) => {
                   return (
-                        <tr key={key}>
-                          <th>{++key}</th>
-                          <td>{item.first_name} {item.last_name}</td>
-                          <td>{item.id}</td>
-                          <td>{item.contact}</td>
-                          <td>
-                            <div className="action">
-                              <span>
-                                <FontAwesomeIcon icon={faEllipsisV} />
-                              </span>
-                              <ul className="more-options">
-                                <li>
-                                  <button
-                                    id=""
-                                    className="btn btn-warning user-edit-btn p-1"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#editModal"
-                                  >
-                                    edit
-                                  </button>
-                                </li>
-                                <li>
-                                  <a
-                                    href="# "
-                                    className="btn btn-danger p-1"
-                                  >
-                                    delete
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
+                    <tr key={key}>
+                      <th>{++lastPostIndex - 10}</th>
+                      <td>
+                        {item.first_name} {item.last_name}
+                      </td>
+                      <td>{item.id}</td>
+                      <td>{item.contact}</td>
+                      <td>
+                        <div className="action">
+                          <span>
+                            <FontAwesomeIcon icon={faEllipsisV} />
+                          </span>
+                          <ul className="more-options">
+                            <li>
+                              <button
+                                onClick={() => handleEdit(item.id)}
+                                id=""
+                                className="btn btn-warning user-edit-btn p-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                              >
+                                edit
+                              </button>
+                            </li>
+                            <li>
+                              <button
+                                onClick={() => handleDelete(item.id)}
+                                className="btn btn-danger p-1"
+                              >
+                                delete
+                              </button>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
                   );
-                })
-              }
+                })}
             </tbody>
           </table>
         </div>
       </section>
       <div className="row">
-              {admin &&
-                admin.length > 10 ?   <Paginations  
-                totalPosts = {admin.length} 
-                postsPerPage = {postsPerPage}
-                setCurrentPage= {setCurrentPage}
-                currentPage={currentPage}
-                /> : ""
-              }
-          </div>
+        {admin && admin.length > 10 ? (
+          <Paginations
+            totalPosts={admin.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        ) : (
+          ""
+        )}
+      </div>
       <Addadmin />
-      <Editadmin />
+      <Editadmin editData={editData} />
+      <ToastContainer />
     </main>
   );
 };

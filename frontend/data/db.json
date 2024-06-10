@@ -7,8 +7,8 @@
       "id": "taofeeq@gmail.com",
       "contact": "+63 983 0962 971",
       "password": "123456",
-      "image": "http://dummyimage.com/157x158.png/dddddd/000000",
-      "role": "sadmin"
+      "role": "sadmin",
+      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
     },
     {
       "first_name": "Khadijah",
@@ -32,13 +32,13 @@
     },
     {
       "first_name": "Aliyu",
-      "last_name": "Musa",
+      "last_name": "Musas",
       "userName": "Admin",
       "id": "aliyu@gmail.com",
       "contact": "+63 983 0962 971",
       "password": "123456",
       "role": "admin",
-      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
+      "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
     }
   ],
   "Users": [
@@ -49,6 +49,7 @@
       "id": "taofeeq@gmail.com",
       "contact": "+63 983 0962 971",
       "password": "123456",
+      "gender": "male",
       "image": "http://dummyimage.com/157x158.png/dddddd/000000",
       "role": "sadmin"
     },
@@ -59,6 +60,7 @@
       "userName": "Admin",
       "contact": "+63 983 0962 971",
       "password": "123456",
+      "gender": "female",
       "role": "admin",
       "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
     },
@@ -69,6 +71,7 @@
       "userName": "Admin",
       "contact": "+63 983 0962 971",
       "password": "123456",
+      "gender": "male",
       "role": "admin",
       "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
     },
@@ -79,6 +82,7 @@
       "userName": "Admin",
       "contact": "+63 983 0962 971",
       "password": "123456",
+      "gender": "male",
       "role": "admin",
       "image": "http://dummyimage.com/157x158.png/dddddd/000000"
     },
@@ -117,31 +121,6 @@
       "terms": true,
       "role": "author",
       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
-    },
-    {
-      "id": "aliyu@example.com",
-      "first_name": "Aliyu",
-      "last_name": "Musa",
-      "userName": "aliyu",
-      "password": "123456",
-      "gender": "male",
-      "contact": "+63 983 0962 971",
-      "terms": true,
-      "role": "user",
-      "image": "http://dummyimage.com/206x105.png/ff4444/ffffff"
-    },
-    {
-      "id": "taofeeq3@gmail.com",
-      "first_name": "TAOFEEQ",
-      "last_name": "OGUNSANYA",
-      "userName": "taofeeq",
-      "password": "Aa12345@",
-      "confirmPassword": "Aa12345@",
-      "gender": "male",
-      "contact": "+63 983 0962 971",
-      "terms": true,
-      "role": "user",
-      "image": "http://dummyimage.com/122x180.png/cc0000/ffffff"
     }
   ],
   "Products": [

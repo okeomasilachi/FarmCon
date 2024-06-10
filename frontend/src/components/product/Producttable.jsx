@@ -9,7 +9,7 @@ import Addproduct from "./Addproduct";
 import Paginations from "../pagination/Paginations";
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userInfo } from "../../atoms/User";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
@@ -35,7 +35,7 @@ const Producttable = () => {
     setProduct(prods);
   }, [prods]);
 
-   const dismissAll = () =>  toast.dismiss();
+  //  const dismissAll = () =>  toast.dismiss();
 
   // Dynamic notification
   const notify = (val) =>
