@@ -36,7 +36,7 @@ const About = () => {
 			<div className="row">
 				<div className="cards">
 					<div className="card">
-						<img src="./images/okheoma.jpg" className="card-img-top" alt="..." />
+						<img src="./images/Okheoma.jpg" className="card-img-top" alt="..." />
 						<div className="card-body">
 							<h5 className="card-title">Okeomasilachi onyedibia</h5>
 							<p className="card-text">
