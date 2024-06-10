@@ -16,10 +16,10 @@ const Schema = Yup.object().shape({
 });
 
 const Adduser = () => {
-   //   let [user, setUser] = useRecoilState(userInfo);
-   let redir = useNavigate();
+  //   let [user, setUser] = useRecoilState(userInfo);
+  let redir = useNavigate();
 
-    // Dynamic notification
+  // Dynamic notification
   const notify = (val) =>
     toast.success(val, {
       position: "top-right",
@@ -46,7 +46,6 @@ const Adduser = () => {
       transition: Bounce,
     });
 
-
   return (
     <div
       className="modal fade"
@@ -68,7 +67,7 @@ const Adduser = () => {
               aria-label="Close"
             ></button>
           </div>
-            <div className="modal-body">
+          <div className="modal-body">
             <Formik
               initialValues={{
                 firstName: "",
@@ -87,49 +86,55 @@ const Adduser = () => {
                  */
 
                 let userData = {
+                  id: values.email,
                   first_name: values.firstName,
                   last_name: values.lastName,
                   userName: values.userName,
-                  id: values.email,
-                  contact: values.contact,
                   password: values.firstName,
+                  gender: "default",
+                  contact: values.contact,
+                  terms: true,
                   role: "user",
                   image: "../images/avatar.png",
                 };
                 console.log(userData);
 
-                  let baseURL = "http://localhost:8000/Users";
-                  try {
-                    let allUser = await Axios.get(`${baseURL}`);
+                let baseURL = "http://localhost:8000/Users";
+                try {
+                  let allUser = await Axios.get(`${baseURL}`);
 
-                    let isUnique = false;
-                    allUser.data.forEach((each) => {
-                      if (each.id === values.email) {
-                        isUnique = true;
-                      }
-                    });
-
-                    // use the typed email to check if the email already exist
-                    if (!isUnique) {
-                      Axios.post(`${baseURL}`, userData)
-                        .then((response) => {
-                          //   setUser({isLoggedIn: true, data: response.data});
-                          redir("../user");
-                          setTimeout(() => {
-                            redir("../admin");
-                            }, 1500);
-                          notify("User created successfully");
-                        })
-                        .catch((error) => {
-                          console.error(error);
-                        });
-                    } else {
-                      errorNotify("User already exit");
+                  let isUnique = false;
+                  allUser.data.forEach((each) => {
+                    if (each.id === values.email) {
+                      isUnique = true;
                     }
-                    // if unique email allow to signup else dont
-                  } catch (error) {
-                    console.error(error);
+                  });
+
+                  // use the typed email to check if the email already exist
+                  if (!isUnique) {
+                    Axios.post(`${baseURL}`, userData)
+                      .then((response) => {
+                        //   setUser({isLoggedIn: true, data: response.data});
+                        notify("User created successfully");
+                        redir("../user");
+                        setTimeout(() => {
+                          redir("../admin");
+                        }, 1000);
+                        setTimeout(() => {
+                          redir("../user");
+                        }, 1020);
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                      });
+                      redir("../user");
+                  } else {
+                    errorNotify("User already exit");
                   }
+                  // if unique email allow to signup else dont
+                } catch (error) {
+                  console.error(error);
+                }
               }}
             >
               {({ errors, touched }) => (
@@ -200,13 +205,13 @@ const Adduser = () => {
                     {touched.email && errors.email && (
                       <div className="errors">{errors.email}</div>
                     )}
-                  </fieldset> 
+                  </fieldset>
 
                   <fieldset className="text-center mt-3">
                     <button
                       type="submit"
                       name="submit"
-					  data-bs-dismiss="modal"
+                      data-bs-dismiss="modal"
                       className="btn w-50 btn-lg me-auto"
                     >
                       Submit
@@ -215,7 +220,7 @@ const Adduser = () => {
                 </Form>
               )}
             </Formik>
-            </div>
+          </div>
         </div>
       </div>
       <ToastContainer />

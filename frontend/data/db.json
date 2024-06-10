@@ -103,10 +103,9 @@
       "first_name": "Okeo",
       "last_name": "Samuel",
       "userName": "okay",
+      "contact": "+63 983 0962 971",
       "password": "123456",
       "gender": "male",
-      "contact": "+63 983 0962 971",
-      "terms": true,
       "role": "author",
       "image": "http://dummyimage.com/157x158.png/dddddd/000000"
     },
@@ -121,6 +120,30 @@
       "terms": true,
       "role": "author",
       "image": "http://dummyimage.com/139x113.png/cc0000/ffffff"
+    },
+    {
+      "id": "newuser@example.com",
+      "first_name": "New",
+      "last_name": "User",
+      "userName": "newuser",
+      "password": "New",
+      "gender": "default",
+      "contact": "+63 983 0962 222",
+      "terms": true,
+      "role": "user",
+      "image": "../images/avatar.png"
+    },
+    {
+      "id": "new@example.com",
+      "first_name": "user",
+      "last_name": "new",
+      "userName": "newnew",
+      "password": "user",
+      "gender": "default",
+      "contact": "+63 983 0962 971",
+      "terms": true,
+      "role": "user",
+      "image": "../images/avatar.png"
     }
   ],
   "Products": [

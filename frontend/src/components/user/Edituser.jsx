@@ -90,7 +90,7 @@ const Edituser = ({ editData }) => {
                  * get data
                  * sed to db in object format
                  */
-                let baseURL = "http://localhost:8000/Admin/";
+                let baseURL = "http://localhost:8000/Users/";
 
                 let userdata = {
                   id: editData.id,
@@ -108,12 +108,12 @@ const Edituser = ({ editData }) => {
                   // use the typed location to check if the location already exist
                   Axios.put(baseURL + `${editData.id}`, userdata)
                     .then((response) => {
-                      notify("Product editted successfully");
-                      redir("../user");
+                      redir("../admin");
                       setTimeout(() => {
-                        redir("../admin");
+                        redir("../user");
                         // window.location.reload();
-                      }, 1000);
+                        }, 100);
+                      notify("Product editted successfully");
                     })
                     .catch((error) => {
                       errorNotify("Something went wrong!");

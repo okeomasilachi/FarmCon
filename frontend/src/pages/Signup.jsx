@@ -98,16 +98,18 @@ const Signup = () => {
                */
 
               let userdata = {
-                firstName: "",
-                lastName: "",
                 id: values.email,
+                firstName: "New",
+                lastName: "User",
                 userName: values.userName,
                 password: values.password,
-                confirmPassword: values.confirmPassword,
+                gender: "default",
+                contact: "none",
                 terms: values.terms,
                 role: "user",
+                image: "../images/avatar.png"
               };
-              console.log(userdata);
+              // console.log(userdata);
 
               let baseURL = "http://localhost:8000/Users";
               try {
@@ -124,7 +126,7 @@ const Signup = () => {
                 if (!isUnique) {
                   Axios.post(`${baseURL}`, userdata)
                     .then((response) => {
-                      //   setUser({isLoggedIn: true, data: response.data});
+                    //   setUser({isLoggedIn: true, data: response.data});
                       notify("Signed up successfully");
                       setTimeout(() => {
                         redir("../login");
