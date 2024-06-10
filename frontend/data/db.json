@@ -79,12 +79,12 @@
       "id": "aliyu@gmail.com",
       "first_name": "Aliyu",
       "last_name": "Musa",
-      "userName": "Admin",
-      "contact": "+63 983 0962 971",
+      "userName": "Aliyu",
+      "contact": "+63 983 0962 922",
       "password": "123456",
       "gender": "male",
-      "role": "admin",
-      "image": "http://dummyimage.com/157x158.png/dddddd/000000"
+      "role": "user",
+      "image": "http://dummyimage.com/157x158.png/ff4444/000000"
     },
     {
       "id": "info@example.com",
