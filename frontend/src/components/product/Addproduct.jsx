@@ -112,11 +112,12 @@ const Addproduct = () => {
                       Axios.post(`${baseURL}`, userdata)
                         .then((response) => {
                           notify("Product created successfully");
-                          redir("../user");
-                          setTimeout(() => {
-                            redir("../products");
-                            // window.location.reload();
-                            }, 50)
+                            setTimeout(() => {
+                              redir("../user");
+                              }, 1000);
+                              setTimeout(() => {
+                                redir("../products");
+                              }, 1020);
                         })
                         .catch((error) => {
                           errorNotify("Something went wrong!")

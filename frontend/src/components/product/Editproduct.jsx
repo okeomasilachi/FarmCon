@@ -122,11 +122,12 @@ const Editproduct = ({ editData }) => {
                     Axios.put(baseURL + `${editData.id}`, userdata)
                     .then((response) => {
                       notify("Product editted successfully");
-                      redir("../user");
-                          setTimeout(() => {
-                            redir("../products");
-                            // window.location.reload();
-                            }, 100)
+                      setTimeout(() => {
+                        redir("../user");
+                        }, 1000);
+                        setTimeout(() => {
+                          redir("../products");
+                        }, 1020);
                      })
                       .catch((error) => {
                         errorNotify("Something went wrong!");

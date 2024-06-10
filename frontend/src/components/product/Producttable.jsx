@@ -61,11 +61,12 @@ const Producttable = () => {
   const handleDelete = (values) => {
     Axios.delete(baseURL + `${values}`).then(() => {
       notify("Product deleted successfully");
-      redir("../user");
       setTimeout(() => {
-        redir("../products");
-        // window.location.reload();
-        }, 50)
+        redir("../user");
+        }, 1000);
+        setTimeout(() => {
+          redir("../products");
+        }, 1020);
     });
   };
 
