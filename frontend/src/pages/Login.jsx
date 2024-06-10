@@ -88,7 +88,7 @@ const Login = () => {
                   Errnotify("Invalid login details");
                 }
               } catch (error) {
-                console.log(error);
+                console.error(error);
                 if (error.response.status === 404) {
                   Errnotify("User does not exist");
                 }

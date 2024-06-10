@@ -97,7 +97,6 @@ const Adduser = () => {
                   role: "user",
                   image: "../images/avatar.png",
                 };
-                console.log(userData);
 
                 let baseURL = "http://localhost:8000/Users";
                 try {

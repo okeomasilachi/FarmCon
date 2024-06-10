@@ -105,7 +105,6 @@ const Addproduct = () => {
                     location: values.location,
                     image: values.image,
                   };
-                  console.log(userdata);
 
                   try {
                    // use the typed location to check if the location already exist
